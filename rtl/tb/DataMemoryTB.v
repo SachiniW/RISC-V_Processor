@@ -57,10 +57,10 @@ module DataMemoryTB();
         RESET       = 0;
     
         //WRITE PORT TEST
-        for (i=0; i<32; i=i+1) begin
+        for (i=0; i<128; i=i+4) begin
             MWrt        = 1;      
             ADDR        = i;
-            W_DATA      = i*13; 
+            W_DATA      = (i/4)*13; 
             #(CLK_PERIOD*1);
         end
         
@@ -68,7 +68,7 @@ module DataMemoryTB();
         #(CLK_PERIOD*1);
     
         //READ PORT TEST
-        for (j=0; j<15; j=j+1) begin
+        for (j=0; j<60; j=j+4) begin
             #(CLK_PERIOD/2)
             MRd       = 1;      
             ADDR      = j; 

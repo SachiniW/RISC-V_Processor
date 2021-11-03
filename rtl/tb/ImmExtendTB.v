@@ -5,7 +5,7 @@
 // 
 // Create Date: 10/31/2021 01:44:54 PM
 // Design Name: 
-// Module Name: InstMemoryTB
+// Module Name: ImmExtendTB
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -19,17 +19,19 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module InstMemoryTB;
-    reg [31:0] PC = 0;
-    wire [31:0] INST;
+module ImmExtendTB;
+    reg [31:0] INS;
+    reg [31:0] TYPE;
+    wire [31:0]  IMM_EXT;
 
     integer i;
 
-    InstMemory UUT (PC,INST);
+    ImmExtend UUT (INS,TYPE,IMM_EXT);
 
     initial begin
-        for (i=0; i<28; i=i+4) begin
-            PC = i; 
+        INS = 32'b10101111001010110101110011111011; // 
+        for (i=0; i<5; i=i+1) begin
+            TYPE = i; 
             #20;
         end
     end

@@ -43,8 +43,8 @@ module ALU_tb;
 
 
         for (i=0; i<12; i=i+1) begin
-            in1        <= 32'd13;      
-            in2        <= 32'd26;
+            in1        <= 32'd26;      
+            in2        <= 32'd13;
             alu_op     <= i; 
             #20;
         end

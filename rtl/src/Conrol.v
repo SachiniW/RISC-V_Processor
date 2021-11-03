@@ -1,11 +1,11 @@
-`timescale 1ns / 100ps
+`timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
 // 
-// Create Date: 10/31/2021 01:44:54 PM
+// Create Date: 11/03/2021 10:28:30 AM
 // Design Name: 
-// Module Name: InstMemoryTB
+// Module Name: Control
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -19,19 +19,12 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module InstMemoryTB;
-    reg [31:0] PC = 0;
-    wire [31:0] INST;
 
-    integer i;
+module Control(
 
-    InstMemory UUT (PC,INST);
+);
+    
 
-    initial begin
-        for (i=0; i<28; i=i+4) begin
-            PC = i; 
-            #20;
-        end
-    end
+
 
 endmodule

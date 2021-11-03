@@ -21,8 +21,8 @@
 
 
 module BranchLogic(
-    input [4:0] src1, 
-    input [4:0] src2,  
+    input [31:0] src1, 
+    input [31:0] src2,  
     input [2:0] func3,
     input branch,  
     output brn_en
@@ -30,13 +30,21 @@ module BranchLogic(
 
     `include "define.v"
 
+    wire w_equal;
+    wire w_signed;
+    wire w_unsigned;
+
+    assign w_equal = (src1 == src2) ? 1'b1 : 1'b0;
+    assign w_signed = ($signed(src1) < $signed(src2)) ? 1'b1 : 1'b0;
+    assign w_unsigned = (src1 < src2) ? 1'b1 : 1'b0;
+
     assign brn_en = branch & (
-                        ((func3 == BEQ) & (src1==src2)) |
-                        ((func3 == BNE) & (src1!=src2)) |
-                        ((func3 == BLT) & (src1<src2)) |
-                        ((func3 == BGE) & (src1>=src2)) |
-                        ((func3 == BLTU) & (src1<src2)) |
-                        ((func3 == BGEU) & (src1>=src2)) );
+                        ((func3 == BEQ) & (w_equal)) |
+                        ((func3 == BNE) & (~w_equal)) |
+                        ((func3 == BLT) & (w_signed)) |
+                        ((func3 == BGE) & (~w_signed)) |
+                        ((func3 == BLTU) & (w_unsigned)) |
+                        ((func3 == BGEU) & (~w_unsigned)) );
 
 	
 endmodule

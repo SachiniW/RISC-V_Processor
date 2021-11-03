@@ -20,4 +20,10 @@ localparam  BEQ = 3'b000,
             BLTU = 3'b110,
             BGEU = 3'b111;
 
-
+//Immediate extension definitions
+localparam  I = 3'b000,
+            S = 3'b001,
+            B = 3'b010,
+            U = 3'b011,
+            J = 3'b100;
+        
