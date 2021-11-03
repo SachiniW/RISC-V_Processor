@@ -5,7 +5,7 @@
 // 
 // Create Date: 10/31/2021 01:44:54 PM
 // Design Name: 
-// Module Name: ALU_tb
+// Module Name: InstMemoryTB
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -19,33 +19,17 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module ALU_tb;
-    reg [31:0] in1,in2;
-    reg [3:0] alu_op;
-    wire [31:0] alu_out;
+module InstMemoryTB;
+    reg [31:0] PC = 0;
+    wire [31:0] INST;
 
     integer i;
 
-    ALU UUT (
-        .in1(in1),
-        .in2(in2),
-        .alu_op(alu_op),
-        .alu_out(alu_out)
-    );
+    InstMemory UUT (PC,INST);
 
     initial begin
-        in1 = 32'b11111111111111111111111111111110;
-        in2 = 32'b11111111111111111111111111111111;
-        in2 = 32'd14;
-        alu_op = 4'd11;
-
-        #20;
-
-
-        for (i=0; i<12; i=i+1) begin
-            in1        <= 32'd13;      
-            in2        <= 32'd26;
-            alu_op     <= i; 
+        for (i=0; i<7; i=i+1) begin
+            PC = i; 
             #20;
         end
     end
