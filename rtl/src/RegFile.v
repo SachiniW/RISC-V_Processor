@@ -21,9 +21,7 @@
 
 
 module RegFile #(
-    //fixed parameters
-    localparam ADDR_WIDTH = 5,
-    localparam DATA_WIDTH = 32) 
+    parameter ADDR_WIDTH = 5, DATA_WIDTH = 32)
     (
     input                   CLK,
     input                   RESET,
@@ -35,14 +33,15 @@ module RegFile #(
     output  [DATA_WIDTH-1:0]SRC1_DOUT,
     output  [DATA_WIDTH-1:0]SRC2_DOUT
     );
-
-    reg [DATA_WIDTH-1:0] REG [0:31];
+    
+    
+    reg [DATA_WIDTH-1:0] REG [1:31];
     integer i;
 
     //WRITE PORT
     always @(posedge CLK) begin
         if (RESET) begin
-            for (i = 0; i <32 ;i=i+1) begin
+            for (i = 1; i <32 ;i=i+1) begin
                 REG[i]  <= 32'h0;
             end
         end 
