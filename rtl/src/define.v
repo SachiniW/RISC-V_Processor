@@ -25,5 +25,45 @@ localparam  I = 3'b000,
             S = 3'b001,
             B = 3'b010,
             U = 3'b011,
-            J = 3'b100;
-        
+            J = 3'b100,
+            R = 3'b101;
+
+localparam  ALUSRC1_RS1 = 0,
+            ALUSRC1_PC  = 1;
+
+localparam  ALUSRC2_RS2 = 0,
+            ALUSRC2_IMM = 1;
+
+//Load and Store
+localparam LW     = 10'b0100000011;
+localparam SW     = 10'b0100100011;
+// Shifts
+localparam SLL    = 11'b00010110011;
+localparam SLLI   = 11'b00010010011;
+localparam SRL    = 11'b01010110011;
+localparam SRLI   = 11'b01010010011;
+localparam SRA    = 11'b11010110011;
+localparam SRAI   = 11'b11010010011;
+// Arithmetic
+localparam ADD    = 11'b00000110011;
+localparam ADDI   = 10'b0000010011;
+localparam SUB    = 11'b10000110011;
+localparam LUI    = 7'b0110111;
+localparam AUIPC  = 7'b0010111;
+// Logical
+localparam XOR    = 11'b01000110011;
+localparam XORI   = 10'b1000010011;
+localparam OR     = 11'b01100110011;
+localparam ORI    = 10'b1100010011;
+localparam AND    = 11'b01110110011;
+localparam ANDI   = 10'b1110010011;
+// Compare
+localparam SLT    = 11'b00100110011;
+localparam SLTI   = 10'b0100010011;
+localparam SLTU   = 11'b00110110011;
+localparam SLTIU  = 10'b0110010011;
+// Branches
+localparam BRANCH =    7'b1100011;
+// Jump & Link
+localparam JAL    = 7'b1101111;
+localparam JALR   = 10'b0001100111;
