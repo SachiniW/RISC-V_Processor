@@ -28,11 +28,11 @@ localparam  I = 3'b000,
             J = 3'b100,
             R = 3'b101;
 
-localparam  ALUSRC1_RS1 = 0,
-            ALUSRC1_PC  = 1;
+localparam  ALUSRC1_RS1 = 1'b0,
+            ALUSRC1_PC  = 1'b1;
 
-localparam  ALUSRC2_RS2 = 0,
-            ALUSRC2_IMM = 1;
+localparam  ALUSRC2_RS2 = 1'b0,
+            ALUSRC2_IMM = 1'b1;
 
 //Load and Store
 localparam LW     = 10'b0100000011;
