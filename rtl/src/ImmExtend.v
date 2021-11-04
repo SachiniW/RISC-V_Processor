@@ -22,7 +22,7 @@
 
 module ImmExtend(
     input [31:0] INS,
-    input [31:0] TYPE, 
+    input [2:0] TYPE, 
     output [31:0] IMM_EXT
     );
 

@@ -5,7 +5,7 @@
 // 
 // Create Date: 11/03/2021 10:28:30 AM
 // Design Name: 
-// Module Name: Control
+// Module Name: Control.v
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -21,14 +21,39 @@
 
 
 module Control(
-input [31:0] INS,
-output [16:0]CTRL_SIG
+    input [31:0] INS,
+    output [2:0] CS_TYPE,
+    output       CS_JUMP,
+    output       CS_JUMPR,
+    output       CS_BRANCH,
+    output [3:0] CS_ALUOP,
+    output       CS_ALUSRC1,
+    output       CS_ALUSRC2,
+    output       CS_MEMRD,
+    output       CS_MEMWRT,
+    output       CS_M2R,
+    output       CS_WRTSRC,
+    output       CS_REGWRT
 );
 
 
 `include "define.v"
 
-wire [11:0] INS_ARR;
+wire [10:0] INS_ARR;
+wire [16:0] control_sig;
+
+assign CS_TYPE      = control_sig[2:0];
+assign CS_JUMP      = control_sig[3];
+assign CS_JUMPR     = control_sig[4];
+assign CS_BRANCH    = control_sig[5];
+assign CS_ALUOP     = control_sig[9:6];
+assign CS_ALUSRC1   = control_sig[10];
+assign CS_ALUSRC2   = control_sig[11];
+assign CS_MEMRD     = control_sig[12];
+assign CS_MEMRT     = control_sig[13];
+assign CS_M2R       = control_sig[14];
+assign CS_WRTSRC    = control_sig[15];
+assign CS_REGWRT    = control_sig[16];
 
 assign INS_ARR = {INS[30],INS[14:12],INS[6:0]};
 
