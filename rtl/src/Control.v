@@ -42,18 +42,18 @@ module Control(
 wire [10:0] INS_ARR;
 wire [16:0] control_sig;
 
-assign CS_TYPE      = control_sig[2:0];
-assign CS_JUMP      = control_sig[3];
-assign CS_JUMPR     = control_sig[4];
-assign CS_BRANCH    = control_sig[5];
-assign CS_ALUOP     = control_sig[9:6];
-assign CS_ALUSRC1   = control_sig[10];
-assign CS_ALUSRC2   = control_sig[11];
-assign CS_MEMRD     = control_sig[12];
-assign CS_MEMRT     = control_sig[13];
-assign CS_M2R       = control_sig[14];
-assign CS_WRTSRC    = control_sig[15];
-assign CS_REGWRT    = control_sig[16];
+assign CS_TYPE      = control_sig[16:14];
+assign CS_JUMP      = control_sig[13];
+assign CS_JUMPR     = control_sig[12];
+assign CS_BRANCH    = control_sig[11];
+assign CS_ALUOP     = control_sig[10:7];
+assign CS_ALUSRC1   = control_sig[6];
+assign CS_ALUSRC2   = control_sig[5];
+assign CS_MEMRD     = control_sig[4];
+assign CS_MEMRT     = control_sig[3];
+assign CS_M2R       = control_sig[2];
+assign CS_WRTSRC    = control_sig[1];
+assign CS_REGWRT    = control_sig[0];
 
 assign INS_ARR = {INS[30],INS[14:12],INS[6:0]};
 
