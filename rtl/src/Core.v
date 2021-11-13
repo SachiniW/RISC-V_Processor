@@ -57,7 +57,7 @@ PCSelect PCSelect(
 BranchLogic BranchLogic(
     .src1(SRC1), 
     .src2(SRC2),  
-    .func3(FUNC3),
+    .func3(INSTRUCTION[14:12]), //changed from func3 to instruction
     .branch(BRN),  
     .brn_en(BRNEN)
     );
