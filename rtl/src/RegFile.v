@@ -42,7 +42,7 @@ module RegFile #(
     always @(posedge CLK) begin
         if (RESET) begin
             for (i = 1; i <32 ;i=i+1) begin
-                REG[i]  <= 32'h0;
+                REG[i]  <= $unsigned(32'd0);
             end
         end 
         else if (WEN & (RD_SEL != 5'h0)) begin
@@ -50,7 +50,7 @@ module RegFile #(
         end
         
         $timeformat(-9,0,"ns");
-        $write("\n\nRegisterFile \t");
+        $write("RegisterFile \t");
         $write("time := %0t \n", $time);	
 		$write("Reg00(00) := %08x \t", REG[0]);
 		$write("Reg01(ra) := %08x \t", REG[1]);

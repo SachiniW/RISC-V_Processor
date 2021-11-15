@@ -45,7 +45,7 @@ module CoreTB;
 
         RESET = 0;
 
-        #(CLK_PERIOD*10);
+        #(CLK_PERIOD*100);
         $finish;
     end
 

@@ -57,7 +57,7 @@ PCSelect PCSelect(
 BranchLogic BranchLogic(
     .src1(SRC1), 
     .src2(SRC2),  
-    .func3(FUNC3),
+    .func3(INSTRUCTION[14:12]),
     .branch(BRN),  
     .brn_en(BRNEN)
     );
@@ -75,6 +75,8 @@ begin
     else begin
         PC <= PC_sig;
     end
+    
+    $write("\nInstruction : %08x \n" , INSTRUCTION);
 end
 
 assign PC_PLUSFOUR = PC + 32'd4;
