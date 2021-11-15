@@ -27,6 +27,7 @@ module InstMemory (
     
 reg [31:0]  I_MEM   [0:256];
 
+
 initial $readmemh("instruction_memory.mem" , I_MEM);
 
 // initial begin

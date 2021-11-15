@@ -41,6 +41,7 @@ module DataMemory(
         if (RESET) begin
             for (i = 0; i<512; i=i+1) begin
                 D_MEM[i] <= 32'h0;
+                //D_MEM[35] <= 32'b 00000000000000000000100110010101;
             end
         end
         else if (MWrt) begin
