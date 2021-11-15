@@ -54,7 +54,7 @@ module ImmExtend(
                              8'd0; 
 
     assign IMM_EXT[30:20] = ((TYPE  == I)|(TYPE  == S)|(TYPE  == B)|(TYPE  == J))? {11{INS[31]}}: 
-                            (TYPE  == U)? INS[30:20]:  //changed
+                            (TYPE  == U)? INS[30:20]: 
                              11'd0;
 
     assign IMM_EXT[31] =    ((TYPE  == I)|(TYPE  == S)|(TYPE  == B)|(TYPE  == U)|(TYPE  == J))? INS[31]: 

@@ -57,7 +57,7 @@ PCSelect PCSelect(
 BranchLogic BranchLogic(
     .src1(SRC1), 
     .src2(SRC2),  
-    .func3(INSTRUCTION[14:12]), //changed from func3 to instruction
+    .func3(INSTRUCTION[14:12]),
     .branch(BRN),  
     .brn_en(BRNEN)
     );
@@ -65,16 +65,18 @@ BranchLogic BranchLogic(
 assign JUMP_BRANCH_TARGET = PC + IMM_EXT; //temp
 assign JUMPREG_TARGET = SRC1 + IMM_EXT; //temp
 
-reg [31:0] PC = 0;
+reg [31:0] PC = -4;
 
 always @(posedge CLK)
 begin
     if (RESET) begin
-        PC <= 0;
+        PC <= -4;
     end
     else begin
         PC <= PC_sig;
     end
+    
+    $write("\nInstruction : %08x \n" , INSTRUCTION);
 end
 
 assign PC_PLUSFOUR = PC + 32'd4;

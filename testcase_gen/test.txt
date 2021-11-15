@@ -1,0 +1,126 @@
+test1.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <main>:
+0:		01d8e233	OR        	x4, x17, x29
+4:		00d46433	OR        	x8, x8, x13
+8:		01498463	BEQ       	x19, x20, 8
+c:		01e91463	BNE       	x18, x30, 8
+10:		6dfa3913	SLTIU     	x18, x20, 1759
+14:		41225eb3	SRA       	x29, x4, x18
+18:		01426933	OR        	x18, x4, x20
+1c:		aa29b693	SLTIU     	x13, x19, 2722
+20:		a9d22093	SLTI      	x1, x4, 2717
+24:		41425c33	SRA       	x24, x4, x20
+28:		ec30a313	SLTI      	x6, x1, 3779
+2c:		013a1863	BNE       	x20, x19, 16
+30:		013a1a63	BNE       	x20, x19, 20
+34:		0a733413	SLTIU     	x8, x6, 167
+38:		00d69a63	BNE       	x13, x13, 20
+3c:		013a7333	AND       	x6, x20, x19
+40:		9b7c2993	SLTI      	x19, x24, 2487
+44:		48433093	SLTIU     	x1, x6, 1156
+48:		00608c63	BEQ       	x1, x6, 24
+4c:		8ffa2693	SLTI      	x13, x20, 2303
+50:		361cbc93	SLTIU     	x25, x25, 865
+54:		0139ea33	OR        	x20, x19, x19
+58:		7ad6b913	SLTIU     	x18, x13, 1965
+5c:		611e8313	ADDI      	x6, x29, 1553
+60:		41d9d9b3	SRA       	x19, x19, x29
+64:		02831063	BNE       	x6, x8, 32
+68:		008a7933	AND       	x18, x20, x8
+6c:		08c00a67	JALR      	x20, x0, 140
+70:		006f6433	OR        	x8, x30, x6
+74:		01e9f333	AND       	x6, x19, x30
+78:		02468263	BEQ       	x13, x4, 36
+7c:		013a66b3	OR        	x13, x20, x19
+80:		00602223	SW        	x6, 4(x0)
+84:		0a000a67	JALR      	x20, x0, 160
+88:		01396c33	OR        	x24, x18, x19
+8c:		41495233	SRA       	x4, x18, x20
+90:		0186e9b3	OR        	x19, x13, x24
+94:		008efa33	AND       	x20, x29, x8
+98:		01d02423	SW        	x29, 8(x0)
+9c:		f08f2093	SLTI      	x1, x30, 3848
+a0:		0ac00367	JALR      	x6, x0, 172
+a4:		0c400367	JALR      	x6, x0, 196
+a8:		b1e8ae93	SLTI      	x29, x17, 2846
+ac:		038e8863	BEQ       	x29, x24, 48
+b0:		c60f0093	ADDI      	x1, x30, 3168
+b4:		8c99ae93	SLTI      	x29, x19, 2249
+b8:		00896a33	OR        	x20, x18, x8
+bc:		1dd20993	ADDI      	x19, x4, 477
+c0:		0e000a67	JALR      	x20, x0, 224
+c4:		4189d933	SRA       	x18, x19, x24
+c8:		5296ae93	SLTI      	x29, x13, 1321
+cc:		0e8006e7	JALR      	x13, x0, 232
+d0:		d3832993	SLTI      	x19, x6, 3384
+d4:		00402823	SW        	x4, 16(x0)
+d8:		e87c3313	SLTIU     	x6, x24, 3719
+dc:		01e9fcb3	AND       	x25, x19, x30
+e0:		88e20993	ADDI      	x19, x4, 2190
+e4:		bf29b993	SLTIU     	x19, x19, 3058
+e8:		108009e7	JALR      	x19, x0, 264
+ec:		10400467	JALR      	x8, x0, 260
+f0:		0068ecb3	OR        	x25, x17, x6
+f4:		411a5433	SRA       	x8, x20, x17
+f8:		00802023	SW        	x8, 0(x0)
+fc:		05189263	BNE       	x17, x17, 68
+100:		00137eb3	AND       	x29, x6, x1
+104:		05269463	BNE       	x13, x18, 72
+108:		114009e7	JALR      	x19, x0, 276
+10c:		43592c13	SLTI      	x24, x18, 1077
+110:		11c00967	JALR      	x18, x0, 284
+114:		01302023	SW        	x19, 0(x0)
+118:		412450b3	SRA       	x1, x8, x18
+11c:		01e0f9b3	AND       	x19, x1, x30
+120:		14400467	JALR      	x8, x0, 324
+124:		00d02023	SW        	x13, 0(x0)
+128:		bd39ba13	SLTIU     	x20, x19, 3027
+12c:		018a7a33	AND       	x20, x20, x24
+130:		13800367	JALR      	x6, x0, 312
+134:		053f0a63	BEQ       	x30, x19, 84
+138:		01202423	SW        	x18, 8(x0)
+13c:		0126f0b3	AND       	x1, x13, x18
+140:		011ef933	AND       	x18, x29, x17
+144:		16800ee7	JALR      	x29, x0, 360
+148:		05d99c63	BNE       	x19, x29, 88
+14c:		04898c63	BEQ       	x19, x8, 88
+150:		053a1e63	BNE       	x20, x19, 92
+154:		01defc33	AND       	x24, x29, x29
+158:		05240e63	BEQ       	x8, x18, 92
+15c:		00402023	SW        	x4, 0(x0)
+160:		06da0a13	ADDI      	x20, x20, 109
+164:		18000c67	JALR      	x24, x0, 384
+168:		0188eeb3	OR        	x29, x17, x24
+16c:		c5ba0c13	ADDI      	x24, x20, 3163
+170:		2a08a993	SLTI      	x19, x17, 672
+174:		d9942313	SLTI      	x6, x8, 3481
+178:		01302423	SW        	x19, 8(x0)
+17c:		07269263	BNE       	x13, x18, 100
+180:		ce693913	SLTIU     	x18, x18, 3302
+184:		07ea1463	BNE       	x20, x30, 104
+188:		06189463	BNE       	x17, x1, 104
+18c:		3afea913	SLTI      	x18, x29, 943
+190:		414f5cb3	SRA       	x25, x30, x20
+194:		01902623	SW        	x25, 12(x0)
+198:		9f292993	SLTI      	x19, x18, 2546
+19c:		b869be93	SLTIU     	x29, x19, 2950
+1a0:		1b400f67	JALR      	x30, x0, 436
+1a4:		01d0e933	OR        	x18, x1, x29
+1a8:		30e92f13	SLTI      	x30, x18, 782
+1ac:		01202823	SW        	x18, 16(x0)
+1b0:		21832693	SLTI      	x13, x6, 536
+1b4:		401a5233	SRA       	x4, x20, x1
+1b8:		07e69a63	BNE       	x13, x30, 116
+1bc:		06889a63	BNE       	x17, x8, 116
+1c0:		00602423	SW        	x6, 8(x0)
+1c4:		3d09b913	SLTIU     	x18, x19, 976
+1c8:		0010ff33	AND       	x30, x1, x1
+1cc:		06609c63	BNE       	x1, x6, 120
+1d0:		07231e63	BNE       	x6, x18, 124
+1d4:		413eda33	SRA       	x20, x29, x19
+1d8:		1dc009e7	JALR      	x19, x0, 476
+1dc:		06820e63	BEQ       	x4, x8, 124
