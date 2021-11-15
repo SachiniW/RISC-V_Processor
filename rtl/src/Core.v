@@ -65,12 +65,12 @@ BranchLogic BranchLogic(
 assign JUMP_BRANCH_TARGET = PC + IMM_EXT; //temp
 assign JUMPREG_TARGET = SRC1 + IMM_EXT; //temp
 
-reg [31:0] PC = 0;
+reg [31:0] PC = -4;
 
 always @(posedge CLK)
 begin
     if (RESET) begin
-        PC <= 0;
+        PC <= -4;
     end
     else begin
         PC <= PC_sig;
