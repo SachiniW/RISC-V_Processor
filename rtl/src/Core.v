@@ -136,6 +136,7 @@ DataMemory DataMemory(
     .RESET(RESET),
     .MRd(MEMRD),
     .MWrt(MEMWRT),
+    .FUNC3(INSTRUCTION[14:12]),
     .IN_ADDR(ALUOUT),
     .W_DATA(SRC2),
     .R_DATA(R_DATA)
