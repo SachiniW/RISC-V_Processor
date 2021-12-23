@@ -24,6 +24,7 @@ module DataMemoryTB();
 
     integer i;
     integer j;
+    integer k;
 
     localparam CLK_PERIOD = 10;
 
@@ -31,11 +32,12 @@ module DataMemoryTB();
     reg         RESET;
     reg         MRd;
     reg         MWrt;
+    reg   [2:0] FUNC3;
     reg   [31:0]ADDR;
     reg   [31:0]W_DATA;
     wire  [31:0]R_DATA;
 
-    DataMemory UUT(CLK,RESET,MRd,MWrt,ADDR,W_DATA,R_DATA);
+    DataMemory UUT(CLK,RESET,MRd,MWrt,FUNC3,ADDR,W_DATA,R_DATA);
 
     initial begin
     forever begin
@@ -50,25 +52,35 @@ module DataMemoryTB();
         MWrt    = 0;
         ADDR    = 0;
         W_DATA  = 0;
+        //FUNC3 = 3'b010; //change function to test
    
     
     
         #(CLK_PERIOD*10);
         RESET       = 0;
-    
+
+        //code to test signed/unsigned
+            FUNC3 = 3'b001;//change function to test
+            MWrt        = 1; 
+            ADDR        = 0;
+            W_DATA      = 8'b11110000; 
+            #(CLK_PERIOD*2);
+             
         //WRITE PORT TEST
-        for (i=0; i<128; i=i+4) begin
+        for (i=1; i<128; i=i+1) begin
+            FUNC3 = 3'b000;//change function to test
             MWrt        = 1;      
             ADDR        = i;
-            W_DATA      = (i/4)*13; 
-            #(CLK_PERIOD*1);
+            W_DATA      = (i*((-1)**i))*13; 
+            #(CLK_PERIOD*2);
         end
-        
+
         MWrt = 0;
         #(CLK_PERIOD*1);
     
         //READ PORT TEST
-        for (j=0; j<60; j=j+4) begin
+        for (j=0; j<60; j=j+1) begin
+            FUNC3 = 3'b001;
             #(CLK_PERIOD/2)
             MRd       = 1;      
             ADDR      = j; 

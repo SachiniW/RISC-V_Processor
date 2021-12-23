@@ -34,9 +34,16 @@ localparam  ALUSRC1_RS1 = 1'b0,
 localparam  ALUSRC2_RS2 = 1'b0,
             ALUSRC2_IMM = 1'b1;
 
-//Load and Store
+// Load 
 localparam LW     = 10'b0100000011;
+localparam LB     = 10'b0000000011;
+localparam LH     = 10'b0010000011;
+localparam LBU    = 10'b1000000011;
+localparam LHU    = 10'b1010000011;
+// Store
 localparam SW     = 10'b0100100011;
+localparam SB     = 10'b0000100011;
+localparam SH     = 10'b0010100011;
 // Shifts
 localparam SLL    = 11'b00010110011;
 localparam SLLI   = 11'b00010010011;

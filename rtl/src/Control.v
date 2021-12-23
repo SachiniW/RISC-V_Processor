@@ -65,7 +65,13 @@ assign control_sig = (INS_ARR[6:0] == LUI)      ? {  U ,  1'b0 ,  1'b0 ,  1'b0  
                      (INS_ARR[9:0] == JALR)     ? {  I ,  1'b0 ,  1'b1 ,  1'b0  ,  ALU_ADD  , ALUSRC1_RS1 , ALUSRC2_RS2 , 1'b0  ,  1'b0 , 1'b0  ,  1'b0  , 1'b1  }:   //JALR
                      (INS_ARR[6:0] == BRANCH)   ? {  B ,  1'b0 ,  1'b0 ,  1'b1  ,  ALU_ADD  , ALUSRC1_RS1 , ALUSRC2_RS2 , 1'b0  ,  1'b0 , 1'b0  ,  1'b0  , 1'b0  }:   //BEQ , BNE , BLT  , BGE , BLTU , BGEU
                      (INS_ARR[9:0] == LW)       ? {  I ,  1'b0 ,  1'b0 ,  1'b0  ,  ALU_ADD  , ALUSRC1_RS1 , ALUSRC2_IMM , 1'b1  ,  1'b0 , 1'b1  ,  1'b1  , 1'b1  }:   //LW
+                     (INS_ARR[9:0] == LB)       ? {  I ,  1'b0 ,  1'b0 ,  1'b0  ,  ALU_ADD  , ALUSRC1_RS1 , ALUSRC2_IMM , 1'b1  ,  1'b0 , 1'b1  ,  1'b1  , 1'b1  }:   //LB
+                     (INS_ARR[9:0] == LH)       ? {  I ,  1'b0 ,  1'b0 ,  1'b0  ,  ALU_ADD  , ALUSRC1_RS1 , ALUSRC2_IMM , 1'b1  ,  1'b0 , 1'b1  ,  1'b1  , 1'b1  }:   //LH
+                     (INS_ARR[9:0] == LBU)      ? {  I ,  1'b0 ,  1'b0 ,  1'b0  ,  ALU_ADD  , ALUSRC1_RS1 , ALUSRC2_IMM , 1'b1  ,  1'b0 , 1'b1  ,  1'b1  , 1'b1  }:   //LBU
+                     (INS_ARR[9:0] == LHU)      ? {  I ,  1'b0 ,  1'b0 ,  1'b0  ,  ALU_ADD  , ALUSRC1_RS1 , ALUSRC2_IMM , 1'b1  ,  1'b0 , 1'b1  ,  1'b1  , 1'b1  }:   //LHU
                      (INS_ARR[9:0] == SW)       ? {  S ,  1'b0 ,  1'b0 ,  1'b0  ,  ALU_ADD  , ALUSRC1_RS1 , ALUSRC2_IMM , 1'b0  ,  1'b1 , 1'b0  ,  1'b0  , 1'b0  }:   //SW
+                     (INS_ARR[9:0] == SB)       ? {  S ,  1'b0 ,  1'b0 ,  1'b0  ,  ALU_ADD  , ALUSRC1_RS1 , ALUSRC2_IMM , 1'b0  ,  1'b1 , 1'b0  ,  1'b0  , 1'b0  }:   //SW
+                     (INS_ARR[9:0] == SH)       ? {  S ,  1'b0 ,  1'b0 ,  1'b0  ,  ALU_ADD  , ALUSRC1_RS1 , ALUSRC2_IMM , 1'b0  ,  1'b1 , 1'b0  ,  1'b0  , 1'b0  }:   //SW
                      (INS_ARR[9:0] == ADDI)     ? {  I ,  1'b0 ,  1'b0 ,  1'b0  ,  ALU_ADD  , ALUSRC1_RS1 , ALUSRC2_IMM , 1'b0  ,  1'b0 , 1'b0  ,  1'b1  , 1'b1  }:   //ADDI
                      (INS_ARR[9:0] == SLTI)     ? {  I ,  1'b0 ,  1'b0 ,  1'b0  ,  ALU_SLT  , ALUSRC1_RS1 , ALUSRC2_IMM , 1'b0  ,  1'b0 , 1'b0  ,  1'b1  , 1'b1  }:   //SLTI
                      (INS_ARR[9:0] == SLTIU)    ? {  I ,  1'b0 ,  1'b0 ,  1'b0  ,  ALU_SLTU , ALUSRC1_RS1 , ALUSRC2_IMM , 1'b0  ,  1'b0 , 1'b0  ,  1'b1  , 1'b1  }:   //SLTIU

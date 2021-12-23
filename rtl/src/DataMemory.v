@@ -25,7 +25,7 @@ module DataMemory(
     input         RESET,
     input         MRd,
     input         MWrt,
-    input         FUNC3,
+    input   [2:0] FUNC3,
     input   [31:0]IN_ADDR,
     input   [31:0]W_DATA,
     output  [31:0]R_DATA
@@ -49,8 +49,8 @@ module DataMemory(
     wire HALFWORD;
 
     wire [31:0]LW;
-    wire [31:0]LH;
-    wire [31:0]LB;
+    wire [15:0]LH;
+    wire [ 7:0]LB;
     wire [31:0]LHU;
     wire [31:0]LBU;
 
@@ -63,8 +63,8 @@ module DataMemory(
     assign BYTE     = IN_ADDR % 4;
     assign HALFWORD = IN_ADDR % 2;
 
-    assign BYTE_DATA     = $signed(32'h100FFFFFF )>> BYTE*8; 
-    assign HALFWORD_DATA = $signed(32'h10000FFFF )>> HALFWORD*16;
+    assign BYTE_DATA     = ~((32'hFF000000) >> ((3-BYTE)*8)); 
+    assign HALFWORD_DATA = ~((32'hFFFF0000) >> ((1-HALFWORD)*16));
 
     assign BYTE_WR = BYTE_DATA & D_MEM[ADDR]; 
     assign HALF_WR = HALFWORD_DATA & D_MEM[ADDR];
@@ -76,7 +76,7 @@ module DataMemory(
             end
         end
         else if (MWrt) begin
-            if      (FUNC3 == F3SW)  D_MEM[ADDR] <= W_DATA;
+            if      (FUNC3 == F3SW)  D_MEM[ADDR] <=  W_DATA;
             else if (FUNC3 == F3SB)  D_MEM[ADDR] <= (W_DATA[7:0]  << BYTE*8)      | BYTE_WR ;
             else if (FUNC3 == F3SH)  D_MEM[ADDR] <= (W_DATA[15:0] << HALFWORD*16) | HALF_WR ;
         end
@@ -88,7 +88,7 @@ module DataMemory(
                     ((HALFWORD == 1'b1)  && MRd) ? $signed(LW[31:16])  :  
                     32'h0;
                     
-    assign LB     = ((BYTE == 2'd0)  && MRd) ? $signed(LW[7:0])   : 
+    assign LB     = ((BYTE == 2'd0)  && MRd) ? $signed(LW[7:0]) : 
                     ((BYTE == 2'd1)  && MRd) ? $signed(LW[15:8])  :  
                     ((BYTE == 2'd2)  && MRd) ? $signed(LW[23:16]) :  
                     ((BYTE == 2'd3)  && MRd) ? $signed(LW[31:24]):  
@@ -105,8 +105,10 @@ module DataMemory(
                     32'h0;
  
     assign R_DATA = ((FUNC3 == F3LW)  && MRd) ? LW  :  //LW
-                    ((FUNC3 == F3LB)  && MRd) ? LB  :  //LB
-                    ((FUNC3 == F3LH)  && MRd) ? LH  :  //LH
+                    ((FUNC3 == F3LB)  && MRd && ($signed(LB)>= 0)) ? LB :  //LB
+                    ((FUNC3 == F3LB)  && MRd && ($signed(LB) < 0)) ? 32'hFFFFFF00 + LB :  //LB
+                    ((FUNC3 == F3LH)  && MRd && ($signed(LH)>= 0)) ? LH  :  //LH
+                    ((FUNC3 == F3LH)  && MRd && ($signed(LH) < 0)) ? 32'hFFFF0000 + LH :  //LH
                     ((FUNC3 == F3LBU) && MRd) ? LBU :  //LBU
                     ((FUNC3 == F3LHU) && MRd) ? LHU :  //LHU
                     32'h0;
