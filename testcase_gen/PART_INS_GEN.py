@@ -19,10 +19,13 @@ def reverse_dict_with_iterable(dictionary):
 
 # Instructions classified into types
 TYPES_TO_INSTRUCTION = dict(U_TYPE={}, UJ_TYPE={},
-                            SB_TYPE={'BEQ','BNE'},
-                            I_TYPE={'JALR','SLTIU', 'SLTI', 'ADDI'}, 
+                            SB_TYPE={},
+                            I_TYPE={'SLLI', 'SRLI', 'SRAI','SLTIU', 'SLTI', 'ADDI'}, 
                             S_TYPE={'SW'},
-                            R_TYPE={'SRA','OR','AND'})
+                            R_TYPE={'SLT', 'SLTU', 'XOR', 'SRL'})
+
+                            #I_TYPE={'SLLI', 'SRLI', 'SRAI'}, 
+                            #R_TYPE={'SLT', 'SLTU', 'XOR', 'SRL'})
                             
 OPCODES = dict(LUI='0110111', AUIPC='0010111', JAL='1101111', JALR='1100111', BEQ='1100011', BNE='1100011',
                BLT='1100011', BGE='1100011', BLTU='1100011', BGEU='1100011', LB='0000011', LH='0000011', LW='0000011',
