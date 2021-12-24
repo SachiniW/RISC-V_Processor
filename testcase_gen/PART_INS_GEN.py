@@ -19,9 +19,9 @@ def reverse_dict_with_iterable(dictionary):
 
 # Instructions classified into types
 TYPES_TO_INSTRUCTION = dict(U_TYPE={}, UJ_TYPE={},
-                            SB_TYPE={'BEQ','BNE'},
-                            I_TYPE={'JALR','SLTIU', 'SLTI', 'ADDI'}, 
-                            S_TYPE={'SW'},
+                            SB_TYPE={},#'BEQ','BNE','BLTU','BGEU'},
+                            I_TYPE={'SLTIU', 'SLTI', 'ADDI','LW','LB'},#'LH','LBU','LHU'}, #'JALR'
+                            S_TYPE={'SW','SB'},#'SH'},
                             R_TYPE={'SRA','OR','AND'})
                             
 OPCODES = dict(LUI='0110111', AUIPC='0010111', JAL='1101111', JALR='1100111', BEQ='1100011', BNE='1100011',
@@ -39,9 +39,9 @@ FUNCT_CODES = dict(JALR='000', BEQ='000', BNE='001', BLT='100', BGE='101', BLTU=
                    SLL='001', SLT='010', SLTU='011', XOR='100', SRL='101', SRA='101', OR='110', AND='111', MUL='000',
                    MULH='001', MULHSU='010', MULHU='011', DIV='100', DIVU='101', REM='110', REMU='111')
 
-LOAD_INSTRUCTION_NAMES = {'LW'}
+LOAD_INSTRUCTION_NAMES = {'LW','LB'}
 
-STORE_INSTRUCTION_NAMES = {'SW'}
+STORE_INSTRUCTION_NAMES = {'SW','SB'}
 
 SHIFT_IMMEDIATE_INSTRUCTION_NAMES = {'SLLI', 'SRLI', 'SRAI'}
 

@@ -1,120 +1,120 @@
-JALR      	x16, x0, 12
-SW        	x19, 16(x0)
-SLTI      	x17, x18, 3728
-JALR      	x5, x0, 44
-JALR      	x14, x0, 32
-JALR      	x2, x0, 56
-AND       	x29, x2, x14
-SW        	x20, 8(x0)
-SRA       	x19, x2, x16
-ADDI      	x21, x2, 1933
-AND       	x2, x18, x20
-SW        	x5, 12(x0)
-BEQ       	x29, x20, 20
-AND       	x5, x26, x27
-SW        	x21, 0(x0)
-SW        	x17, 8(x0)
-BNE       	x2, x21, 24
-OR        	x17, x27, x19
-SLTIU     	x18, x2, 3360
-BEQ       	x21, x2, 24
-SW        	x2, 4(x0)
-JALR      	x29, x0, 96
-BNE       	x21, x20, 28
-BEQ       	x14, x5, 28
-ADDI      	x19, x16, 1892
-JALR      	x18, x0, 136
-BEQ       	x16, x20, 32
-ADDI      	x21, x19, 1544
-ADDI      	x19, x19, 2077
-BEQ       	x19, x19, 36
-JALR      	x14, x0, 156
-AND       	x2, x29, x20
-BEQ       	x17, x18, 40
-AND       	x2, x20, x17
-JALR      	x2, x0, 156
-OR        	x18, x20, x5
-SRA       	x19, x26, x21
-SLTIU     	x21, x21, 1761
-ADDI      	x27, x26, 2588
-ADDI      	x26, x26, 2602
-AND       	x16, x17, x2
-JALR      	x16, x0, 168
-SLTI      	x2, x16, 1922
-OR        	x19, x5, x27
-SLTI      	x16, x5, 816
-BEQ       	x2, x19, 52
-BNE       	x2, x2, 52
-SRA       	x16, x2, x18
-ADDI      	x20, x4, 39
-SRA       	x20, x18, x18
-BEQ       	x4, x26, 56
-SRA       	x4, x20, x26
-BEQ       	x27, x16, 60
-JALR      	x2, x0, 216
-JALR      	x16, x0, 248
-ADDI      	x2, x16, 2384
-OR        	x16, x29, x2
-SLTI      	x21, x5, 3018
-AND       	x2, x26, x17
-BEQ       	x26, x16, 64
-BNE       	x16, x2, 68
-BEQ       	x2, x4, 68
-BEQ       	x19, x2, 68
-SLTIU     	x29, x20, 2142
-AND       	x29, x27, x18
-SRA       	x26, x20, x2
-AND       	x17, x16, x20
-ADDI      	x16, x14, 2231
-BNE       	x2, x16, 76
-SLTIU     	x2, x2, 334
-BEQ       	x14, x19, 76
-AND       	x16, x26, x14
-OR        	x19, x18, x27
-BNE       	x21, x4, 80
-BEQ       	x21, x20, 80
-AND       	x4, x21, x21
-BNE       	x5, x4, 84
-SRA       	x5, x27, x20
-BNE       	x16, x21, 84
-JALR      	x21, x0, 340
-OR        	x21, x18, x16
-SLTI      	x17, x19, 2924
-JALR      	x5, x0, 360
-SW        	x16, 12(x0)
-SW        	x2, 16(x0)
-JALR      	x2, x0, 372
-SRA       	x20, x5, x2
-SRA       	x18, x2, x26
-JALR      	x5, x0, 384
-SLTIU     	x21, x2, 518
-SW        	x5, 12(x0)
-SLTIU     	x19, x18, 1897
-AND       	x18, x19, x2
-SLTI      	x20, x2, 205
-BEQ       	x16, x27, 100
-SLTIU     	x14, x19, 466
-BNE       	x17, x17, 104
-BNE       	x14, x2, 104
-ADDI      	x19, x20, 1933
-ADDI      	x21, x20, 1016
-BNE       	x2, x18, 108
-SLTIU     	x2, x18, 1624
-ADDI      	x17, x19, 2910
-SW        	x29, 16(x0)
-SLTIU     	x26, x5, 3956
-BEQ       	x21, x16, 112
-SLTI      	x21, x16, 2030
-SRA       	x2, x14, x21
-OR        	x18, x18, x2
-BNE       	x2, x29, 116
-AND       	x2, x2, x16
-BNE       	x2, x20, 116
-SLTIU     	x16, x5, 3913
-SRA       	x16, x14, x17
-BNE       	x2, x29, 120
-JALR      	x21, x0, 464
-SW        	x21, 12(x0)
-OR        	x14, x17, x26
-BEQ       	x18, x16, 124
-SRA       	x26, x16, x19
+AND       	x3, x1, x3
+SLTIU     	x6, x25, 285
+OR        	x29, x3, x8
+SB        	x8, 0(x0)
+SW        	x25, 8(x0)
+LW        	x29, 8(x0)
+LW        	x21, 0(x0)
+LB        	x13, 8(x0)
+SW        	x29, 4(x0)
+LB        	x6, 8(x0)
+SLTIU     	x6, x3, 2416
+SLTIU     	x27, x8, 2801
+AND       	x29, x26, x4
+SRA       	x1, x19, x13
+SRA       	x26, x30, x6
+LW        	x26, 8(x0)
+LB        	x8, 0(x0)
+AND       	x19, x8, x25
+SW        	x6, 0(x0)
+SB        	x9, 4(x0)
+OR        	x8, x29, x13
+SRA       	x26, x30, x25
+SB        	x14, 8(x0)
+OR        	x13, x25, x19
+SW        	x29, 8(x0)
+SLTIU     	x8, x4, 3149
+SLTI      	x25, x29, 1520
+LB        	x26, 4(x0)
+SLTI      	x26, x9, 842
+SLTI      	x19, x27, 3090
+SRA       	x8, x13, x9
+OR        	x29, x21, x27
+LW        	x29, 8(x0)
+SLTIU     	x27, x27, 3753
+SLTIU     	x1, x29, 3683
+SLTI      	x8, x25, 1301
+AND       	x1, x30, x13
+LW        	x29, 8(x0)
+ADDI      	x30, x1, 1175
+SB        	x13, 8(x0)
+SB        	x8, 16(x0)
+SRA       	x8, x1, x13
+ADDI      	x8, x9, 2095
+SW        	x26, 16(x0)
+LB        	x19, 16(x0)
+SW        	x1, 8(x0)
+LW        	x6, 4(x0)
+SW        	x4, 12(x0)
+SRA       	x27, x26, x6
+SRA       	x9, x14, x29
+AND       	x1, x29, x6
+SRA       	x14, x29, x27
+LW        	x1, 16(x0)
+SRA       	x19, x19, x9
+SW        	x9, 4(x0)
+SLTIU     	x14, x6, 3833
+SB        	x1, 0(x0)
+SRA       	x6, x8, x6
+LB        	x6, 0(x0)
+SRA       	x30, x26, x9
+SB        	x27, 16(x0)
+LB        	x21, 0(x0)
+ADDI      	x29, x6, 676
+AND       	x19, x30, x1
+SB        	x26, 4(x0)
+LW        	x29, 4(x0)
+SRA       	x27, x6, x29
+AND       	x6, x14, x19
+SB        	x13, 0(x0)
+LW        	x26, 4(x0)
+SLTIU     	x29, x9, 1374
+LW        	x14, 16(x0)
+LW        	x1, 8(x0)
+OR        	x26, x3, x3
+SW        	x13, 0(x0)
+SLTI      	x30, x6, 1617
+SRA       	x6, x8, x8
+AND       	x29, x6, x29
+SB        	x6, 8(x0)
+SRA       	x8, x8, x30
+SLTI      	x14, x14, 1482
+ADDI      	x30, x27, 926
+SLTI      	x21, x26, 2253
+SRA       	x3, x6, x1
+SRA       	x8, x30, x1
+OR        	x25, x30, x29
+AND       	x29, x19, x3
+SB        	x6, 8(x0)
+LW        	x13, 0(x0)
+LB        	x29, 8(x0)
+SRA       	x27, x14, x30
+ADDI      	x25, x8, 3975
+SB        	x8, 4(x0)
+SW        	x19, 0(x0)
+SB        	x29, 8(x0)
+ADDI      	x21, x26, 2275
+SW        	x9, 12(x0)
+ADDI      	x27, x8, 3058
+OR        	x8, x8, x19
+LW        	x29, 0(x0)
+AND       	x29, x29, x8
+SLTI      	x29, x30, 5
+SRA       	x29, x29, x6
+SRA       	x29, x6, x27
+LW        	x9, 0(x0)
+SLTI      	x30, x6, 2743
+AND       	x8, x6, x27
+SLTIU     	x30, x30, 3170
+ADDI      	x26, x9, 2882
+LB        	x3, 12(x0)
+SW        	x6, 12(x0)
+SB        	x6, 4(x0)
+OR        	x4, x8, x8
+SB        	x30, 8(x0)
+SLTI      	x29, x1, 3364
+OR        	x13, x4, x9
+LB        	x8, 12(x0)
+AND       	x19, x29, x8
+SRA       	x30, x8, x14
+SLTIU     	x4, x19, 2392

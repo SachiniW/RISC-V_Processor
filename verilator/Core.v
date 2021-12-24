@@ -287,7 +287,7 @@ module DataMemory(
     localparam F3SH = 3'b001;
     localparam F3SB = 3'b000;
     
-    reg [31:0]  D_MEM   [0:1<<24]; 
+    reg [31:0]  D_MEM   [0:32'hffffffff]; 
 
     integer i;
     wire [31:0]ADDR;
@@ -325,8 +325,8 @@ module DataMemory(
         end
     end
 
-    assign PRINT_VAL = W_DATA; // @[Core.scala 347:17]
-    assign PRINT_EN = ADDR == 32'he0001030 & MWrt; // @[Core.scala 348:65]
+    assign PRINT_VAL = D_MEM[32'he0001030]; // @[Core.scala 347:17]
+    assign PRINT_EN = (ADDR == 32'he0001030) && MWrt; // @[Core.scala 348:65]
 
     assign LW     = D_MEM[ADDR];
 
@@ -409,7 +409,7 @@ module InstMemory (
     output [31:0] INST  
 );
     
-reg [31:0]  I_MEM   [0:1<<24];
+reg [31:0]  I_MEM   [0:30'h3ffffff];
 
 
 initial $readmemh("instruction_memory.mem" , I_MEM);
@@ -456,8 +456,10 @@ module RegFile #(
     //WRITE PORT
     always @(posedge CLK) begin
         if (RESET) begin
-            for (i = 1; i <32 ;i=i+1) begin
-                REG[i]  <= $unsigned(32'd0);
+            for (i = 1; i < 32 ;i=i+1) begin
+                if (i==2) REG[i] <= 32'h1000000;
+                else if (i==3) REG[i] <= 32'h2000000;
+                else  REG[i]  <= $unsigned(32'd0);
             end
         end 
         else if (WEN & (RD_SEL != 5'h0)) begin

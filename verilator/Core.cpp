@@ -11,6 +11,9 @@
 #include <fstream>
 using namespace std;
 
+#define HIGH 1
+#define LOW 0
+
 int main(int argc, char **argv, char **env)
 {
 	Verilated::commandArgs(argc, argv);
@@ -33,14 +36,13 @@ int main(int argc, char **argv, char **env)
 
 	string CTRL_SIG     ;
 
+	static int clock = 0;
+
 
 	while (!Verilated::gotFinish())
 	{
-		static int clock = 0;
+		
 		clock = (clock+1) & 1;
-
-		static int HIGH = 1;
-		static int LOW = 0;
 	    
 		counter = counter + 1;
 
@@ -54,13 +56,13 @@ int main(int argc, char **argv, char **env)
 		}
 	
 
-		counter = counter + 1;
+		//counter = counter + 1;
 		if(clock == 1){
-
+			//printf("%d \n",counter);
 			if(top->PRINT_EN){
 				// printf("%d",counter);
 				// printf("\t%c\n",top->io_printVal);
-				printf("%c",top->PRINT_VAL);
+				printf("%d \n",top->PRINT_VAL);
 				// printf("\t %08x \t %08x  \n",top->io_pc-8,top->io_printval        IData/*31:0*/ Core__DOT__pcsel_io_pcOut;
 			}
 
@@ -230,8 +232,8 @@ int main(int argc, char **argv, char **env)
 				// 											top->Core__DOT__dcache__DOT__mem[0x3FFFD8]	 );
 				CTRL_SIG = bitset<17>(top->Core__DOT__Control__DOT__control_sig).to_string();
 				
-		
-
+				printf ("PC: %08x \n", top->Core__DOT__INSTRUCTION);
+				printf ("Instruction %d: %08x \n" , int(counter/2), top->Core__DOT__INSTRUCTION);
 				cout << "CS_TYPE     : "   <<  CTRL_SIG[16,14] << endl;
 				cout << "CS_JUMP     : "   <<  CTRL_SIG[13]    << endl;
 				cout << "CS_JUMPR    : "   <<  CTRL_SIG[12]    << endl;
@@ -247,38 +249,41 @@ int main(int argc, char **argv, char **env)
 
 						
 				printf("\n\nRegisterFile \n");	
-				printf("Reg00(00) := %08x \t", top->Core__DOT__RegFile__DOT__REG[0]);
-				printf("Reg01(ra) := %08x \t", top->Core__DOT__RegFile__DOT__REG[1]);
-				printf("Reg02(sp) := %08x \t", top->Core__DOT__RegFile__DOT__REG[2]);
-				printf("Reg03(gp) := %08x \n", top->Core__DOT__RegFile__DOT__REG[3]);
-				printf("Reg04(tp) := %08x \t", top->Core__DOT__RegFile__DOT__REG[4]);
-				printf("Reg05(t0) := %08x \t", top->Core__DOT__RegFile__DOT__REG[5]);
-				printf("Reg06(t1) := %08x \t", top->Core__DOT__RegFile__DOT__REG[6]);
-				printf("Reg07(t2) := %08x \n", top->Core__DOT__RegFile__DOT__REG[7]);
-				printf("Reg08(s0) := %08x \t", top->Core__DOT__RegFile__DOT__REG[8]);
-				printf("Reg09(s1) := %08x \t", top->Core__DOT__RegFile__DOT__REG[9]);
-				printf("Reg10(a0) := %08x \t", top->Core__DOT__RegFile__DOT__REG[10]);
-				printf("Reg11(a1) := %08x \n", top->Core__DOT__RegFile__DOT__REG[11]);
-				printf("Reg12(a2) := %08x \t", top->Core__DOT__RegFile__DOT__REG[12]);
-				printf("Reg13(a3) := %08x \t", top->Core__DOT__RegFile__DOT__REG[13]);
-				printf("Reg14(a4) := %08x \t", top->Core__DOT__RegFile__DOT__REG[14]);
-				printf("Reg15(a5) := %08x \n", top->Core__DOT__RegFile__DOT__REG[15]);
-				printf("Reg16(a6) := %08x \t", top->Core__DOT__RegFile__DOT__REG[16]);
-				printf("Reg17(a7) := %08x \t", top->Core__DOT__RegFile__DOT__REG[17]);
-				printf("Reg18(s2) := %08x \t", top->Core__DOT__RegFile__DOT__REG[18]);
-				printf("Reg19(s3) := %08x \n", top->Core__DOT__RegFile__DOT__REG[19]);
-				printf("Reg20(s4) := %08x \t", top->Core__DOT__RegFile__DOT__REG[20]);
-				printf("Reg21(s5) := %08x \t", top->Core__DOT__RegFile__DOT__REG[21]);
-				printf("Reg22(s6) := %08x \t", top->Core__DOT__RegFile__DOT__REG[22]);
-				printf("Reg23(s7) := %08x \n", top->Core__DOT__RegFile__DOT__REG[23]);
-				printf("Reg24(s8) := %08x \t", top->Core__DOT__RegFile__DOT__REG[24]);
-				printf("Reg25(s9) := %08x \t", top->Core__DOT__RegFile__DOT__REG[25]);
-				printf("Reg26(sA) := %08x \t", top->Core__DOT__RegFile__DOT__REG[26]);
-				printf("Reg27(sB) := %08x \n", top->Core__DOT__RegFile__DOT__REG[27]);
-				printf("Reg28(t3) := %08x \t", top->Core__DOT__RegFile__DOT__REG[28]);
-				printf("Reg29(t4) := %08x \t", top->Core__DOT__RegFile__DOT__REG[29]);
-				printf("Reg30(t5) := %08x \t", top->Core__DOT__RegFile__DOT__REG[30]);
-				printf("Reg31(t6) := %08x \n", top->Core__DOT__RegFile__DOT__REG[31]);
+				printf("Reg00(00) := 00000000 \t");
+				printf("Reg01(ra) := %08x \t", top->Core__DOT__RegFile__DOT__REG[0]);
+				printf("Reg02(sp) := %08x \t", top->Core__DOT__RegFile__DOT__REG[1]);
+				printf("Reg03(gp) := %08x \n", top->Core__DOT__RegFile__DOT__REG[2]);
+				printf("Reg04(tp) := %08x \t", top->Core__DOT__RegFile__DOT__REG[3]);
+				printf("Reg05(t0) := %08x \t", top->Core__DOT__RegFile__DOT__REG[4]);
+				printf("Reg06(t1) := %08x \t", top->Core__DOT__RegFile__DOT__REG[5]);
+				printf("Reg07(t2) := %08x \n", top->Core__DOT__RegFile__DOT__REG[6]);
+				printf("Reg08(s0) := %08x \t", top->Core__DOT__RegFile__DOT__REG[7]);
+				printf("Reg09(s1) := %08x \t", top->Core__DOT__RegFile__DOT__REG[8]);
+				printf("Reg10(a0) := %08x \t", top->Core__DOT__RegFile__DOT__REG[9]);
+				printf("Reg11(a1) := %08x \n", top->Core__DOT__RegFile__DOT__REG[10]);
+				printf("Reg12(a2) := %08x \t", top->Core__DOT__RegFile__DOT__REG[11]);
+				printf("Reg13(a3) := %08x \t", top->Core__DOT__RegFile__DOT__REG[12]);
+				printf("Reg14(a4) := %08x \t", top->Core__DOT__RegFile__DOT__REG[13]);
+				printf("Reg15(a5) := %08x \n", top->Core__DOT__RegFile__DOT__REG[14]);
+				printf("Reg16(a6) := %08x \t", top->Core__DOT__RegFile__DOT__REG[15]);
+				printf("Reg17(a7) := %08x \t", top->Core__DOT__RegFile__DOT__REG[16]);
+				printf("Reg18(s2) := %08x \t", top->Core__DOT__RegFile__DOT__REG[17]);
+				printf("Reg19(s3) := %08x \n", top->Core__DOT__RegFile__DOT__REG[18]);
+				printf("Reg20(s4) := %08x \t", top->Core__DOT__RegFile__DOT__REG[19]);
+				printf("Reg21(s5) := %08x \t", top->Core__DOT__RegFile__DOT__REG[20]);
+				printf("Reg22(s6) := %08x \t", top->Core__DOT__RegFile__DOT__REG[21]);
+				printf("Reg23(s7) := %08x \n", top->Core__DOT__RegFile__DOT__REG[22]);
+				printf("Reg24(s8) := %08x \t", top->Core__DOT__RegFile__DOT__REG[23]);
+				printf("Reg25(s9) := %08x \t", top->Core__DOT__RegFile__DOT__REG[24]);
+				printf("Reg26(sA) := %08x \t", top->Core__DOT__RegFile__DOT__REG[25]);
+				printf("Reg27(sB) := %08x \n", top->Core__DOT__RegFile__DOT__REG[26]);
+				printf("Reg28(t3) := %08x \t", top->Core__DOT__RegFile__DOT__REG[27]);
+				printf("Reg29(t4) := %08x \t", top->Core__DOT__RegFile__DOT__REG[28]);
+				printf("Reg30(t5) := %08x \t", top->Core__DOT__RegFile__DOT__REG[29]);
+				printf("Reg31(t6) := %08x \n", top->Core__DOT__RegFile__DOT__REG[30]);
+
+				printf("Output location: %d \n",top->PRINT_VAL);
+				printf("Enable: %d \n",top->PRINT_EN);
 			// }
 
 			
