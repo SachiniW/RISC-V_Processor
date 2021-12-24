@@ -50,9 +50,9 @@ VL_MODULE(VCore) {
     IData/*31:0*/ Core__DOT__DataMemory__DOT__LW;
     IData/*31:0*/ Core__DOT__DataMemory__DOT__BYTE_WR;
     IData/*31:0*/ Core__DOT__DataMemory__DOT__HALF_WR;
-    IData/*31:0*/ Core__DOT__InstMemory__DOT__I_MEM[67108864];
+    IData/*31:0*/ Core__DOT__InstMemory__DOT__I_MEM[33554432];
     IData/*31:0*/ Core__DOT__RegFile__DOT__REG[31];
-    IData/*31:0*/ Core__DOT__DataMemory__DOT__D_MEM[2];
+    IData/*31:0*/ Core__DOT__DataMemory__DOT__D_MEM[33554432];
     
     // LOCAL VARIABLES
     // Internals; generally not touched by application code

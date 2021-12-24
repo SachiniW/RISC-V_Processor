@@ -287,7 +287,7 @@ module DataMemory(
     localparam F3SH = 3'b001;
     localparam F3SB = 3'b000;
     
-    reg [31:0]  D_MEM   [0:32'hffffffff]; 
+    reg [31:0]  D_MEM   [0:25'h1ffffff]; 
 
     integer i;
     wire [31:0]ADDR;
@@ -325,8 +325,9 @@ module DataMemory(
         end
     end
 
-    assign PRINT_VAL = D_MEM[32'he0001030]; // @[Core.scala 347:17]
-    assign PRINT_EN = (ADDR == 32'he0001030) && MWrt; // @[Core.scala 348:65]
+    //assign PRINT_VAL = D_MEM[32'h3800040c]; // @[Core.scala 347:17]
+    assign PRINT_VAL = W_DATA; // @[Core.scala 347:17]
+    assign PRINT_EN = (ADDR == 32'h3800040c) && MWrt; // @[Core.scala 348:65]
 
     assign LW     = D_MEM[ADDR];
 
@@ -409,7 +410,7 @@ module InstMemory (
     output [31:0] INST  
 );
     
-reg [31:0]  I_MEM   [0:30'h3ffffff];
+reg [31:0]  I_MEM   [0:25'h1ffffff];
 
 
 initial $readmemh("instruction_memory.mem" , I_MEM);

@@ -2,7 +2,7 @@
 #include "verilated.h"
 
 //  #define DEBUG
-#define COMPARE
+//#define COMPARE
 
 // #include "bitset.h"
 #include <bitset>
@@ -62,7 +62,7 @@ int main(int argc, char **argv, char **env)
 			if(top->PRINT_EN){
 				// printf("%d",counter);
 				// printf("\t%c\n",top->io_printVal);
-				printf("%d \n",top->PRINT_VAL);
+				printf("%c",top->PRINT_VAL);
 				// printf("\t %08x \t %08x  \n",top->io_pc-8,top->io_printval        IData/*31:0*/ Core__DOT__pcsel_io_pcOut;
 			}
 
@@ -232,7 +232,7 @@ int main(int argc, char **argv, char **env)
 				// 											top->Core__DOT__dcache__DOT__mem[0x3FFFD8]	 );
 				CTRL_SIG = bitset<17>(top->Core__DOT__Control__DOT__control_sig).to_string();
 				
-				printf ("PC: %08x \n", top->Core__DOT__INSTRUCTION);
+				printf ("PC: %08x \n", top->Core__DOT__PC);
 				printf ("Instruction %d: %08x \n" , int(counter/2), top->Core__DOT__INSTRUCTION);
 				cout << "CS_TYPE     : "   <<  CTRL_SIG[16,14] << endl;
 				cout << "CS_JUMP     : "   <<  CTRL_SIG[13]    << endl;

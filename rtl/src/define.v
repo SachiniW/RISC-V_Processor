@@ -74,3 +74,10 @@ localparam BRANCH =    7'b1100011;
 // Jump & Link
 localparam JAL    = 7'b1101111;
 localparam JALR   = 10'b0001100111;
+
+// Multicycle stages
+localparam FETCH = 3'd0,
+           DECODE = 3'd1, 
+           EXECUTE = 3'd2,
+           MEMORY_ACCESS = 3'd3,
+           WRITE_BACK = 3'd4;

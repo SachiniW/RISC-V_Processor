@@ -75,6 +75,7 @@ begin
     end
     else begin
         FD_PC <= PC_sig;
+        
         FD_IR <= INSTRUCTION;
     end
     

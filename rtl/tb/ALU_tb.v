@@ -34,20 +34,19 @@ module ALU_tb;
     );
 
     initial begin
-        in1 = 32'b11111111111111111111111111111110;
-        in2 = 32'b11111111111111111111111111111111;
-        in2 = 32'd14;
-        alu_op = 4'd11;
+        in1 = 32'hfffff82f;
+        in2 = 32'hfffff82f;
+        alu_op = 4'd9;
 
         #20;
 
-
+        /*
         for (i=0; i<12; i=i+1) begin
             in1        <= 32'd26;      
             in2        <= 32'd13;
             alu_op     <= i; 
             #20;
-        end
+        end */
     end
 
 endmodule
