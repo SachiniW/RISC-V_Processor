@@ -2,7 +2,7 @@
 #include "verilated.h"
 
 //  #define DEBUG
-#define COMPARE
+//#define COMPARE
 
 // #include "bitset.h"
 #include <bitset>
@@ -64,10 +64,11 @@ int main(int argc, char **argv, char **env)
 		if(clock == 1){
 			//printf("%d \n",counter);
 			if(top->PRINT_EN){
-				printf("%d\t%d",counter,printCounter);
+				//printf("%d\t%d",counter,printCounter);
 				// printf("\t%c\n",top->io_printVal);
-				printf("\t%c\n",top->PRINT_VAL);\
+				//printf("\t%c\n",top->PRINT_VAL);
 
+				printf("%c",top->PRINT_VAL);
 
 				// printf("\t %08x \t %08x  \n",top->io_pc-8,top->io_printval        IData/*31:0*/ Core__DOT__pcsel_io_pcOut;
 			}
@@ -231,7 +232,7 @@ int main(int argc, char **argv, char **env)
 
 				getchar();
 
-				printf("%d\t%d\n",counter,printCounter);
+				//printf("%d\t%d\n",counter,printCounter);
 				
 				// out << showbase << hex << (top->Core__DOT__mw_pcPlusFourReg+ 0x10050) << endl;
 				// printf("IRReg := %08x \t ", top->Core__DOT__mw_rdReg);
@@ -250,6 +251,8 @@ int main(int argc, char **argv, char **env)
 				// 											top->Core__DOT__dcache__DOT__mem[0x3FFFD7],
 				// 											top->Core__DOT__dcache__DOT__mem[0x3FFFD8]	 );
 				// CTRL_SIG = bitset<17>(top->Core__DOT__Control__DOT__control_sig).to_string();
+
+				cout << "\nPrint Counter :" << printCounter << endl;
 				
 				printf ("PC: %08x \n", top->Core__DOT__PC);
 				//fprintf (out, "PC: %08x \n", top->Core__DOT__PC);

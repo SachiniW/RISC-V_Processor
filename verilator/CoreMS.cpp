@@ -2,7 +2,7 @@
 #include "verilated.h"
 
 //  #define DEBUG
-#define COMPARE
+//#define COMPARE
 
 // #include "bitset.h"
 #include <bitset>
@@ -61,10 +61,10 @@ int main(int argc, char **argv, char **env)
 		if(clock == 1){
 			//printf("%d \n",counter);
 			if(top->PRINT_EN){
-				printf("%d\t%d",counter,printCounter);
+				//printf("%d\t%d",counter,printCounter);
 				// printf("\t%c\n",top->io_printVal);
-				printf("\t%c\n",top->PRINT_VAL);\
-
+				//printf("\t%c\n",top->PRINT_VAL);
+				printf("%c",top->PRINT_VAL);
 
 				// printf("\t %08x \t %08x  \n",top->io_pc-8,top->io_printval        IData/*31:0*/ Core__DOT__pcsel_io_pcOut;
 			}
@@ -222,7 +222,7 @@ int main(int argc, char **argv, char **env)
 			if (CTRL_SIG[17] == '1'){
 
 				getchar();
-				printf("%d\t%d",counter,printCounter);
+				//printf("%d\t%d",counter,printCounter);
 
 				// out << showbase << hex << (top->Core__DOT__mw_pcPlusFourReg+ 0x10050) << endl;
 				// printf("IRReg := %08x \t ", top->Core__DOT__mw_rdReg);

@@ -63,10 +63,10 @@ begin
     end
     else begin
         EF_BRNEN <= BRNEN;
-        WF_JUMP <= MW_JUMP;
-        WF_JUMPR <= MW_JUMPR;
-        WF_JUMP_BRANCH_TARGET <= MW_JUMP_BRANCH_TARGET;
-        WF_JUMPREG_TARGET <= MW_JUMPREG_TARGET;
+        WF_JUMP <= EM_JUMP;
+        WF_JUMPR <= EM_JUMPR;
+        WF_JUMP_BRANCH_TARGET <= EM_JUMP_BRANCH_TARGET;
+        WF_JUMPREG_TARGET <= EM_JUMPREG_TARGET;
     end
     
     //$write("\nInstruction : %08x \n" , INSTRUCTION);
@@ -80,7 +80,7 @@ PCSelect PCSelect(
     .PC_PLUSFOUR(PC_PLUSFOUR),
     .JUMP_TARGET(WF_JUMP_BRANCH_TARGET),
     .JUMPREG_TARGET(WF_JUMPREG_TARGET),
-    .BRANCH_TARGET(WF_JUMP_BRANCH_TARGET),
+    .BRANCH_TARGET(EM_JUMP_BRANCH_TARGET),
     .NEXT_PC(PC_sig)
 );
 
