@@ -89,6 +89,7 @@ void VCoreMS::_initial__TOP__1(VCoreMS__Syms* __restrict vlSymsp) {
     WData/*191:0*/ __Vtemp1[6];
     WData/*191:0*/ __Vtemp2[6];
     // Body
+    vlTOPp->CoreMS__DOT__DE_PC = 0U;
     __Vtemp1[0U] = 0x2e6d656dU;
     __Vtemp1[1U] = 0x6d6f7279U;
     __Vtemp1[2U] = 0x6e5f6d65U;
@@ -112,31 +113,25 @@ void VCoreMS::_initial__TOP__1(VCoreMS__Syms* __restrict vlSymsp) {
     VL_READMEM_N(true, 32, 33554432, 0, VL_CVT_PACK_STR_NW(6, __Vtemp2)
                  , vlTOPp->CoreMS__DOT__DataMemory__DOT__D_MEM
                  , 0, ~VL_ULL(0));
+    vlTOPp->CoreMS__DOT__EM_JUMP = 0U;
+    vlTOPp->CoreMS__DOT__EM_JUMPR = 0U;
+    vlTOPp->CoreMS__DOT__EM_JUMPREG_TARGET = 0U;
     vlTOPp->CoreMS__DOT__MW_PC_PLUSFOUR = 0U;
     vlTOPp->CoreMS__DOT__MW_ALUOUT = 0U;
     vlTOPp->CoreMS__DOT__MW_R_DATA = 0U;
-    vlTOPp->CoreMS__DOT__MW_JUMP = 0U;
-    vlTOPp->CoreMS__DOT__MW_JUMPR = 0U;
-    vlTOPp->CoreMS__DOT__MW_JUMP_BRANCH_TARGET = 0U;
-    vlTOPp->CoreMS__DOT__MW_JUMPREG_TARGET = 0U;
     vlTOPp->CoreMS__DOT__EM_SRC2 = 0U;
     vlTOPp->CoreMS__DOT__EM_IR = 0U;
     vlTOPp->CoreMS__DOT__DE_IR = 0U;
     vlTOPp->CoreMS__DOT__EM_PC_PLUSFOUR = 0U;
-    vlTOPp->CoreMS__DOT__EM_JUMP = 0U;
-    vlTOPp->CoreMS__DOT__EM_JUMPR = 0U;
-    vlTOPp->CoreMS__DOT__EM_JUMP_BRANCH_TARGET = 0U;
-    vlTOPp->CoreMS__DOT__EM_JUMPREG_TARGET = 0U;
-    vlTOPp->CoreMS__DOT__DE_SRC2 = 0U;
-    vlTOPp->CoreMS__DOT__EM_ALUOUT = 0U;
-    vlTOPp->CoreMS__DOT__DE_PC_PLUSFOUR = 0U;
-    vlTOPp->CoreMS__DOT__DE_PC = 0U;
     vlTOPp->CoreMS__DOT__DE_IMM_EXT = 0U;
     vlTOPp->CoreMS__DOT__DE_SRC1 = 0U;
+    vlTOPp->CoreMS__DOT__DE_SRC2 = 0U;
+    vlTOPp->CoreMS__DOT__EM_ALUOUT = 0U;
     vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG = 0x40000U;
+    vlTOPp->CoreMS__DOT__DE_PC_PLUSFOUR = 0U;
     vlTOPp->CoreMS__DOT__ControlMS__DOT__state = 0U;
-    vlTOPp->CoreMS__DOT__FD_PC = 0xfffffffcU;
     vlTOPp->CoreMS__DOT__FD_IR = 0U;
+    vlTOPp->CoreMS__DOT__FD_PC = 0xfffffffcU;
 }
 
 VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) {
@@ -168,16 +163,18 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
     __Vdlyvset__CoreMS__DOT__DataMemory__DOT__D_MEM__v0 = 0U;
     __Vdlyvset__CoreMS__DOT__DataMemory__DOT__D_MEM__v1 = 0U;
     __Vdlyvset__CoreMS__DOT__DataMemory__DOT__D_MEM__v2 = 0U;
+    vlTOPp->CoreMS__DOT__DE_PC = ((IData)(vlTOPp->RESET)
+                                   ? 0U : vlTOPp->CoreMS__DOT__FD_PC);
     vlTOPp->CoreMS__DOT__WF_JUMP_BRANCH_TARGET = ((IData)(vlTOPp->RESET)
                                                    ? 0U
-                                                   : vlTOPp->CoreMS__DOT__MW_JUMP_BRANCH_TARGET);
+                                                   : vlTOPp->CoreMS__DOT__JUMP_BRANCH_TARGET);
     vlTOPp->CoreMS__DOT__WF_JUMPREG_TARGET = ((IData)(vlTOPp->RESET)
                                                ? 0U
-                                               : vlTOPp->CoreMS__DOT__MW_JUMPREG_TARGET);
+                                               : vlTOPp->CoreMS__DOT__EM_JUMPREG_TARGET);
     vlTOPp->CoreMS__DOT__WF_JUMP = ((~ (IData)(vlTOPp->RESET)) 
-                                    & (IData)(vlTOPp->CoreMS__DOT__MW_JUMP));
+                                    & (IData)(vlTOPp->CoreMS__DOT__EM_JUMP));
     vlTOPp->CoreMS__DOT__WF_JUMPR = ((~ (IData)(vlTOPp->RESET)) 
-                                     & (IData)(vlTOPp->CoreMS__DOT__MW_JUMPR));
+                                     & (IData)(vlTOPp->CoreMS__DOT__EM_JUMPR));
     __Vdly__CoreMS__DOT__FD_PC = ((IData)(vlTOPp->RESET)
                                    ? 0xfffffffcU : 
                                   ((0x40000U & vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG)
@@ -304,31 +301,6 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
         vlTOPp->CoreMS__DOT__DataMemory__DOT__D_MEM[__Vdlyvdim0__CoreMS__DOT__DataMemory__DOT__D_MEM__v2] 
             = __Vdlyvval__CoreMS__DOT__DataMemory__DOT__D_MEM__v2;
     }
-    vlTOPp->CoreMS__DOT__MW_JUMP_BRANCH_TARGET = ((IData)(vlTOPp->RESET)
-                                                   ? 0U
-                                                   : vlTOPp->CoreMS__DOT__EM_JUMP_BRANCH_TARGET);
-    vlTOPp->CoreMS__DOT__MW_JUMPREG_TARGET = ((IData)(vlTOPp->RESET)
-                                               ? 0U
-                                               : vlTOPp->CoreMS__DOT__EM_JUMPREG_TARGET);
-    vlTOPp->CoreMS__DOT__MW_JUMP = ((~ (IData)(vlTOPp->RESET)) 
-                                    & (IData)(vlTOPp->CoreMS__DOT__EM_JUMP));
-    vlTOPp->CoreMS__DOT__MW_JUMPR = ((~ (IData)(vlTOPp->RESET)) 
-                                     & (IData)(vlTOPp->CoreMS__DOT__EM_JUMPR));
-    vlTOPp->CoreMS__DOT__MW_R_DATA = ((IData)(vlTOPp->RESET)
-                                       ? 0U : vlTOPp->CoreMS__DOT__R_DATA);
-    vlTOPp->CoreMS__DOT__MW_PC_PLUSFOUR = ((IData)(vlTOPp->RESET)
-                                            ? 0U : vlTOPp->CoreMS__DOT__EM_PC_PLUSFOUR);
-    vlTOPp->CoreMS__DOT__MW_ALUOUT = ((IData)(vlTOPp->RESET)
-                                       ? 0U : vlTOPp->CoreMS__DOT__EM_ALUOUT);
-    vlTOPp->CoreMS__DOT__EM_IR = ((IData)(vlTOPp->RESET)
-                                   ? 0U : vlTOPp->CoreMS__DOT__DE_IR);
-    vlTOPp->CoreMS__DOT__EM_SRC2 = ((IData)(vlTOPp->RESET)
-                                     ? 0U : vlTOPp->CoreMS__DOT__DE_SRC2);
-    vlTOPp->CoreMS__DOT__EM_JUMP_BRANCH_TARGET = ((IData)(vlTOPp->RESET)
-                                                   ? 0U
-                                                   : 
-                                                  (vlTOPp->CoreMS__DOT__DE_PC 
-                                                   + vlTOPp->CoreMS__DOT__DE_IMM_EXT));
     vlTOPp->CoreMS__DOT__EM_JUMPREG_TARGET = ((IData)(vlTOPp->RESET)
                                                ? 0U
                                                : (vlTOPp->CoreMS__DOT__DE_SRC1 
@@ -339,32 +311,16 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
     vlTOPp->CoreMS__DOT__EM_JUMPR = (1U & ((~ (IData)(vlTOPp->RESET)) 
                                            & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
                                               >> 0xdU)));
-    vlTOPp->CoreMS__DOT__EM_PC_PLUSFOUR = ((IData)(vlTOPp->RESET)
-                                            ? 0U : vlTOPp->CoreMS__DOT__DE_PC_PLUSFOUR);
-    vlTOPp->CoreMS__DOT__EM_ALUOUT = ((IData)(vlTOPp->RESET)
-                                       ? 0U : vlTOPp->CoreMS__DOT__ALUOUT);
-    vlTOPp->CoreMS__DOT__DE_IR = ((IData)(vlTOPp->RESET)
-                                   ? 0U : vlTOPp->CoreMS__DOT__FD_IR);
-    vlTOPp->PRINT_VAL = vlTOPp->CoreMS__DOT__EM_SRC2;
-    vlTOPp->CoreMS__DOT__DE_SRC2 = ((IData)(vlTOPp->RESET)
-                                     ? 0U : ((0U == 
-                                              (0x1fU 
-                                               & (vlTOPp->CoreMS__DOT__FD_IR 
-                                                  >> 0x14U)))
-                                              ? 0U : 
-                                             ((0x1eU 
-                                               >= (0x1fU 
-                                                   & ((vlTOPp->CoreMS__DOT__FD_IR 
-                                                       >> 0x14U) 
-                                                      - (IData)(1U))))
-                                               ? vlTOPp->CoreMS__DOT__RegFile__DOT__REG
-                                              [(0x1fU 
-                                                & ((vlTOPp->CoreMS__DOT__FD_IR 
-                                                    >> 0x14U) 
-                                                   - (IData)(1U)))]
-                                               : 0U)));
-    vlTOPp->CoreMS__DOT__DE_PC = ((IData)(vlTOPp->RESET)
-                                   ? 0U : vlTOPp->CoreMS__DOT__FD_PC);
+    vlTOPp->CoreMS__DOT__MW_R_DATA = ((IData)(vlTOPp->RESET)
+                                       ? 0U : vlTOPp->CoreMS__DOT__R_DATA);
+    vlTOPp->CoreMS__DOT__MW_PC_PLUSFOUR = ((IData)(vlTOPp->RESET)
+                                            ? 0U : vlTOPp->CoreMS__DOT__EM_PC_PLUSFOUR);
+    vlTOPp->CoreMS__DOT__MW_ALUOUT = ((IData)(vlTOPp->RESET)
+                                       ? 0U : vlTOPp->CoreMS__DOT__EM_ALUOUT);
+    vlTOPp->CoreMS__DOT__EM_IR = ((IData)(vlTOPp->RESET)
+                                   ? 0U : vlTOPp->CoreMS__DOT__DE_IR);
+    vlTOPp->CoreMS__DOT__EM_SRC2 = ((IData)(vlTOPp->RESET)
+                                     ? 0U : vlTOPp->CoreMS__DOT__DE_SRC2);
     vlTOPp->CoreMS__DOT__DE_IMM_EXT = ((IData)(vlTOPp->RESET)
                                         ? 0U : vlTOPp->CoreMS__DOT__IMM_EXT);
     vlTOPp->CoreMS__DOT__DE_SRC1 = ((IData)(vlTOPp->RESET)
@@ -1074,35 +1030,31 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
             }
         }
     }
-    vlTOPp->CoreMS__DOT__DE_PC_PLUSFOUR = ((IData)(vlTOPp->RESET)
-                                            ? 0U : 
-                                           ((IData)(4U) 
-                                            + vlTOPp->CoreMS__DOT__FD_PC));
-    vlTOPp->CoreMS__DOT__DataMemory__DOT__BYTE_WR = 
-        ((~ ((0x1fU >= (((IData)(3U) - (3U & vlTOPp->CoreMS__DOT__EM_ALUOUT)) 
-                        << 3U)) ? (0xff000000U >> (
-                                                   ((IData)(3U) 
-                                                    - 
-                                                    (3U 
-                                                     & vlTOPp->CoreMS__DOT__EM_ALUOUT)) 
-                                                   << 3U))
-              : 0U)) & vlTOPp->CoreMS__DOT__DataMemory__DOT__D_MEM
-         [(0x1ffffffU & (vlTOPp->CoreMS__DOT__EM_ALUOUT 
-                         >> 2U))]);
-    vlTOPp->CoreMS__DOT__DataMemory__DOT__HALF_WR = 
-        ((~ ((0x1fU >= (((IData)(1U) - (1U & vlTOPp->CoreMS__DOT__EM_ALUOUT)) 
-                        << 4U)) ? (0xffff0000U >> (
-                                                   ((IData)(1U) 
-                                                    - 
-                                                    (1U 
-                                                     & vlTOPp->CoreMS__DOT__EM_ALUOUT)) 
-                                                   << 4U))
-              : 0U)) & vlTOPp->CoreMS__DOT__DataMemory__DOT__D_MEM
-         [(0x1ffffffU & (vlTOPp->CoreMS__DOT__EM_ALUOUT 
-                         >> 2U))]);
-    vlTOPp->CoreMS__DOT__DataMemory__DOT__LW = vlTOPp->CoreMS__DOT__DataMemory__DOT__D_MEM
-        [(0x1ffffffU & (vlTOPp->CoreMS__DOT__EM_ALUOUT 
-                        >> 2U))];
+    vlTOPp->CoreMS__DOT__EM_PC_PLUSFOUR = ((IData)(vlTOPp->RESET)
+                                            ? 0U : vlTOPp->CoreMS__DOT__DE_PC_PLUSFOUR);
+    vlTOPp->CoreMS__DOT__EM_ALUOUT = ((IData)(vlTOPp->RESET)
+                                       ? 0U : vlTOPp->CoreMS__DOT__ALUOUT);
+    vlTOPp->CoreMS__DOT__DE_IR = ((IData)(vlTOPp->RESET)
+                                   ? 0U : vlTOPp->CoreMS__DOT__FD_IR);
+    vlTOPp->PRINT_VAL = vlTOPp->CoreMS__DOT__EM_SRC2;
+    vlTOPp->CoreMS__DOT__DE_SRC2 = ((IData)(vlTOPp->RESET)
+                                     ? 0U : ((0U == 
+                                              (0x1fU 
+                                               & (vlTOPp->CoreMS__DOT__FD_IR 
+                                                  >> 0x14U)))
+                                              ? 0U : 
+                                             ((0x1eU 
+                                               >= (0x1fU 
+                                                   & ((vlTOPp->CoreMS__DOT__FD_IR 
+                                                       >> 0x14U) 
+                                                      - (IData)(1U))))
+                                               ? vlTOPp->CoreMS__DOT__RegFile__DOT__REG
+                                              [(0x1fU 
+                                                & ((vlTOPp->CoreMS__DOT__FD_IR 
+                                                    >> 0x14U) 
+                                                   - (IData)(1U)))]
+                                               : 0U)));
+    vlTOPp->CoreMS__DOT__ControlMS__DOT__state = __Vdly__CoreMS__DOT__ControlMS__DOT__state;
     if (__Vdlyvset__CoreMS__DOT__RegFile__DOT__REG__v0) {
         vlTOPp->CoreMS__DOT__RegFile__DOT__REG[0U] = 0U;
         vlTOPp->CoreMS__DOT__RegFile__DOT__REG[1U] = 0x1000000U;
@@ -1141,18 +1093,53 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
             = __Vdlyvval__CoreMS__DOT__RegFile__DOT__REG__v31;
     }
     vlTOPp->CoreMS__DOT__FD_IR = __Vdly__CoreMS__DOT__FD_IR;
-    vlTOPp->CoreMS__DOT__ControlMS__DOT__state = __Vdly__CoreMS__DOT__ControlMS__DOT__state;
-    vlTOPp->CoreMS__DOT__FD_PC = __Vdly__CoreMS__DOT__FD_PC;
+    vlTOPp->CoreMS__DOT__JUMP_BRANCH_TARGET = (vlTOPp->CoreMS__DOT__DE_PC 
+                                               + vlTOPp->CoreMS__DOT__DE_IMM_EXT);
+    vlTOPp->CoreMS__DOT__ALU_IN1 = ((0x80U & vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG)
+                                     ? vlTOPp->CoreMS__DOT__DE_PC
+                                     : vlTOPp->CoreMS__DOT__DE_SRC1);
+    vlTOPp->CoreMS__DOT__DE_PC_PLUSFOUR = ((IData)(vlTOPp->RESET)
+                                            ? 0U : 
+                                           ((IData)(4U) 
+                                            + vlTOPp->CoreMS__DOT__FD_PC));
+    vlTOPp->CoreMS__DOT__DataMemory__DOT__BYTE_WR = 
+        ((~ ((0x1fU >= (((IData)(3U) - (3U & vlTOPp->CoreMS__DOT__EM_ALUOUT)) 
+                        << 3U)) ? (0xff000000U >> (
+                                                   ((IData)(3U) 
+                                                    - 
+                                                    (3U 
+                                                     & vlTOPp->CoreMS__DOT__EM_ALUOUT)) 
+                                                   << 3U))
+              : 0U)) & vlTOPp->CoreMS__DOT__DataMemory__DOT__D_MEM
+         [(0x1ffffffU & (vlTOPp->CoreMS__DOT__EM_ALUOUT 
+                         >> 2U))]);
+    vlTOPp->CoreMS__DOT__DataMemory__DOT__HALF_WR = 
+        ((~ ((0x1fU >= (((IData)(1U) - (1U & vlTOPp->CoreMS__DOT__EM_ALUOUT)) 
+                        << 4U)) ? (0xffff0000U >> (
+                                                   ((IData)(1U) 
+                                                    - 
+                                                    (1U 
+                                                     & vlTOPp->CoreMS__DOT__EM_ALUOUT)) 
+                                                   << 4U))
+              : 0U)) & vlTOPp->CoreMS__DOT__DataMemory__DOT__D_MEM
+         [(0x1ffffffU & (vlTOPp->CoreMS__DOT__EM_ALUOUT 
+                         >> 2U))]);
+    vlTOPp->PRINT_EN = ((0x3800040cU == (vlTOPp->CoreMS__DOT__EM_ALUOUT 
+                                         >> 2U)) & 
+                        (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
+                         >> 4U));
+    vlTOPp->CoreMS__DOT__DataMemory__DOT__LW = vlTOPp->CoreMS__DOT__DataMemory__DOT__D_MEM
+        [(0x1ffffffU & (vlTOPp->CoreMS__DOT__EM_ALUOUT 
+                        >> 2U))];
     vlTOPp->CoreMS__DOT__BranchLogic__DOT__w_equal 
         = (vlTOPp->CoreMS__DOT__DE_SRC1 == vlTOPp->CoreMS__DOT__DE_SRC2);
     vlTOPp->CoreMS__DOT__BranchLogic__DOT__w_signed 
         = VL_LTS_III(1,32,32, vlTOPp->CoreMS__DOT__DE_SRC1, vlTOPp->CoreMS__DOT__DE_SRC2);
     vlTOPp->CoreMS__DOT__BranchLogic__DOT__w_unsigned 
         = (vlTOPp->CoreMS__DOT__DE_SRC1 < vlTOPp->CoreMS__DOT__DE_SRC2);
-    vlTOPp->PRINT_EN = ((0x3800040cU == (vlTOPp->CoreMS__DOT__EM_ALUOUT 
-                                         >> 2U)) & 
-                        (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
-                         >> 4U));
+    vlTOPp->CoreMS__DOT__ALU_IN2 = ((0x40U & vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG)
+                                     ? vlTOPp->CoreMS__DOT__DE_IMM_EXT
+                                     : vlTOPp->CoreMS__DOT__DE_SRC2);
     vlTOPp->CoreMS__DOT__IMM_EXT = ((0xfffffffeU & vlTOPp->CoreMS__DOT__IMM_EXT) 
                                     | (1U & ((0U == 
                                               (7U & 
@@ -1357,12 +1344,7 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
                                                    >> 0xfU)))) 
                                            << 0x1fU) 
                                           & vlTOPp->CoreMS__DOT__FD_IR)));
-    vlTOPp->CoreMS__DOT__ALU_IN1 = ((0x80U & vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG)
-                                     ? vlTOPp->CoreMS__DOT__DE_PC
-                                     : vlTOPp->CoreMS__DOT__DE_SRC1);
-    vlTOPp->CoreMS__DOT__ALU_IN2 = ((0x40U & vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG)
-                                     ? vlTOPp->CoreMS__DOT__DE_IMM_EXT
-                                     : vlTOPp->CoreMS__DOT__DE_SRC2);
+    vlTOPp->CoreMS__DOT__FD_PC = __Vdly__CoreMS__DOT__FD_PC;
     vlTOPp->CoreMS__DOT__DataMemory__DOT__LH = (0xffffU 
                                                 & ((1U 
                                                     & ((~ vlTOPp->CoreMS__DOT__EM_ALUOUT) 
@@ -1425,14 +1407,6 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
                                                        & (vlTOPp->CoreMS__DOT__DataMemory__DOT__LW 
                                                           >> 0x18U))
                                                        : 0U)))));
-    vlTOPp->CoreMS__DOT__PC_sig = ((IData)(vlTOPp->CoreMS__DOT__WF_JUMP)
-                                    ? vlTOPp->CoreMS__DOT__WF_JUMP_BRANCH_TARGET
-                                    : ((IData)(vlTOPp->CoreMS__DOT__WF_JUMPR)
-                                        ? vlTOPp->CoreMS__DOT__WF_JUMPREG_TARGET
-                                        : ((IData)(vlTOPp->CoreMS__DOT__EF_BRNEN)
-                                            ? vlTOPp->CoreMS__DOT__WF_JUMP_BRANCH_TARGET
-                                            : ((IData)(4U) 
-                                               + vlTOPp->CoreMS__DOT__FD_PC))));
     vlTOPp->CoreMS__DOT__ALUOUT = ((0U == (0xfU & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
                                                    >> 8U)))
                                     ? (vlTOPp->CoreMS__DOT__ALU_IN1 
@@ -1527,6 +1501,14 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
                                                                >> 8U)))
                                                            ? vlTOPp->CoreMS__DOT__ALU_IN2
                                                            : 0U))))))))))));
+    vlTOPp->CoreMS__DOT__PC_sig = ((IData)(vlTOPp->CoreMS__DOT__WF_JUMP)
+                                    ? vlTOPp->CoreMS__DOT__WF_JUMP_BRANCH_TARGET
+                                    : ((IData)(vlTOPp->CoreMS__DOT__WF_JUMPR)
+                                        ? vlTOPp->CoreMS__DOT__WF_JUMPREG_TARGET
+                                        : ((IData)(vlTOPp->CoreMS__DOT__EF_BRNEN)
+                                            ? vlTOPp->CoreMS__DOT__WF_JUMP_BRANCH_TARGET
+                                            : ((IData)(4U) 
+                                               + vlTOPp->CoreMS__DOT__FD_PC))));
     vlTOPp->CoreMS__DOT__R_DATA = (((2U == (7U & (vlTOPp->CoreMS__DOT__EM_IR 
                                                   >> 0xcU))) 
                                     & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
@@ -1671,6 +1653,14 @@ void VCoreMS::_settle__TOP__3(VCoreMS__Syms* __restrict vlSymsp) {
     VCoreMS* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
     vlTOPp->PRINT_VAL = vlTOPp->CoreMS__DOT__EM_SRC2;
+    vlTOPp->CoreMS__DOT__JUMP_BRANCH_TARGET = (vlTOPp->CoreMS__DOT__DE_PC 
+                                               + vlTOPp->CoreMS__DOT__DE_IMM_EXT);
+    vlTOPp->CoreMS__DOT__BranchLogic__DOT__w_equal 
+        = (vlTOPp->CoreMS__DOT__DE_SRC1 == vlTOPp->CoreMS__DOT__DE_SRC2);
+    vlTOPp->CoreMS__DOT__BranchLogic__DOT__w_signed 
+        = VL_LTS_III(1,32,32, vlTOPp->CoreMS__DOT__DE_SRC1, vlTOPp->CoreMS__DOT__DE_SRC2);
+    vlTOPp->CoreMS__DOT__BranchLogic__DOT__w_unsigned 
+        = (vlTOPp->CoreMS__DOT__DE_SRC1 < vlTOPp->CoreMS__DOT__DE_SRC2);
     vlTOPp->CoreMS__DOT__DataMemory__DOT__BYTE_WR = 
         ((~ ((0x1fU >= (((IData)(3U) - (3U & vlTOPp->CoreMS__DOT__EM_ALUOUT)) 
                         << 3U)) ? (0xff000000U >> (
@@ -1696,12 +1686,6 @@ void VCoreMS::_settle__TOP__3(VCoreMS__Syms* __restrict vlSymsp) {
     vlTOPp->CoreMS__DOT__DataMemory__DOT__LW = vlTOPp->CoreMS__DOT__DataMemory__DOT__D_MEM
         [(0x1ffffffU & (vlTOPp->CoreMS__DOT__EM_ALUOUT 
                         >> 2U))];
-    vlTOPp->CoreMS__DOT__BranchLogic__DOT__w_equal 
-        = (vlTOPp->CoreMS__DOT__DE_SRC1 == vlTOPp->CoreMS__DOT__DE_SRC2);
-    vlTOPp->CoreMS__DOT__BranchLogic__DOT__w_signed 
-        = VL_LTS_III(1,32,32, vlTOPp->CoreMS__DOT__DE_SRC1, vlTOPp->CoreMS__DOT__DE_SRC2);
-    vlTOPp->CoreMS__DOT__BranchLogic__DOT__w_unsigned 
-        = (vlTOPp->CoreMS__DOT__DE_SRC1 < vlTOPp->CoreMS__DOT__DE_SRC2);
     vlTOPp->PRINT_EN = ((0x3800040cU == (vlTOPp->CoreMS__DOT__EM_ALUOUT 
                                          >> 2U)) & 
                         (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
@@ -1712,14 +1696,6 @@ void VCoreMS::_settle__TOP__3(VCoreMS__Syms* __restrict vlSymsp) {
     vlTOPp->CoreMS__DOT__ALU_IN2 = ((0x40U & vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG)
                                      ? vlTOPp->CoreMS__DOT__DE_IMM_EXT
                                      : vlTOPp->CoreMS__DOT__DE_SRC2);
-    vlTOPp->CoreMS__DOT__PC_sig = ((IData)(vlTOPp->CoreMS__DOT__WF_JUMP)
-                                    ? vlTOPp->CoreMS__DOT__WF_JUMP_BRANCH_TARGET
-                                    : ((IData)(vlTOPp->CoreMS__DOT__WF_JUMPR)
-                                        ? vlTOPp->CoreMS__DOT__WF_JUMPREG_TARGET
-                                        : ((IData)(vlTOPp->CoreMS__DOT__EF_BRNEN)
-                                            ? vlTOPp->CoreMS__DOT__WF_JUMP_BRANCH_TARGET
-                                            : ((IData)(4U) 
-                                               + vlTOPp->CoreMS__DOT__FD_PC))));
     vlTOPp->CoreMS__DOT__IMM_EXT = ((0xfffffffeU & vlTOPp->CoreMS__DOT__IMM_EXT) 
                                     | (1U & ((0U == 
                                               (7U & 
@@ -1924,6 +1900,14 @@ void VCoreMS::_settle__TOP__3(VCoreMS__Syms* __restrict vlSymsp) {
                                                    >> 0xfU)))) 
                                            << 0x1fU) 
                                           & vlTOPp->CoreMS__DOT__FD_IR)));
+    vlTOPp->CoreMS__DOT__PC_sig = ((IData)(vlTOPp->CoreMS__DOT__WF_JUMP)
+                                    ? vlTOPp->CoreMS__DOT__WF_JUMP_BRANCH_TARGET
+                                    : ((IData)(vlTOPp->CoreMS__DOT__WF_JUMPR)
+                                        ? vlTOPp->CoreMS__DOT__WF_JUMPREG_TARGET
+                                        : ((IData)(vlTOPp->CoreMS__DOT__EF_BRNEN)
+                                            ? vlTOPp->CoreMS__DOT__WF_JUMP_BRANCH_TARGET
+                                            : ((IData)(4U) 
+                                               + vlTOPp->CoreMS__DOT__FD_PC))));
     vlTOPp->CoreMS__DOT__DataMemory__DOT__LH = (0xffffU 
                                                 & ((1U 
                                                     & ((~ vlTOPp->CoreMS__DOT__EM_ALUOUT) 
@@ -2280,6 +2264,7 @@ void VCoreMS::_ctor_var_reset() {
     PRINT_VAL = VL_RAND_RESET_I(32);
     PRINT_EN = VL_RAND_RESET_I(1);
     CoreMS__DOT__INSTRUCTION = VL_RAND_RESET_I(32);
+    CoreMS__DOT__JUMP_BRANCH_TARGET = VL_RAND_RESET_I(32);
     CoreMS__DOT__IMM_EXT = VL_RAND_RESET_I(32);
     CoreMS__DOT__PC_sig = VL_RAND_RESET_I(32);
     CoreMS__DOT__ALUOUT = VL_RAND_RESET_I(32);
@@ -2305,15 +2290,10 @@ void VCoreMS::_ctor_var_reset() {
     CoreMS__DOT__EM_ALUOUT = VL_RAND_RESET_I(32);
     CoreMS__DOT__EM_JUMP = VL_RAND_RESET_I(1);
     CoreMS__DOT__EM_JUMPR = VL_RAND_RESET_I(1);
-    CoreMS__DOT__EM_JUMP_BRANCH_TARGET = VL_RAND_RESET_I(32);
     CoreMS__DOT__EM_JUMPREG_TARGET = VL_RAND_RESET_I(32);
     CoreMS__DOT__MW_PC_PLUSFOUR = VL_RAND_RESET_I(32);
     CoreMS__DOT__MW_ALUOUT = VL_RAND_RESET_I(32);
     CoreMS__DOT__MW_R_DATA = VL_RAND_RESET_I(32);
-    CoreMS__DOT__MW_JUMP = VL_RAND_RESET_I(1);
-    CoreMS__DOT__MW_JUMPR = VL_RAND_RESET_I(1);
-    CoreMS__DOT__MW_JUMP_BRANCH_TARGET = VL_RAND_RESET_I(32);
-    CoreMS__DOT__MW_JUMPREG_TARGET = VL_RAND_RESET_I(32);
     { int __Vi0=0; for (; __Vi0<33554432; ++__Vi0) {
             CoreMS__DOT__InstMemory__DOT__I_MEM[__Vi0] = VL_RAND_RESET_I(32);
     }}

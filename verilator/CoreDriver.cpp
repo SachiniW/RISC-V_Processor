@@ -4,7 +4,6 @@
 //  #define DEBUG
 #define COMPARE
 
-// #include "bitset.h"
 #include <bitset>
 #include <string>
 #include <iostream>
@@ -20,10 +19,7 @@ int main(int argc, char **argv, char **env)
 
 	VCoreMS* top = new VCoreMS;
 
-	// ofstream out("RVCCP.txt");
-
 	int counter = 0;
-	int counter2 = 0;
 	char* c;
 	int printCounter = 0;
 
@@ -61,25 +57,14 @@ int main(int argc, char **argv, char **env)
 		if(clock == 1){
 			//printf("%d \n",counter);
 			if(top->PRINT_EN){
-				printf("%d\t%d",counter,printCounter);
+				// printf("%d",counter);
 				// printf("\t%c\n",top->io_printVal);
-				printf("\t%c\n",top->PRINT_VAL);\
-
-
+				printf("%c",top->PRINT_VAL);
 				// printf("\t %08x \t %08x  \n",top->io_pc-8,top->io_printval        IData/*31:0*/ Core__DOT__pcsel_io_pcOut;
-			}
-			
-
-			CTRL_SIG = bitset<19>(top->CoreMS__DOT__ControlMS__DOT__CTRL_SIG).to_string();
-			if (CTRL_SIG[17] == '1'){
-				printCounter ++;
 			}
 
 
 			#ifdef DEBUG
-
-			
-
 
 			getchar();
 			
@@ -217,12 +202,11 @@ int main(int argc, char **argv, char **env)
 
 			#ifdef COMPARE
 
-			// CTRL_SIG = bitset<19>(top->CoreMS__DOT__ControlMS__DOT__CTRL_SIG).to_string();
 
-			if (CTRL_SIG[17] == '1'){
+			// if (top->Core__DOT__mw_CtrlSigReg_CSregWrite){
 
 				getchar();
-				printf("%d\t%d",counter,printCounter);
+
 
 				// out << showbase << hex << (top->Core__DOT__mw_pcPlusFourReg+ 0x10050) << endl;
 				// printf("IRReg := %08x \t ", top->Core__DOT__mw_rdReg);
@@ -240,34 +224,26 @@ int main(int argc, char **argv, char **env)
 				// printf("\nMemory Address %08x\t%08x\t%08x", top->Core__DOT__dcache__DOT__mem[0x3FFFD6],
 				// 											top->Core__DOT__dcache__DOT__mem[0x3FFFD7],
 				// 											top->Core__DOT__dcache__DOT__mem[0x3FFFD8]	 );
+				CTRL_SIG = bitset<19>(top->CoreMS__DOT__ControlMS__DOT__CTRL_SIG).to_string();
 				
-				
-				// if (CTRL_SIG[17] == '1'){
-				// 	printCounter ++;
-				// }
-
-				cout << "\nPrint Counter :" << printCounter << endl;
-
 				printf ("PC: %08x \n", top->CoreMS__DOT__FD_PC);
 				printf ("Instruction %d: %08x \n" , int(counter/2), top->CoreMS__DOT__FD_IR);
-				cout << "CS_STALL    : "   <<  CTRL_SIG[0] << endl;
-				cout << "CS_TYPE     : "   <<  CTRL_SIG[1]  << CTRL_SIG[2] << CTRL_SIG[3] << endl;
-				cout << "CS_JUMP     : "   <<  CTRL_SIG[4]    << endl;
-				cout << "CS_JUMPR    : "   <<  CTRL_SIG[5]    << endl;
-				cout << "CS_BRANCH   : "   <<  CTRL_SIG[6]    << endl;
-				cout << "CS_ALUOP    : "   <<  CTRL_SIG[7]  << CTRL_SIG[8] <<  CTRL_SIG[9] << CTRL_SIG[10] << endl;
-				cout << "CS_ALUSRC1  : "   <<  CTRL_SIG[11]     << endl;
-				cout << "CS_ALUSRC2  : "   <<  CTRL_SIG[12]     << endl;
-				cout << "CS_MEMRD    : "   <<  CTRL_SIG[13]     << endl; 
-				cout << "CS_MEMWRT   : "   <<  CTRL_SIG[14]     << endl;
-				cout << "CS_M2R      : "   <<  CTRL_SIG[15]     << endl;
-				cout << "CS_WRTSRC   : "   <<  CTRL_SIG[16]     << endl;
-				cout << "CS_REGWRT   : "   <<  CTRL_SIG[17]     << endl;
-				cout << "CS_MEMSKIP  : "   <<  CTRL_SIG[18]     << endl;
+				cout << "CS_STALL    : "   <<  CTRL_SIG[18] << endl;
+				cout << "CS_TYPE     : "   <<  CTRL_SIG[17,15] << endl;
+				cout << "CS_JUMP     : "   <<  CTRL_SIG[14]    << endl;
+				cout << "CS_JUMPR    : "   <<  CTRL_SIG[13]    << endl;
+				cout << "CS_BRANCH   : "   <<  CTRL_SIG[12]    << endl;
+				cout << "CS_ALUOP    : "   <<  CTRL_SIG[11,8]  << endl;
+				cout << "CS_ALUSRC1  : "   <<  CTRL_SIG[7]     << endl;
+				cout << "CS_ALUSRC2  : "   <<  CTRL_SIG[6]     << endl;
+				cout << "CS_MEMRD    : "   <<  CTRL_SIG[5]     << endl;
+				cout << "CS_MEMWRT   : "   <<  CTRL_SIG[4]     << endl;
+				cout << "CS_M2R      : "   <<  CTRL_SIG[3]     << endl;
+				cout << "CS_WRTSRC   : "   <<  CTRL_SIG[2]     << endl;
+				cout << "CS_REGWRT   : "   <<  CTRL_SIG[1]     << endl;
+				cout << "CS_MEMSKIP  : "   <<  CTRL_SIG[0]     << endl;
 
-
-
-
+						
 				printf("\n\nRegisterFile \n");	
 				printf("Reg00(00) := 00000000 \t");
 				printf("Reg01(ra) := %08x \t", top->CoreMS__DOT__RegFile__DOT__REG[0]);
@@ -304,7 +280,7 @@ int main(int argc, char **argv, char **env)
 
 				printf("Output location: %d \n",top->PRINT_VAL);
 				printf("Enable: %d \n",top->PRINT_EN);
-			}
+			// }
 
 			
 
@@ -328,10 +304,60 @@ int main(int argc, char **argv, char **env)
 		// if(clock == 1) getchar();
 		// getchar();
 
-		usleep(5);
+		usleep(20);
 	}
 
 	delete top;
 	exit(0);
 }
 
+    // CData/*0:0*/ CoreMS__DOT__EF_BRNEN;
+    // CData/*0:0*/ CoreMS__DOT__WF_JUMP;
+    // CData/*0:0*/ CoreMS__DOT__WF_JUMPR;
+    // CData/*0:0*/ CoreMS__DOT__EM_JUMP;
+    // CData/*0:0*/ CoreMS__DOT__EM_JUMPR;
+    // CData/*0:0*/ CoreMS__DOT__MW_JUMP;
+    // CData/*0:0*/ CoreMS__DOT__MW_JUMPR;
+    // CData/*2:0*/ CoreMS__DOT__ControlMS__DOT__state;
+    // CData/*0:0*/ CoreMS__DOT__BranchLogic__DOT__w_equal;
+    // CData/*0:0*/ CoreMS__DOT__BranchLogic__DOT__w_signed;
+    // CData/*0:0*/ CoreMS__DOT__BranchLogic__DOT__w_unsigned;
+    // CData/*7:0*/ CoreMS__DOT__DataMemory__DOT__LB;
+    // SData/*10:0*/ CoreMS__DOT__ControlMS__DOT__INS_ARR;
+    // SData/*15:0*/ CoreMS__DOT__DataMemory__DOT__LH;
+    // IData/*31:0*/ CoreMS__DOT__INSTRUCTION;
+    // IData/*31:0*/ CoreMS__DOT__IMM_EXT;
+    // IData/*31:0*/ CoreMS__DOT__PC_sig;
+    // IData/*31:0*/ CoreMS__DOT__ALUOUT;
+    // IData/*31:0*/ CoreMS__DOT__R_DATA;
+    // IData/*31:0*/ CoreMS__DOT__ALU_IN1;
+    // IData/*31:0*/ CoreMS__DOT__ALU_IN2;
+    // IData/*31:0*/ CoreMS__DOT__WF_JUMP_BRANCH_TARGET;
+    // IData/*31:0*/ CoreMS__DOT__WF_JUMPREG_TARGET;
+    // IData/*31:0*/ CoreMS__DOT__FD_PC;
+    // IData/*31:0*/ CoreMS__DOT__FD_IR;
+    // IData/*31:0*/ CoreMS__DOT__DE_PC;
+    // IData/*31:0*/ CoreMS__DOT__DE_IR;
+    // IData/*31:0*/ CoreMS__DOT__DE_PC_PLUSFOUR;
+    // IData/*31:0*/ CoreMS__DOT__DE_SRC1;
+    // IData/*31:0*/ CoreMS__DOT__DE_SRC2;
+    // IData/*31:0*/ CoreMS__DOT__DE_IMM_EXT;
+    // IData/*31:0*/ CoreMS__DOT__EM_PC_PLUSFOUR;
+    // IData/*31:0*/ CoreMS__DOT__EM_SRC2;
+    // IData/*31:0*/ CoreMS__DOT__EM_IR;
+    // IData/*31:0*/ CoreMS__DOT__EM_ALUOUT;
+    // IData/*31:0*/ CoreMS__DOT__EM_JUMP_BRANCH_TARGET;
+    // IData/*31:0*/ CoreMS__DOT__EM_JUMPREG_TARGET;
+    // IData/*31:0*/ CoreMS__DOT__MW_PC_PLUSFOUR;
+    // IData/*31:0*/ CoreMS__DOT__MW_ALUOUT;
+    // IData/*31:0*/ CoreMS__DOT__MW_R_DATA;
+    // IData/*31:0*/ CoreMS__DOT__MW_JUMP_BRANCH_TARGET;
+    // IData/*31:0*/ CoreMS__DOT__MW_JUMPREG_TARGET;
+    // IData/*18:0*/ CoreMS__DOT__ControlMS__DOT__CTRL_SIG;
+    // IData/*31:0*/ CoreMS__DOT__ControlMS__DOT__INSTRUCTION;
+    // IData/*31:0*/ CoreMS__DOT__DataMemory__DOT__LW;
+    // IData/*31:0*/ CoreMS__DOT__DataMemory__DOT__BYTE_WR;
+    // IData/*31:0*/ CoreMS__DOT__DataMemory__DOT__HALF_WR;
+    // IData/*31:0*/ CoreMS__DOT__InstMemory__DOT__I_MEM[33554432];
+    // IData/*31:0*/ CoreMS__DOT__RegFile__DOT__REG[31];
+    // IData/*31:0*/ CoreMS__DOT__DataMemory__DOT__D_MEM[33554432];

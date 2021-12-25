@@ -34,8 +34,6 @@ VL_MODULE(VCoreMS) {
     CData/*0:0*/ CoreMS__DOT__WF_JUMPR;
     CData/*0:0*/ CoreMS__DOT__EM_JUMP;
     CData/*0:0*/ CoreMS__DOT__EM_JUMPR;
-    CData/*0:0*/ CoreMS__DOT__MW_JUMP;
-    CData/*0:0*/ CoreMS__DOT__MW_JUMPR;
     CData/*2:0*/ CoreMS__DOT__ControlMS__DOT__state;
     CData/*0:0*/ CoreMS__DOT__BranchLogic__DOT__w_equal;
     CData/*0:0*/ CoreMS__DOT__BranchLogic__DOT__w_signed;
@@ -44,6 +42,7 @@ VL_MODULE(VCoreMS) {
     SData/*10:0*/ CoreMS__DOT__ControlMS__DOT__INS_ARR;
     SData/*15:0*/ CoreMS__DOT__DataMemory__DOT__LH;
     IData/*31:0*/ CoreMS__DOT__INSTRUCTION;
+    IData/*31:0*/ CoreMS__DOT__JUMP_BRANCH_TARGET;
     IData/*31:0*/ CoreMS__DOT__IMM_EXT;
     IData/*31:0*/ CoreMS__DOT__PC_sig;
     IData/*31:0*/ CoreMS__DOT__ALUOUT;
@@ -64,13 +63,10 @@ VL_MODULE(VCoreMS) {
     IData/*31:0*/ CoreMS__DOT__EM_SRC2;
     IData/*31:0*/ CoreMS__DOT__EM_IR;
     IData/*31:0*/ CoreMS__DOT__EM_ALUOUT;
-    IData/*31:0*/ CoreMS__DOT__EM_JUMP_BRANCH_TARGET;
     IData/*31:0*/ CoreMS__DOT__EM_JUMPREG_TARGET;
     IData/*31:0*/ CoreMS__DOT__MW_PC_PLUSFOUR;
     IData/*31:0*/ CoreMS__DOT__MW_ALUOUT;
     IData/*31:0*/ CoreMS__DOT__MW_R_DATA;
-    IData/*31:0*/ CoreMS__DOT__MW_JUMP_BRANCH_TARGET;
-    IData/*31:0*/ CoreMS__DOT__MW_JUMPREG_TARGET;
     IData/*18:0*/ CoreMS__DOT__ControlMS__DOT__CTRL_SIG;
     IData/*31:0*/ CoreMS__DOT__ControlMS__DOT__INSTRUCTION;
     IData/*31:0*/ CoreMS__DOT__DataMemory__DOT__LW;
