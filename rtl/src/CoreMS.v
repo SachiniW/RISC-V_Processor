@@ -69,7 +69,8 @@ wire [31:0] ALU_IN2;
 reg EF_BRNEN = 0;
 reg WF_JUMP = 0;
 reg WF_JUMPR = 0;
-reg [31:0] WF_JUMP_BRANCH_TARGET = 0;
+reg [31:0] WF_JUMP_TARGET = 0;
+reg [31:0] WF_BRANCH_TARGET = 0;
 reg [31:0] WF_JUMPREG_TARGET = 0;
 
 always @(posedge CLK)
@@ -78,14 +79,16 @@ begin
         EF_BRNEN <= 0;
         WF_JUMP <= 0;
         WF_JUMPR <= 0;
-        WF_JUMP_BRANCH_TARGET <= 0;
+        WF_JUMP_TARGET <= 0;
+        WF_BRANCH_TARGET <= 0;
         WF_JUMPREG_TARGET <= 0;
     end
     else begin
         EF_BRNEN <= BRNEN;
         WF_JUMP <= EM_JUMP;
         WF_JUMPR <= EM_JUMPR;
-        WF_JUMP_BRANCH_TARGET <= EM_JUMP_BRANCH_TARGET;
+        WF_JUMP_TARGET <= EM_JUMP_BRANCH_TARGET;
+        WF_BRANCH_TARGET <= JUMP_BRANCH_TARGET;
         WF_JUMPREG_TARGET <= EM_JUMPREG_TARGET;
     end
     
@@ -98,9 +101,9 @@ PCSelect PCSelect(
     .JUMPREG(WF_JUMPR),
     .BRANCH(EF_BRNEN),
     .PC_PLUSFOUR(PC_PLUSFOUR),
-    .JUMP_TARGET(WF_JUMP_BRANCH_TARGET),
+    .JUMP_TARGET(WF_JUMP_TARGET),
     .JUMPREG_TARGET(WF_JUMPREG_TARGET),
-    .BRANCH_TARGET(EM_JUMP_BRANCH_TARGET),
+    .BRANCH_TARGET(WF_BRANCH_TARGET),
     .NEXT_PC(PC_sig)
 );
 
@@ -309,11 +312,6 @@ reg [31:0] MW_ALUOUT = 0;
 
 reg [31:0] MW_R_DATA = 0;
 
-reg MW_JUMP = 0;
-reg MW_JUMPR = 0;
-reg [31:0] MW_JUMP_BRANCH_TARGET = 0;
-reg [31:0] MW_JUMPREG_TARGET = 0;
-
 
 always @(posedge CLK)
 begin
@@ -324,11 +322,6 @@ begin
 
         MW_R_DATA <= 0;
 
-        MW_JUMP <= 0;
-        MW_JUMPR <= 0;
-        MW_JUMP_BRANCH_TARGET <= 0;
-        MW_JUMPREG_TARGET <= 0;
-
     end
     else begin
         
@@ -336,11 +329,6 @@ begin
         MW_ALUOUT <= EM_ALUOUT;
 
         MW_R_DATA <= R_DATA;
-
-        MW_JUMP <= EM_JUMP;
-        MW_JUMPR <= EM_JUMPR;
-        MW_JUMP_BRANCH_TARGET <= EM_JUMP_BRANCH_TARGET;
-        MW_JUMPREG_TARGET <= EM_JUMPREG_TARGET;
 
     end
     
