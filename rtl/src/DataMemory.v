@@ -71,6 +71,8 @@ module DataMemory(
     assign BYTE_WR = BYTE_DATA & D_MEM[ADDR]; 
     assign HALF_WR = HALFWORD_DATA & D_MEM[ADDR];
 
+
+
     initial $readmemh("instruction_memory.mem" , D_MEM);
 
     always @(posedge CLK) begin

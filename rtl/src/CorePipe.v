@@ -250,6 +250,7 @@ begin
             DE_MEMWRT <= DE_MEMWRT;
             DE_WRTSRC <= DE_WRTSRC;
             DE_M2R <= DE_M2R; 
+
         end
         else
         begin
@@ -360,12 +361,13 @@ begin
         
         EM_PC_PLUSFOUR <= DE_PC_PLUSFOUR;
         EM_SRC2 <= DE_SRC2;
-        EM_IR <= DE_IR;
+
 
         EM_ALUOUT <= ALUOUT;
 
         if (STALL)
         begin
+            EM_IR     <= 0 ; //changed
             EM_REGWRT <= 0;
             EM_MEMRD <= 0;
             EM_MEMWRT <= 0;
@@ -374,6 +376,7 @@ begin
         end
         else
         begin
+            EM_IR <= DE_IR;
             EM_REGWRT <= DE_REGWRT;
             EM_MEMRD <= DE_MEMRD;
             EM_MEMWRT <= DE_MEMWRT;

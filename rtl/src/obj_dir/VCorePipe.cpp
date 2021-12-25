@@ -118,9 +118,9 @@ void VCorePipe::_initial__TOP__1(VCorePipe__Syms* __restrict vlSymsp) {
     vlTOPp->CorePipe__DOT__EM_M2R = 0U;
     vlTOPp->CorePipe__DOT__EM_SRC2 = 0U;
     vlTOPp->CorePipe__DOT__EM_MEMWRT = 0U;
+    vlTOPp->CorePipe__DOT__MW_IR = 0U;
     vlTOPp->CorePipe__DOT__DE_ALUSRC1 = 0U;
     vlTOPp->CorePipe__DOT__DE_ALUSRC2 = 0U;
-    vlTOPp->CorePipe__DOT__MW_IR = 0U;
     vlTOPp->CorePipe__DOT__FD_PC = 0xfffffffcU;
     vlTOPp->CorePipe__DOT__EM_MEMRD = 0U;
     vlTOPp->CorePipe__DOT__DE_JUMP = 0U;
@@ -479,59 +479,39 @@ VL_INLINE_OPT void VCorePipe::_sequent__TOP__2(VCorePipe__Syms* __restrict vlSym
                                                 & (vlTOPp->CorePipe__DOT__FD_IR 
                                                    >> 0xfU)))
                                                ? 0U
-                                               : ((
-                                                   (0x1fU 
-                                                    & (vlTOPp->CorePipe__DOT__FD_IR 
-                                                       >> 0xfU)) 
-                                                   == 
-                                                   (0x1fU 
-                                                    & (vlTOPp->CorePipe__DOT__MW_IR 
-                                                       >> 7U)))
-                                                   ? vlTOPp->CorePipe__DOT__REG_IN
-                                                   : 
-                                                  ((0x1eU 
-                                                    >= 
-                                                    (0x1fU 
-                                                     & ((vlTOPp->CorePipe__DOT__FD_IR 
-                                                         >> 0xfU) 
-                                                        - (IData)(1U))))
-                                                    ? 
-                                                   vlTOPp->CorePipe__DOT__RegFile__DOT__REG
-                                                   [
+                                               : ((0x1eU 
+                                                   >= 
                                                    (0x1fU 
                                                     & ((vlTOPp->CorePipe__DOT__FD_IR 
                                                         >> 0xfU) 
-                                                       - (IData)(1U)))]
-                                                    : 0U)));
+                                                       - (IData)(1U))))
+                                                   ? 
+                                                  vlTOPp->CorePipe__DOT__RegFile__DOT__REG
+                                                  [
+                                                  (0x1fU 
+                                                   & ((vlTOPp->CorePipe__DOT__FD_IR 
+                                                       >> 0xfU) 
+                                                      - (IData)(1U)))]
+                                                   : 0U));
             __Vdly__CorePipe__DOT__DE_SRC2 = ((0U == 
                                                (0x1fU 
                                                 & (vlTOPp->CorePipe__DOT__FD_IR 
                                                    >> 0x14U)))
                                                ? 0U
-                                               : ((
-                                                   (0x1fU 
-                                                    & (vlTOPp->CorePipe__DOT__FD_IR 
-                                                       >> 0x14U)) 
-                                                   == 
-                                                   (0x1fU 
-                                                    & (vlTOPp->CorePipe__DOT__MW_IR 
-                                                       >> 7U)))
-                                                   ? vlTOPp->CorePipe__DOT__REG_IN
-                                                   : 
-                                                  ((0x1eU 
-                                                    >= 
-                                                    (0x1fU 
-                                                     & ((vlTOPp->CorePipe__DOT__FD_IR 
-                                                         >> 0x14U) 
-                                                        - (IData)(1U))))
-                                                    ? 
-                                                   vlTOPp->CorePipe__DOT__RegFile__DOT__REG
-                                                   [
+                                               : ((0x1eU 
+                                                   >= 
                                                    (0x1fU 
                                                     & ((vlTOPp->CorePipe__DOT__FD_IR 
                                                         >> 0x14U) 
-                                                       - (IData)(1U)))]
-                                                    : 0U)));
+                                                       - (IData)(1U))))
+                                                   ? 
+                                                  vlTOPp->CorePipe__DOT__RegFile__DOT__REG
+                                                  [
+                                                  (0x1fU 
+                                                   & ((vlTOPp->CorePipe__DOT__FD_IR 
+                                                       >> 0x14U) 
+                                                      - (IData)(1U)))]
+                                                   : 0U));
         }
     }
     if (((~ (IData)(vlTOPp->RESET)) & (IData)(vlTOPp->CorePipe__DOT__EM_MEMWRT))) {
@@ -899,7 +879,8 @@ VL_INLINE_OPT void VCorePipe::_sequent__TOP__2(VCorePipe__Syms* __restrict vlSym
                                         & ((~ (IData)(vlTOPp->CorePipe__DOT__STALL)) 
                                            & (IData)(vlTOPp->CorePipe__DOT__DE_REGWRT)));
     vlTOPp->CorePipe__DOT__EM_IR = ((IData)(vlTOPp->RESET)
-                                     ? 0U : vlTOPp->CorePipe__DOT__DE_IR);
+                                     ? 0U : ((IData)(vlTOPp->CorePipe__DOT__STALL)
+                                              ? 0U : vlTOPp->CorePipe__DOT__DE_IR));
     vlTOPp->CorePipe__DOT__IMM_EXT = ((0xfffffffeU 
                                        & vlTOPp->CorePipe__DOT__IMM_EXT) 
                                       | (1U & ((3U 
@@ -1205,70 +1186,33 @@ VL_INLINE_OPT void VCorePipe::_sequent__TOP__2(VCorePipe__Syms* __restrict vlSym
                                                          & (vlTOPp->CorePipe__DOT__DataMemory__DOT__LW 
                                                             >> 0x18U))
                                                          : 0U)))));
-    vlTOPp->CorePipe__DOT__STALL = ((((5U == (7U & 
-                                              (vlTOPp->CorePipe__DOT__Control__DOT__control_sig 
-                                               >> 0xeU))) 
-                                      | (1U == (7U 
-                                                & (vlTOPp->CorePipe__DOT__Control__DOT__control_sig 
-                                                   >> 0xeU)))) 
-                                     | (2U == (7U & 
-                                               (vlTOPp->CorePipe__DOT__Control__DOT__control_sig 
-                                                >> 0xeU))))
-                                     ? (((((0x1fU & 
-                                            (vlTOPp->CorePipe__DOT__DE_IR 
-                                             >> 0xfU)) 
-                                           == (0x1fU 
-                                               & (vlTOPp->CorePipe__DOT__EM_IR 
-                                                  >> 7U))) 
-                                          | ((0x1fU 
-                                              & (vlTOPp->CorePipe__DOT__DE_IR 
-                                                 >> 0x14U)) 
-                                             == (0x1fU 
-                                                 & (vlTOPp->CorePipe__DOT__EM_IR 
-                                                    >> 7U)))) 
-                                         & (0U != (0x1fU 
-                                                   & (vlTOPp->CorePipe__DOT__EM_IR 
-                                                      >> 7U)))) 
-                                        | ((((0x1fU 
-                                              & (vlTOPp->CorePipe__DOT__DE_IR 
+    vlTOPp->CorePipe__DOT__STALL = (((((0x1fU & (vlTOPp->CorePipe__DOT__DE_IR 
                                                  >> 0xfU)) 
-                                             == (0x1fU 
-                                                 & (vlTOPp->CorePipe__DOT__MW_IR 
-                                                    >> 7U))) 
-                                            | ((0x1fU 
-                                                & (vlTOPp->CorePipe__DOT__DE_IR 
+                                       == (0x1fU & 
+                                           (vlTOPp->CorePipe__DOT__EM_IR 
+                                            >> 7U))) 
+                                      | ((0x1fU & (vlTOPp->CorePipe__DOT__DE_IR 
                                                    >> 0x14U)) 
-                                               == (0x1fU 
-                                                   & (vlTOPp->CorePipe__DOT__MW_IR 
-                                                      >> 7U)))) 
-                                           & (0U != 
-                                              (0x1fU 
-                                               & (vlTOPp->CorePipe__DOT__MW_IR 
-                                                  >> 7U)))))
-                                     : ((3U == (7U 
-                                                & (vlTOPp->CorePipe__DOT__Control__DOT__control_sig 
-                                                   >> 0xeU))) 
-                                        & ((((0x1fU 
-                                              & (vlTOPp->CorePipe__DOT__DE_IR 
-                                                 >> 0xfU)) 
-                                             == (0x1fU 
-                                                 & (vlTOPp->CorePipe__DOT__EM_IR 
-                                                    >> 7U))) 
-                                            & (0U != 
-                                               (0x1fU 
-                                                & (vlTOPp->CorePipe__DOT__EM_IR 
-                                                   >> 7U)))) 
-                                           | (((0x1fU 
-                                                & (vlTOPp->CorePipe__DOT__DE_IR 
+                                         == (0x1fU 
+                                             & (vlTOPp->CorePipe__DOT__EM_IR 
+                                                >> 7U)))) 
+                                     & (0U != (0x1fU 
+                                               & (vlTOPp->CorePipe__DOT__EM_IR 
+                                                  >> 7U)))) 
+                                    | ((((0x1fU & (vlTOPp->CorePipe__DOT__DE_IR 
                                                    >> 0xfU)) 
-                                               == (0x1fU 
-                                                   & (vlTOPp->CorePipe__DOT__MW_IR 
-                                                      >> 7U))) 
-                                              & (0U 
-                                                 != 
-                                                 (0x1fU 
-                                                  & (vlTOPp->CorePipe__DOT__MW_IR 
-                                                     >> 7U)))))));
+                                         == (0x1fU 
+                                             & (vlTOPp->CorePipe__DOT__MW_IR 
+                                                >> 7U))) 
+                                        | ((0x1fU & 
+                                            (vlTOPp->CorePipe__DOT__DE_IR 
+                                             >> 0x14U)) 
+                                           == (0x1fU 
+                                               & (vlTOPp->CorePipe__DOT__MW_IR 
+                                                  >> 7U)))) 
+                                       & (0U != (0x1fU 
+                                                 & (vlTOPp->CorePipe__DOT__MW_IR 
+                                                    >> 7U)))));
     vlTOPp->CorePipe__DOT__BRNEN = ((IData)(vlTOPp->CorePipe__DOT__DE_BRN) 
                                     & (((((((0U == 
                                              (7U & 
@@ -1363,6 +1307,33 @@ void VCorePipe::_settle__TOP__3(VCorePipe__Syms* __restrict vlSymsp) {
         = VL_LTS_III(1,32,32, vlTOPp->CorePipe__DOT__DE_SRC1, vlTOPp->CorePipe__DOT__DE_SRC2);
     vlTOPp->CorePipe__DOT__BranchLogic__DOT__w_unsigned 
         = (vlTOPp->CorePipe__DOT__DE_SRC1 < vlTOPp->CorePipe__DOT__DE_SRC2);
+    vlTOPp->CorePipe__DOT__STALL = (((((0x1fU & (vlTOPp->CorePipe__DOT__DE_IR 
+                                                 >> 0xfU)) 
+                                       == (0x1fU & 
+                                           (vlTOPp->CorePipe__DOT__EM_IR 
+                                            >> 7U))) 
+                                      | ((0x1fU & (vlTOPp->CorePipe__DOT__DE_IR 
+                                                   >> 0x14U)) 
+                                         == (0x1fU 
+                                             & (vlTOPp->CorePipe__DOT__EM_IR 
+                                                >> 7U)))) 
+                                     & (0U != (0x1fU 
+                                               & (vlTOPp->CorePipe__DOT__EM_IR 
+                                                  >> 7U)))) 
+                                    | ((((0x1fU & (vlTOPp->CorePipe__DOT__DE_IR 
+                                                   >> 0xfU)) 
+                                         == (0x1fU 
+                                             & (vlTOPp->CorePipe__DOT__MW_IR 
+                                                >> 7U))) 
+                                        | ((0x1fU & 
+                                            (vlTOPp->CorePipe__DOT__DE_IR 
+                                             >> 0x14U)) 
+                                           == (0x1fU 
+                                               & (vlTOPp->CorePipe__DOT__MW_IR 
+                                                  >> 7U)))) 
+                                       & (0U != (0x1fU 
+                                                 & (vlTOPp->CorePipe__DOT__MW_IR 
+                                                    >> 7U)))));
     vlTOPp->CorePipe__DOT__DataMemory__DOT__LH = (0xffffU 
                                                   & (((~ vlTOPp->CorePipe__DOT__EM_ALUOUT) 
                                                       & (IData)(vlTOPp->CorePipe__DOT__EM_MEMRD))
@@ -1816,70 +1787,6 @@ void VCorePipe::_settle__TOP__3(VCorePipe__Syms* __restrict vlSymsp) {
                                                      >> 0xeU)))) 
                                              << 0x1fU) 
                                             & vlTOPp->CorePipe__DOT__FD_IR)));
-    vlTOPp->CorePipe__DOT__STALL = ((((5U == (7U & 
-                                              (vlTOPp->CorePipe__DOT__Control__DOT__control_sig 
-                                               >> 0xeU))) 
-                                      | (1U == (7U 
-                                                & (vlTOPp->CorePipe__DOT__Control__DOT__control_sig 
-                                                   >> 0xeU)))) 
-                                     | (2U == (7U & 
-                                               (vlTOPp->CorePipe__DOT__Control__DOT__control_sig 
-                                                >> 0xeU))))
-                                     ? (((((0x1fU & 
-                                            (vlTOPp->CorePipe__DOT__DE_IR 
-                                             >> 0xfU)) 
-                                           == (0x1fU 
-                                               & (vlTOPp->CorePipe__DOT__EM_IR 
-                                                  >> 7U))) 
-                                          | ((0x1fU 
-                                              & (vlTOPp->CorePipe__DOT__DE_IR 
-                                                 >> 0x14U)) 
-                                             == (0x1fU 
-                                                 & (vlTOPp->CorePipe__DOT__EM_IR 
-                                                    >> 7U)))) 
-                                         & (0U != (0x1fU 
-                                                   & (vlTOPp->CorePipe__DOT__EM_IR 
-                                                      >> 7U)))) 
-                                        | ((((0x1fU 
-                                              & (vlTOPp->CorePipe__DOT__DE_IR 
-                                                 >> 0xfU)) 
-                                             == (0x1fU 
-                                                 & (vlTOPp->CorePipe__DOT__MW_IR 
-                                                    >> 7U))) 
-                                            | ((0x1fU 
-                                                & (vlTOPp->CorePipe__DOT__DE_IR 
-                                                   >> 0x14U)) 
-                                               == (0x1fU 
-                                                   & (vlTOPp->CorePipe__DOT__MW_IR 
-                                                      >> 7U)))) 
-                                           & (0U != 
-                                              (0x1fU 
-                                               & (vlTOPp->CorePipe__DOT__MW_IR 
-                                                  >> 7U)))))
-                                     : ((3U == (7U 
-                                                & (vlTOPp->CorePipe__DOT__Control__DOT__control_sig 
-                                                   >> 0xeU))) 
-                                        & ((((0x1fU 
-                                              & (vlTOPp->CorePipe__DOT__DE_IR 
-                                                 >> 0xfU)) 
-                                             == (0x1fU 
-                                                 & (vlTOPp->CorePipe__DOT__EM_IR 
-                                                    >> 7U))) 
-                                            & (0U != 
-                                               (0x1fU 
-                                                & (vlTOPp->CorePipe__DOT__EM_IR 
-                                                   >> 7U)))) 
-                                           | (((0x1fU 
-                                                & (vlTOPp->CorePipe__DOT__DE_IR 
-                                                   >> 0xfU)) 
-                                               == (0x1fU 
-                                                   & (vlTOPp->CorePipe__DOT__MW_IR 
-                                                      >> 7U))) 
-                                              & (0U 
-                                                 != 
-                                                 (0x1fU 
-                                                  & (vlTOPp->CorePipe__DOT__MW_IR 
-                                                     >> 7U)))))));
     vlTOPp->CorePipe__DOT__FLUSH = (((IData)(vlTOPp->CorePipe__DOT__DE_JUMP) 
                                      | (IData)(vlTOPp->CorePipe__DOT__DE_JUMPR)) 
                                     | (IData)(vlTOPp->CorePipe__DOT__BRNEN));
