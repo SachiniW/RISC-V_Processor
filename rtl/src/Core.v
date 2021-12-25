@@ -25,6 +25,7 @@
     /* verilator lint_off UNUSED */
     /* verilator lint_off MODDUP */
     /* verilator lint_off IMPLICIT */
+    /* verilator lint_off UNOPTFLAT */
 
     `include "ALU.v"
     `include "BranchLogic.v"
