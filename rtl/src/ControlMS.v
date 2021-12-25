@@ -110,7 +110,7 @@ begin
     begin
         case (state)
             FETCH:begin
-                CTRL_SIG <= { 1'b0 ,  1'b0 ,  1'b0 ,  1'b0 ,  1'b0  ,  ALU_ADD  , ALUSRC1_RS1 , ALUSRC2_RS2 , 1'b0  ,  1'b0 , 1'b0  ,  1'b0  , 1'b0 }
+                CTRL_SIG <= { 1'b0 ,  17'd0 }
                 state <= DECODE;
             end
             DECODE:begin
@@ -163,12 +163,12 @@ begin
                 end
                 else if (INS_ARR[6:0] == JAL)    
                 begin
-                    CTRL_SIG <= { 1'b1 ,  6'd0 ,  ALU_ADD  , ALUSRC1_RS1 , ALUSRC2_RS2 , 5'd0 };   //JAL
+                    CTRL_SIG <= { 1'b1 , 3'd0,  1'd1,  2'd0 ,  ALU_ADD  , ALUSRC1_RS1 , ALUSRC2_RS2 , 5'd0 };   //JAL
                     state <= WRITE_BACK;
                 end
                 else if (INS_ARR[9:0] == JALR)   
                 begin
-                    CTRL_SIG <= { 1'b1 ,  6'd0 ,  ALU_ADD  , ALUSRC1_RS1 , ALUSRC2_RS2 , 5'd0 };   //JALR
+                    CTRL_SIG <= { 1'b1 ,  4'd0,  1'd1,  1'd0 ,  ALU_ADD  , ALUSRC1_RS1 , ALUSRC2_RS2 , 5'd0 };   //JALR
                     state <= WRITE_BACK;
                 end
                 else if (INS_ARR[6:0] == BRANCH) 
@@ -378,12 +378,12 @@ begin
                 end
                 else if (INS_ARR[6:0] == JAL)    
                 begin
-                    CTRL_SIG <= { 1'b1 , 1'b1 ,  1'b0 , 12'd0  , 1'b0  ,  1'b0  , 1'b1 };   //JAL
+                    CTRL_SIG <= { 1'b1 , 14'd0  , 1'b0  ,  1'b0  , 1'b1 };   //JAL
                     state <= FETCH;
                 end
                 else if (INS_ARR[9:0] == JALR)   
                 begin
-                    CTRL_SIG <= { 1'b1 , 1'b0 ,  1'b1 , 12'd0  , 1'b0  ,  1'b0  , 1'b1 };   //JALR
+                    CTRL_SIG <= { 1'b1 , 14'd0  , 1'b0  ,  1'b0  , 1'b1 };   //JALR
                     state <= FETCH;
                 end
                 else if (INS_ARR[9:0] == LW)     
