@@ -28,7 +28,7 @@ module CoreMS (
 
 wire [31:0] INSTRUCTION;
 wire [2:0] TYPE;
-wire JUMP, JUMPR, BRN, ALUSRC1,ALUSRC2, MEMRD, MEMWRT, M2R, WRTSRC, REGWRT;
+wire STALL, JUMP, JUMPR, BRN, ALUSRC1,ALUSRC2, MEMRD, MEMWRT, M2R, WRTSRC, REGWRT, MEMSKIP;
 wire [3:0] ALUOP;
 wire BRNEN;
 wire [31:0] JUMP_BRANCH_TARGET;
@@ -43,21 +43,49 @@ wire [31:0] R_DATA;
 wire [31:0] ALU_IN1;
 wire [31:0] ALU_IN2;
 
+
+// Pre Fetch boundary
+
+reg EF_BRNEN = 0;
+reg WF_JUMP = 0;
+reg WF_JUMPR = 0;
+reg [31:0] WF_JUMP_BRANCH_TARGET = 0;
+reg [31:0] WF_JUMPREG_TARGET = 0;
+
+always @(posedge CLK)
+begin
+    if (RESET) begin
+        EF_BRNEN <= 0;
+        WF_JUMP <= 0;
+        WF_JUMPR <= 0;
+        WF_JUMP_BRANCH_TARGET <= 0;
+        WF_JUMPREG_TARGET <= 0;
+    end
+    else begin
+        EF_BRNEN <= BRNEN;
+        WF_JUMP <= MW_JUMP;
+        WF_JUMPR <= MW_JUMPR;
+        WF_JUMP_BRANCH_TARGET <= MW_JUMP_BRANCH_TARGET;
+        WF_JUMPREG_TARGET <= MW_JUMPREG_TARGET;
+    end
+    
+    //$write("\nInstruction : %08x \n" , INSTRUCTION);
+end
 // Fetch stage
  
 PCSelect PCSelect(
-    .JUMP(JUMP),
-    .JUMPREG(JUMPR),
-    .BRANCH(BRNEN),
+    .JUMP(WF_JUMP),
+    .JUMPREG(WF_JUMPR),
+    .BRANCH(EF_BRNEN),
     .PC_PLUSFOUR(PC_PLUSFOUR),
-    .JUMP_TARGET(JUMP_BRANCH_TARGET),
-    .JUMPREG_TARGET(JUMPREG_TARGET),
-    .BRANCH_TARGET(JUMP_BRANCH_TARGET),
+    .JUMP_TARGET(WF_JUMP_BRANCH_TARGET),
+    .JUMPREG_TARGET(WF_JUMPREG_TARGET),
+    .BRANCH_TARGET(WF_JUMP_BRANCH_TARGET),
     .NEXT_PC(PC_sig)
 );
 
 InstMemory InstMemory(
-    .PC(PC_sig),    // check
+    .PC(PC_sig),    
     .INST(INSTRUCTION)  
 );
 
@@ -71,15 +99,21 @@ always @(posedge CLK)
 begin
     if (RESET) begin
         FD_PC <= -4;
-        FD_IR <= 0;  // check
+        FD_IR <= 0;  
     end
     else begin
-        FD_PC <= PC_sig;
-        
-        FD_IR <= INSTRUCTION;
+        if (STALL)
+        begin
+            FD_PC <= FD_PC;
+            FD_IR <= FD_IR;
+        end
+        else
+        begin
+            FD_PC <= PC_sig;
+            FD_IR <= INSTRUCTION;
+        end
     end
-    
-    $write("\nInstruction : %08x \n" , INSTRUCTION);
+    $write("\nInstruction : %08x \n" , FD_IR);
 end
 
 // Decode stage
@@ -89,7 +123,7 @@ assign PC_PLUSFOUR = FD_PC + 32'd4;
 RegFile RegFile (
     .CLK(CLK),
     .RESET(RESET),
-    .WEN(MW_REGWRT),
+    .WEN(REGWRT),
     .RS1_SEL(FD_IR[19:15]),
     .RS2_SEL(FD_IR[24:20]),
     .RD_SEL(FD_IR[11:7]),
@@ -104,8 +138,12 @@ ImmExtend ImmExtend(
     .IMM_EXT(IMM_EXT)
     );
 
-Control Control(
-    .INS(FD_IR),
+ControlMS ControlMS(
+    .CLK(CLK),
+    .RESET(RESET),
+    .IR(FD_IR),
+    .INS(INSTRUCTION),
+    .CS_STALL(STALL),
     .CS_TYPE(TYPE),
     .CS_JUMP(JUMP),
     .CS_JUMPR(JUMPR),
@@ -117,50 +155,32 @@ Control Control(
     .CS_MEMWRT(MEMWRT),
     .CS_M2R(M2R),
     .CS_WRTSRC(WRTSRC),
-    .CS_REGWRT(REGWRT)
+    .CS_REGWRT(REGWRT),
+    .CS_MEMSKIP(MEMSKIP)
 );
 
 // DE boundry
 
-reg [31:0] DE_PC = -8; //check
-reg [31:0] DE_IR=0;
+reg [31:0] DE_PC = 0; 
+reg [31:0] DE_IR = 0;
 
-reg [31:0] DE_PC_PLUSFOUR = -8; //check
-reg [31:0] DE_SRC1; //check
-reg [31:0] DE_SRC2; //check
-reg [31:0] DE_IMM_EXT; //check
+reg [31:0] DE_PC_PLUSFOUR = 0; 
+reg [31:0] DE_SRC1 = 0; 
+reg [31:0] DE_SRC2 = 0; 
+reg [31:0] DE_IMM_EXT = 0; 
 
-reg DE_BRN;
-reg DE_ALUSRC1;
-reg DE_ALUSRC2;
-reg [3:0] DE_ALUOP;
-reg DE_REGWRT;
-reg DE_MEMRD;
-reg DE_MEMWRT;
-reg DE_WRTSRC;
-reg DE_M2R;
 
 always @(posedge CLK)
 begin
     if (RESET) begin
 
-        DE_PC <= DE_PC;        //check
-        DE_IR <= 0;    // check
+        DE_PC <= 0;       
+        DE_IR <= 0;    
 
-        DE_PC_PLUSFOUR <= PC_PLUSFOUR;
-        DE_SRC1 <= SRC1;
-        DE_SRC2 <= SRC2;
-        DE_IMM_EXT <= IMM_EXT;
-        
-        DE_BRN <= BRN;
-        DE_ALUSRC1 <= ALUSRC1;
-        DE_ALUSRC2 <= ALUSRC2;
-        DE_ALUOP <= ALUOP;
-        DE_REGWRT <= REGWRT;
-        DE_MEMRD <= MEMRD;
-        DE_MEMWRT <= MEMWRT;
-        DE_WRTSRC <= WRTSRC;
-        DE_M2R <= M2R;
+        DE_PC_PLUSFOUR <= 0;
+        DE_SRC1 <= 0;
+        DE_SRC2 <= 0;
+        DE_IMM_EXT <= 0;
 
     end
     else begin
@@ -173,16 +193,6 @@ begin
         DE_SRC2 <= SRC2;
         DE_IMM_EXT <= IMM_EXT;
 
-        DE_BRN <= BRN;
-        DE_ALUSRC1 <= ALUSRC1;
-        DE_ALUSRC2 <= ALUSRC2;
-        DE_ALUOP <= ALUOP;
-        DE_REGWRT <= REGWRT;
-        DE_MEMRD <= MEMRD;
-        DE_MEMWRT <= MEMWRT;
-        DE_WRTSRC <= WRTSRC;
-        DE_M2R <= M2R;
-
     end
     
     //$write("\nInstruction : %08x \n" , INSTRUCTION);
@@ -190,56 +200,53 @@ end
 
 // Execute stage
 
-assign JUMP_BRANCH_TARGET = DE_PC + DE_IMM_EXT; //temp
-assign JUMPREG_TARGET = DE_SRC1 + DE_IMM_EXT; //temp
+assign JUMP_BRANCH_TARGET = DE_PC + DE_IMM_EXT; 
+assign JUMPREG_TARGET = DE_SRC1 + DE_IMM_EXT;
 
 BranchLogic BranchLogic(
     .src1(DE_SRC1), 
     .src2(DE_SRC2),  
     .func3(DE_IR[14:12]),
-    .branch(DE_BRN),  
+    .branch(BRN),  
     .brn_en(BRNEN)
     );
 
-assign ALU_IN1 = (DE_ALUSRC1 == ALUSRC1_RS1)? DE_SRC1: DE_PC;      // MUX1
-assign ALU_IN2 = (DE_ALUSRC2 == ALUSRC2_RS2)? DE_SRC2: DE_IMM_EXT;  // MUX2
+assign ALU_IN1 = (ALUSRC1 == ALUSRC1_RS1)? DE_SRC1: DE_PC;      // MUX1
+assign ALU_IN2 = (ALUSRC2 == ALUSRC2_RS2)? DE_SRC2: DE_IMM_EXT;  // MUX2
 
 ALU ALU(
     .in1(ALU_IN1),
     .in2(ALU_IN2), 
-    .alu_op(DE_ALUOP), 
+    .alu_op(ALUOP), 
     .alu_out(ALUOUT)
     );
 
 // EM boundary
 
-reg [31:0] EM_PC_PLUSFOUR = -8; //check
-reg [31:0] EM_SRC2; //check
-reg [31:0] EM_IR;
+reg [31:0] EM_PC_PLUSFOUR = 0; 
+reg [31:0] EM_SRC2 = 0; 
+reg [31:0] EM_IR = 0;
 
-reg [31:0] EM_ALUOUT;
+reg [31:0] EM_ALUOUT = 0;
 
-reg EM_REGWRT;
-reg EM_MEMRD;
-reg EM_MEMWRT;
-reg EM_WRTSRC;
-reg EM_M2R;
-
+reg EM_JUMP = 0;
+reg EM_JUMPR = 0;
+reg [31:0] EM_JUMP_BRANCH_TARGET = 0;
+reg [31:0] EM_JUMPREG_TARGET = 0;
 
 always @(posedge CLK)
 begin
     if (RESET) begin
-        EM_PC_PLUSFOUR <= DE_PC_PLUSFOUR;
-        EM_SRC2 <= DE_SRC2;
-        EM_IR <= DE_IR;    // check
+        EM_PC_PLUSFOUR <= 0;
+        EM_SRC2 <= 0;
+        EM_IR <= 0;   
 
-        EM_ALUOUT <= ALUOUT;
+        EM_ALUOUT <= 0;
 
-        EM_REGWRT <= DE_REGWRT;
-        EM_MEMRD <= DE_MEMRD;
-        EM_MEMWRT <= DE_MEMWRT;
-        EM_WRTSRC <= DE_WRTSRC;
-        EM_M2R <= DE_M2R;
+        EM_JUMP <= 0;
+        EM_JUMPR <= 0;
+        EM_JUMP_BRANCH_TARGET <= 0;
+        EM_JUMPREG_TARGET <= 0;
 
     end
     else begin
@@ -249,12 +256,11 @@ begin
         EM_IR <= DE_IR;
 
         EM_ALUOUT <= ALUOUT;
-
-        EM_REGWRT <= DE_REGWRT;
-        EM_MEMRD <= DE_MEMRD;
-        EM_MEMWRT <= DE_MEMWRT;
-        EM_WRTSRC <= DE_WRTSRC;
-        EM_M2R <= DE_M2R;
+        
+        EM_JUMP <= JUMP;
+        EM_JUMPR <= JUMPR;
+        EM_JUMP_BRANCH_TARGET <= JUMP_BRANCH_TARGET;
+        EM_JUMPREG_TARGET <= JUMPREG_TARGET;
 
     end
     
@@ -266,8 +272,8 @@ end
 DataMemory DataMemory(
     .CLK(CLK),
     .RESET(RESET),
-    .MRd(EM_MEMRD),
-    .MWrt(EM_MEMWRT),
+    .MRd(MEMRD),
+    .MWrt(MEMWRT),
     .FUNC3(EM_IR[14:12]),
     .IN_ADDR(EM_ALUOUT),
     .W_DATA(EM_SRC2),
@@ -276,28 +282,30 @@ DataMemory DataMemory(
 
 // MW boundary
 
-reg [31:0] MW_PC_PLUSFOUR = -8; //check
-reg [31:0] MW_ALUOUT;
+reg [31:0] MW_PC_PLUSFOUR = 0; 
+reg [31:0] MW_ALUOUT = 0;
 
-reg [31:0] MW_R_DATA;
+reg [31:0] MW_R_DATA = 0;
 
-reg MW_REGWRT;
-reg MW_WRTSRC;
-reg MW_M2R;
+reg MW_JUMP = 0;
+reg MW_JUMPR = 0;
+reg [31:0] MW_JUMP_BRANCH_TARGET = 0;
+reg [31:0] MW_JUMPREG_TARGET = 0;
 
 
 always @(posedge CLK)
 begin
     if (RESET) begin
 
-        MW_PC_PLUSFOUR <= EM_PC_PLUSFOUR;
-        MW_ALUOUT <= EM_ALUOUT;
+        MW_PC_PLUSFOUR <= 0;
+        MW_ALUOUT <= 0;
 
-        MW_R_DATA <= R_DATA;
+        MW_R_DATA <= 0;
 
-        MW_REGWRT <= EM_REGWRT;
-        MW_WRTSRC <= EM_WRTSRC;
-        MW_M2R <= EM_M2R;
+        MW_JUMP <= 0;
+        MW_JUMPR <= 0;
+        MW_JUMP_BRANCH_TARGET <= 0;
+        MW_JUMPREG_TARGET <= 0;
 
     end
     else begin
@@ -307,9 +315,10 @@ begin
 
         MW_R_DATA <= R_DATA;
 
-        MW_REGWRT <= EM_REGWRT;
-        MW_WRTSRC <= EM_WRTSRC;
-        MW_M2R <= EM_M2R;
+        MW_JUMP <= EM_JUMP;
+        MW_JUMPR <= EM_JUMPR;
+        MW_JUMP_BRANCH_TARGET <= EM_JUMP_BRANCH_TARGET;
+        MW_JUMPREG_TARGET <= EM_JUMPREG_TARGET;
 
     end
     
@@ -318,6 +327,9 @@ end
 
 // Write Back stage
 
-assign REG_IN = (MW_WRTSRC) ? ((MW_M2R) ? MW_R_DATA : MW_ALUOUT) : MW_PC_PLUSFOUR; // MUX3 and MUX4
+// assign REG_IN = (WRTSRC) ? ((M2R) ? MW_R_DATA : MW_ALUOUT) : MW_PC_PLUSFOUR; // MUX3 and MUX4
+assign REG_IN = (WRTSRC) ? ((M2R) ? MW_R_DATA : ((MEMSKIP) ? EM_ALUOUT : MW_ALUOUT)) : ((MEMSKIP) ? EM_PC_PLUSFOUR : MW_PC_PLUSFOUR); // MUX3 and MUX4 and MEM SKIP MUX
+
+
 
 endmodule

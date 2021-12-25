@@ -742,10 +742,9 @@ VL_INLINE_OPT void VCore::_sequent__TOP__2(VCore__Syms* __restrict vlSymsp) {
                                                         & (vlTOPp->Core__DOT__Control__DOT__control_sig 
                                                            >> 7U)))
                                                        ? 
-                                                      (vlTOPp->Core__DOT__ALU_IN1 
-                                                       >> 
-                                                       (0x1fU 
-                                                        & vlTOPp->Core__DOT__ALU_IN2))
+                                                      VL_SHIFTRS_III(32,32,5, vlTOPp->Core__DOT__ALU_IN1, 
+                                                                     (0x1fU 
+                                                                      & vlTOPp->Core__DOT__ALU_IN2))
                                                        : 
                                                       ((0xaU 
                                                         == 
@@ -1497,10 +1496,9 @@ void VCore::_settle__TOP__3(VCore__Syms* __restrict vlSymsp) {
                                                         & (vlTOPp->Core__DOT__Control__DOT__control_sig 
                                                            >> 7U)))
                                                        ? 
-                                                      (vlTOPp->Core__DOT__ALU_IN1 
-                                                       >> 
-                                                       (0x1fU 
-                                                        & vlTOPp->Core__DOT__ALU_IN2))
+                                                      VL_SHIFTRS_III(32,32,5, vlTOPp->Core__DOT__ALU_IN1, 
+                                                                     (0x1fU 
+                                                                      & vlTOPp->Core__DOT__ALU_IN2))
                                                        : 
                                                       ((0xaU 
                                                         == 

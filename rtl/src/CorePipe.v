@@ -5,7 +5,7 @@
 // 
 // Create Date: 12/23/2021 19:06:30 AM
 // Design Name: 
-// Module Name: CoreMS.v
+// Module Name: CorePipe.v
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module CoreMS (
+module CorePipe (
     input CLK,
     input RESET
 );
