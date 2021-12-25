@@ -29,11 +29,12 @@ module PCSelect (
     input   [31:0]BRANCH_TARGET,
     output  [31:0]NEXT_PC
 );
-
     assign NEXT_PC = (JUMP) ? JUMP_TARGET: 
                      (JUMPREG) ? JUMPREG_TARGET:
                      (BRANCH) ? BRANCH_TARGET : PC_PLUSFOUR;
 
-
-
 endmodule
+
+
+
+

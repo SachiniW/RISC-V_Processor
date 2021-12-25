@@ -28,7 +28,9 @@ module DataMemory(
     input   [2:0] FUNC3,
     input   [31:0]IN_ADDR,
     input   [31:0]W_DATA,
-    output  [31:0]R_DATA
+    output  [31:0]R_DATA,
+    output  [31:0]PRINT_VAL,
+    output        PRINT_EN
 );
 
     localparam F3LB  = 3'b000;
@@ -41,7 +43,7 @@ module DataMemory(
     localparam F3SH = 3'b001;
     localparam F3SB = 3'b000;
     
-    reg [31:0]  D_MEM   [0:511]; 
+    reg [31:0]  D_MEM   [0:25'h1ffffff]; 
 
     integer i;
     wire [31:0]ADDR;
@@ -69,18 +71,19 @@ module DataMemory(
     assign BYTE_WR = BYTE_DATA & D_MEM[ADDR]; 
     assign HALF_WR = HALFWORD_DATA & D_MEM[ADDR];
 
+    initial $readmemh("instruction_memory.mem" , D_MEM);
+
     always @(posedge CLK) begin
-        if (RESET) begin
-            for (i = 0; i<512; i=i+1) begin
-                D_MEM[i] <= 32'h0;
-            end
-        end
-        else if (MWrt) begin
+        if (!RESET && MWrt) begin
             if      (FUNC3 == F3SW)  D_MEM[ADDR] <=  W_DATA;
             else if (FUNC3 == F3SB)  D_MEM[ADDR] <= (W_DATA[7:0]  << BYTE*8)      | BYTE_WR ;
             else if (FUNC3 == F3SH)  D_MEM[ADDR] <= (W_DATA[15:0] << HALFWORD*16) | HALF_WR ;
         end
     end
+
+    //assign PRINT_VAL = D_MEM[32'h3800040c]; // @[Core.scala 347:17]
+    assign PRINT_VAL = W_DATA; // @[Core.scala 347:17]
+    assign PRINT_EN = (ADDR == 32'h3800040c) && MWrt; // @[Core.scala 348:65]
 
     assign LW     = D_MEM[ADDR];
 
@@ -115,7 +118,3 @@ module DataMemory(
 
 
 endmodule
-
-
-// sh :=  (writeDataReg & ("hFFFF0000".U(32.W) >> 16.U*halfadd)) | (writeDataRegReg(15,0) << 16.U*halfadd)
-// sb :=  (writeDataReg & (("h100FFFFFF".U(33.W)).asSInt >> 8.U*(3.U-byteadd)).asUInt) | (writeDataRegReg(7,0) << 8.U*byteadd)

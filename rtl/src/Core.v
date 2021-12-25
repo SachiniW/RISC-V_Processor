@@ -18,10 +18,30 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
+`define VERILATE
+`ifdef VERILATE
+    /* verilator lint_off DECLFILENAME */
+    /* verilator lint_off WIDTH */
+    /* verilator lint_off UNUSED */
+    /* verilator lint_off MODDUP */
+    /* verilator lint_off IMPLICIT */
+
+    `include "ALU.v"
+    `include "BranchLogic.v"
+    `include "Control.v"
+    `include "DataMemory.v"
+    `include "ImmExtend.v"
+    `include "InstMemory.v"
+    `include "DataMemory.v"
+    `include "PCSelect.v"
+    `include "RegFile.v"
+`endif
 
 module Core (
     input CLK,
-    input RESET
+    input RESET,
+    output  [31:0]PRINT_VAL,
+    output        PRINT_EN
 );
 
 `include "define.v"
@@ -76,7 +96,7 @@ begin
         PC <= PC_sig;
     end
     
-    $write("\nInstruction : %08x \n" , INSTRUCTION);
+    // $write("\nInstruction : %08x \n" , INSTRUCTION);
 end
 
 assign PC_PLUSFOUR = PC + 32'd4;
@@ -139,7 +159,9 @@ DataMemory DataMemory(
     .FUNC3(INSTRUCTION[14:12]),
     .IN_ADDR(ALUOUT),
     .W_DATA(SRC2),
-    .R_DATA(R_DATA)
+    .R_DATA(R_DATA),
+    .PRINT_VAL(PRINT_VAL),
+    .PRINT_EN(PRINT_EN)
 );
 
 assign REG_IN = (WRTSRC) ? ((M2R) ? R_DATA : ALUOUT) : PC_PLUSFOUR;

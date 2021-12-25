@@ -18,10 +18,30 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
+`define VERILATE
+`ifdef VERILATE
+    /* verilator lint_off DECLFILENAME */
+    /* verilator lint_off WIDTH */
+    /* verilator lint_off UNUSED */
+    /* verilator lint_off MODDUP */
+    /* verilator lint_off IMPLICIT */
+
+    `include "ALU.v"
+    `include "BranchLogic.v"
+    `include "ControlMS.v"
+    `include "DataMemory.v"
+    `include "ImmExtend.v"
+    `include "InstMemory.v"
+    `include "DataMemory.v"
+    `include "PCSelect.v"
+    `include "RegFile.v"
+`endif
 
 module CoreMS (
     input CLK,
-    input RESET
+    input RESET,
+    output  [31:0]PRINT_VAL,
+    output        PRINT_EN
 );
 
 `include "define.v"
@@ -113,7 +133,7 @@ begin
             FD_IR <= INSTRUCTION;
         end
     end
-    $write("\nInstruction : %08x \n" , FD_IR);
+    //$write("\nInstruction : %08x \n" , FD_IR);
 end
 
 // Decode stage
@@ -277,7 +297,9 @@ DataMemory DataMemory(
     .FUNC3(EM_IR[14:12]),
     .IN_ADDR(EM_ALUOUT),
     .W_DATA(EM_SRC2),
-    .R_DATA(R_DATA)
+    .R_DATA(R_DATA),
+    .PRINT_VAL(PRINT_VAL),
+    .PRINT_EN(PRINT_EN)
 );
 
 // MW boundary
@@ -329,7 +351,6 @@ end
 
 // assign REG_IN = (WRTSRC) ? ((M2R) ? MW_R_DATA : MW_ALUOUT) : MW_PC_PLUSFOUR; // MUX3 and MUX4
 assign REG_IN = (WRTSRC) ? ((M2R) ? MW_R_DATA : ((MEMSKIP) ? EM_ALUOUT : MW_ALUOUT)) : ((MEMSKIP) ? EM_PC_PLUSFOUR : MW_PC_PLUSFOUR); // MUX3 and MUX4 and MEM SKIP MUX
-
 
 
 endmodule

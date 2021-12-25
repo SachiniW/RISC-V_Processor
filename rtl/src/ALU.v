@@ -52,5 +52,6 @@ module ALU(
 
     //initial begin
     //    $display("%b", $signed(32'hfffff82f) >>> 15);
-    //end
+    //end	
 endmodule
+
