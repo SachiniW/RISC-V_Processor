@@ -1,7 +1,7 @@
 #include "VCore.h"
 #include "verilated.h"
 
-//  #define DEBUG
+ #define DEBUG
 
 
 // #include "bitset.h"
