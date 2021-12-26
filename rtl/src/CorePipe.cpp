@@ -1,8 +1,8 @@
 #include "VCorePipe.h"
 #include "verilated.h"
 
-#define DEBUG
-// #define COMPARE
+//#define DEBUG
+//#define COMPARE
 
 // #include "bitset.h"
 #include <bitset>
@@ -34,6 +34,7 @@ int main(int argc, char **argv, char **env)
 	string fd_IRRegImm    ;
 
 	string CTRL_SIG     ;
+	string REGWRT_SIG     ;
 
 	static int clock = 0;
 
@@ -61,14 +62,15 @@ int main(int argc, char **argv, char **env)
 			
 
 			CTRL_SIG = bitset<17>(top->CorePipe__DOT__Control__DOT__control_sig).to_string();
-			if (CTRL_SIG[16] == '1'){
+			REGWRT_SIG = bitset<1>(top->CorePipe__DOT__MW_REGWRT).to_string();
+			if (REGWRT_SIG[0] == '1'){
 				printCounter ++;
 			}
 
 
 			#ifdef DEBUG
 
-			// if (CTRL_SIG[16] == '1'){
+			 //if (REGWRT_SIG[0] == '1'){
 
 				getchar();
 				printf("%d\t%d",counter,printCounter);
@@ -134,7 +136,22 @@ int main(int argc, char **argv, char **env)
 
 				printf("\nregWrt\twbSel\n");
 				printf("%d \t ", top->CorePipe__DOT__MW_REGWRT);
-				printf("%d,%d \t ", top->CorePipe__DOT__MW_M2R,top->CorePipe__DOT__MW_WRTSRC);	
+				printf("%d,%d \t \n ", top->CorePipe__DOT__MW_M2R,top->CorePipe__DOT__MW_WRTSRC);
+
+				printf ("PC: %08x \n", top->CorePipe__DOT__FD_PC + 0x10054);
+				printf ("Instruction %d: %08x \n" , int(counter/2), top->CorePipe__DOT__FD_IR);
+				cout << "CS_TYPE     : "   <<  CTRL_SIG[0]  << CTRL_SIG[1] << CTRL_SIG[2] << endl;
+				cout << "CS_JUMP     : "   <<  CTRL_SIG[3]    << endl;
+				cout << "CS_JUMPR    : "   <<  CTRL_SIG[4]    << endl;
+				cout << "CS_BRANCH   : "   <<  CTRL_SIG[5]    << endl;
+				cout << "CS_ALUOP    : "   <<  CTRL_SIG[6]  << CTRL_SIG[7] <<  CTRL_SIG[8] << CTRL_SIG[9] << endl;
+				cout << "CS_ALUSRC1  : "   <<  CTRL_SIG[10]     << endl;
+				cout << "CS_ALUSRC2  : "   <<  CTRL_SIG[11]     << endl;
+				cout << "CS_MEMRD    : "   <<  CTRL_SIG[12]     << endl; 
+				cout << "CS_MEMWRT   : "   <<  CTRL_SIG[13]     << endl;
+				cout << "CS_M2R      : "   <<  CTRL_SIG[14]     << endl;
+				cout << "CS_WRTSRC   : "   <<  CTRL_SIG[15]     << endl;
+				cout << "CS_REGWRT   : "   <<  CTRL_SIG[16]     << endl;	
 
 				printf("\n\nRegisterFile \n");	
 				printf("Reg00(00) := 00000000 \t");
@@ -184,7 +201,7 @@ int main(int argc, char **argv, char **env)
 			if (top->CorePipe__DOT__MW_REGWRT){
 
 				getchar();
-				printf("%d\t%d",counter,printCounter);
+				printf("%d\t%d \n",counter,printCounter);
 
 				// printf("\n\nFetech-Decode Latches \n");
 				// fd_IRReg = bitset<32>(top->CorePipe__DOT__FD_IR ).to_string();
@@ -247,7 +264,22 @@ int main(int argc, char **argv, char **env)
 
 				// printf("\nregWrt\twbSel\n");
 				// printf("%d \t ", top->CorePipe__DOT__MW_REGWRT);
-				// printf("%d,%d \t ", top->CorePipe__DOT__MW_M2R,top->CorePipe__DOT__MW_WRTSRC);	
+				// printf("%d,%d \t ", top->CorePipe__DOT__MW_M2R,top->CorePipe__DOT__MW_WRTSRC);
+
+				printf ("PC: %08x \n", top->CorePipe__DOT__FD_PC + 0x10054);
+				printf ("Instruction %d: %08x \n" , int(counter/2), top->CorePipe__DOT__FD_IR);
+				cout << "CS_TYPE     : "   <<  CTRL_SIG[0]  << CTRL_SIG[1] << CTRL_SIG[2] << endl;
+				cout << "CS_JUMP     : "   <<  CTRL_SIG[3]    << endl;
+				cout << "CS_JUMPR    : "   <<  CTRL_SIG[4]    << endl;
+				cout << "CS_BRANCH   : "   <<  CTRL_SIG[5]    << endl;
+				cout << "CS_ALUOP    : "   <<  CTRL_SIG[6]  << CTRL_SIG[7] <<  CTRL_SIG[8] << CTRL_SIG[9] << endl;
+				cout << "CS_ALUSRC1  : "   <<  CTRL_SIG[10]     << endl;
+				cout << "CS_ALUSRC2  : "   <<  CTRL_SIG[11]     << endl;
+				cout << "CS_MEMRD    : "   <<  CTRL_SIG[12]     << endl; 
+				cout << "CS_MEMWRT   : "   <<  CTRL_SIG[13]     << endl;
+				cout << "CS_M2R      : "   <<  CTRL_SIG[14]     << endl;
+				cout << "CS_WRTSRC   : "   <<  CTRL_SIG[15]     << endl;
+				cout << "CS_REGWRT   : "   <<  CTRL_SIG[16]     << endl;	
 
 				printf("\n\nRegisterFile \n");	
 				printf("Reg00(00) := 00000000 \t");
@@ -283,8 +315,8 @@ int main(int argc, char **argv, char **env)
 				printf("Reg30(t5) := %08x \t", top->CorePipe__DOT__RegFile__DOT__REG[29]);
 				printf("Reg31(t6) := %08x \n", top->CorePipe__DOT__RegFile__DOT__REG[30]);
 
-				// printf("Output location: %d \n",top->PRINT_VAL);
-				// printf("Enable: %d \n",top->PRINT_EN);
+				printf("Output location: %d \n",top->PRINT_VAL);
+				printf("Enable: %d \n",top->PRINT_EN);
 			}
 
 			

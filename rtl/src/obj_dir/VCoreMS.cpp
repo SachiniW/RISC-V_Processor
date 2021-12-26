@@ -873,9 +873,9 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
                 if ((1U & (IData)(vlTOPp->CoreMS__DOT__ControlMS__DOT__state))) {
                     vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
                         = ((0x37U == (0x7fU & (IData)(vlTOPp->CoreMS__DOT__ControlMS__DOT__INS_ARR)))
-                            ? 0x58000U : ((0x17U == 
+                            ? 0x40000U : ((0x17U == 
                                            (0x7fU & (IData)(vlTOPp->CoreMS__DOT__ControlMS__DOT__INS_ARR)))
-                                           ? 0x58000U
+                                           ? 0x40000U
                                            : ((0x6fU 
                                                == (0x7fU 
                                                    & (IData)(vlTOPp->CoreMS__DOT__ControlMS__DOT__INS_ARR)))
@@ -884,7 +884,7 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
                                                    == 
                                                    (0x3ffU 
                                                     & (IData)(vlTOPp->CoreMS__DOT__ControlMS__DOT__INS_ARR)))
-                                                   ? 0x40000U
+                                                   ? 0x58000U
                                                    : 
                                                   ((0x63U 
                                                     == 
@@ -896,31 +896,31 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
                                                      == 
                                                      (0x3ffU 
                                                       & (IData)(vlTOPp->CoreMS__DOT__ControlMS__DOT__INS_ARR)))
-                                                     ? 0x40000U
+                                                     ? 0x58000U
                                                      : 
                                                     ((3U 
                                                       == 
                                                       (0x3ffU 
                                                        & (IData)(vlTOPp->CoreMS__DOT__ControlMS__DOT__INS_ARR)))
-                                                      ? 0x40000U
+                                                      ? 0x58000U
                                                       : 
                                                      ((0x83U 
                                                        == 
                                                        (0x3ffU 
                                                         & (IData)(vlTOPp->CoreMS__DOT__ControlMS__DOT__INS_ARR)))
-                                                       ? 0x40000U
+                                                       ? 0x58000U
                                                        : 
                                                       ((0x203U 
                                                         == 
                                                         (0x3ffU 
                                                          & (IData)(vlTOPp->CoreMS__DOT__ControlMS__DOT__INS_ARR)))
-                                                        ? 0x40000U
+                                                        ? 0x58000U
                                                         : 
                                                        ((0x283U 
                                                          == 
                                                          (0x3ffU 
                                                           & (IData)(vlTOPp->CoreMS__DOT__ControlMS__DOT__INS_ARR)))
-                                                         ? 0x40000U
+                                                         ? 0x58000U
                                                          : 
                                                         ((0x123U 
                                                           == 
@@ -944,49 +944,49 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
                                                              == 
                                                              (0x3ffU 
                                                               & (IData)(vlTOPp->CoreMS__DOT__ControlMS__DOT__INS_ARR)))
-                                                             ? 0x40000U
+                                                             ? 0x58000U
                                                              : 
                                                             ((0x113U 
                                                               == 
                                                               (0x3ffU 
                                                                & (IData)(vlTOPp->CoreMS__DOT__ControlMS__DOT__INS_ARR)))
-                                                              ? 0x40000U
+                                                              ? 0x58000U
                                                               : 
                                                              ((0x193U 
                                                                == 
                                                                (0x3ffU 
                                                                 & (IData)(vlTOPp->CoreMS__DOT__ControlMS__DOT__INS_ARR)))
-                                                               ? 0x40000U
+                                                               ? 0x58000U
                                                                : 
                                                               ((0x213U 
                                                                 == 
                                                                 (0x3ffU 
                                                                  & (IData)(vlTOPp->CoreMS__DOT__ControlMS__DOT__INS_ARR)))
-                                                                ? 0x40000U
+                                                                ? 0x58000U
                                                                 : 
                                                                ((0x313U 
                                                                  == 
                                                                  (0x3ffU 
                                                                   & (IData)(vlTOPp->CoreMS__DOT__ControlMS__DOT__INS_ARR)))
-                                                                 ? 0x40000U
+                                                                 ? 0x58000U
                                                                  : 
                                                                 ((0x393U 
                                                                   == 
                                                                   (0x3ffU 
                                                                    & (IData)(vlTOPp->CoreMS__DOT__ControlMS__DOT__INS_ARR)))
-                                                                  ? 0x40000U
+                                                                  ? 0x58000U
                                                                   : 
                                                                  ((0x93U 
                                                                    == (IData)(vlTOPp->CoreMS__DOT__ControlMS__DOT__INS_ARR))
-                                                                   ? 0x40000U
+                                                                   ? 0x58000U
                                                                    : 
                                                                   ((0x293U 
                                                                     == (IData)(vlTOPp->CoreMS__DOT__ControlMS__DOT__INS_ARR))
-                                                                    ? 0x40000U
+                                                                    ? 0x58000U
                                                                     : 
                                                                    ((0x693U 
                                                                      == (IData)(vlTOPp->CoreMS__DOT__ControlMS__DOT__INS_ARR))
-                                                                     ? 0x40000U
+                                                                     ? 0x58000U
                                                                      : 
                                                                     ((0x33U 
                                                                       == (IData)(vlTOPp->CoreMS__DOT__ControlMS__DOT__INS_ARR))
@@ -1147,7 +1147,7 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
                                      ? vlTOPp->CoreMS__DOT__DE_IMM_EXT
                                      : vlTOPp->CoreMS__DOT__DE_SRC2);
     vlTOPp->CoreMS__DOT__IMM_EXT = ((0xfffffffeU & vlTOPp->CoreMS__DOT__IMM_EXT) 
-                                    | (1U & ((0U == 
+                                    | (1U & ((3U == 
                                               (7U & 
                                                (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
                                                 >> 0xfU)))
@@ -1161,7 +1161,7 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
                                                  & (vlTOPp->CoreMS__DOT__FD_IR 
                                                     >> 7U)))));
     vlTOPp->CoreMS__DOT__IMM_EXT = ((0xffffffe1U & vlTOPp->CoreMS__DOT__IMM_EXT) 
-                                    | (0x1eU & ((((0U 
+                                    | (0x1eU & ((((3U 
                                                    == 
                                                    (7U 
                                                     & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
@@ -1191,7 +1191,7 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
                                                    : 0U)) 
                                                 << 1U)));
     vlTOPp->CoreMS__DOT__IMM_EXT = ((0xfffff81fU & vlTOPp->CoreMS__DOT__IMM_EXT) 
-                                    | ((((((0U == (7U 
+                                    | ((((((3U == (7U 
                                                    & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
                                                       >> 0xfU))) 
                                            | (1U == 
@@ -1211,7 +1211,7 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
                                          : 0U) << 5U));
     vlTOPp->CoreMS__DOT__IMM_EXT = ((0xfffff7ffU & vlTOPp->CoreMS__DOT__IMM_EXT) 
                                     | (0x800U & (((
-                                                   (0U 
+                                                   (3U 
                                                     == 
                                                     (7U 
                                                      & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
@@ -1234,7 +1234,7 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
                                                    (vlTOPp->CoreMS__DOT__FD_IR 
                                                     >> 7U)
                                                     : 
-                                                   ((3U 
+                                                   ((0U 
                                                      != 
                                                      (7U 
                                                       & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
@@ -1249,7 +1249,7 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
                                                  << 0xbU)));
     vlTOPp->CoreMS__DOT__IMM_EXT = ((0xfff00fffU & vlTOPp->CoreMS__DOT__IMM_EXT) 
                                     | (0xff000U & (
-                                                   ((((0U 
+                                                   ((((3U 
                                                        == 
                                                        (7U 
                                                         & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
@@ -1270,7 +1270,7 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
                                                                          & (vlTOPp->CoreMS__DOT__FD_IR 
                                                                             >> 0x1fU))))
                                                      : 
-                                                    ((3U 
+                                                    ((0U 
                                                       == 
                                                       (7U 
                                                        & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
@@ -1291,7 +1291,7 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
                                                    << 0xcU)));
     vlTOPp->CoreMS__DOT__IMM_EXT = ((0x800fffffU & vlTOPp->CoreMS__DOT__IMM_EXT) 
                                     | (0x7ff00000U 
-                                       & ((((((0U == 
+                                       & ((((((3U == 
                                                (7U 
                                                 & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
                                                    >> 0xfU))) 
@@ -1313,7 +1313,7 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
                                                                   (1U 
                                                                    & (vlTOPp->CoreMS__DOT__FD_IR 
                                                                       >> 0x1fU))))
-                                            : ((3U 
+                                            : ((0U 
                                                 == 
                                                 (7U 
                                                  & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
@@ -1324,7 +1324,7 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
                                           << 0x14U)));
     vlTOPp->CoreMS__DOT__IMM_EXT = ((0x7fffffffU & vlTOPp->CoreMS__DOT__IMM_EXT) 
                                     | (0x80000000U 
-                                       & (((((((0U 
+                                       & (((((((3U 
                                                 == 
                                                 (7U 
                                                  & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
@@ -1339,7 +1339,7 @@ VL_INLINE_OPT void VCoreMS::_sequent__TOP__2(VCoreMS__Syms* __restrict vlSymsp) 
                                                  (7U 
                                                   & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
                                                      >> 0xfU)))) 
-                                             | (3U 
+                                             | (0U 
                                                 == 
                                                 (7U 
                                                  & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
@@ -1703,7 +1703,7 @@ void VCoreMS::_settle__TOP__3(VCoreMS__Syms* __restrict vlSymsp) {
                                      ? vlTOPp->CoreMS__DOT__DE_IMM_EXT
                                      : vlTOPp->CoreMS__DOT__DE_SRC2);
     vlTOPp->CoreMS__DOT__IMM_EXT = ((0xfffffffeU & vlTOPp->CoreMS__DOT__IMM_EXT) 
-                                    | (1U & ((0U == 
+                                    | (1U & ((3U == 
                                               (7U & 
                                                (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
                                                 >> 0xfU)))
@@ -1717,7 +1717,7 @@ void VCoreMS::_settle__TOP__3(VCoreMS__Syms* __restrict vlSymsp) {
                                                  & (vlTOPp->CoreMS__DOT__FD_IR 
                                                     >> 7U)))));
     vlTOPp->CoreMS__DOT__IMM_EXT = ((0xffffffe1U & vlTOPp->CoreMS__DOT__IMM_EXT) 
-                                    | (0x1eU & ((((0U 
+                                    | (0x1eU & ((((3U 
                                                    == 
                                                    (7U 
                                                     & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
@@ -1747,7 +1747,7 @@ void VCoreMS::_settle__TOP__3(VCoreMS__Syms* __restrict vlSymsp) {
                                                    : 0U)) 
                                                 << 1U)));
     vlTOPp->CoreMS__DOT__IMM_EXT = ((0xfffff81fU & vlTOPp->CoreMS__DOT__IMM_EXT) 
-                                    | ((((((0U == (7U 
+                                    | ((((((3U == (7U 
                                                    & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
                                                       >> 0xfU))) 
                                            | (1U == 
@@ -1767,7 +1767,7 @@ void VCoreMS::_settle__TOP__3(VCoreMS__Syms* __restrict vlSymsp) {
                                          : 0U) << 5U));
     vlTOPp->CoreMS__DOT__IMM_EXT = ((0xfffff7ffU & vlTOPp->CoreMS__DOT__IMM_EXT) 
                                     | (0x800U & (((
-                                                   (0U 
+                                                   (3U 
                                                     == 
                                                     (7U 
                                                      & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
@@ -1790,7 +1790,7 @@ void VCoreMS::_settle__TOP__3(VCoreMS__Syms* __restrict vlSymsp) {
                                                    (vlTOPp->CoreMS__DOT__FD_IR 
                                                     >> 7U)
                                                     : 
-                                                   ((3U 
+                                                   ((0U 
                                                      != 
                                                      (7U 
                                                       & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
@@ -1805,7 +1805,7 @@ void VCoreMS::_settle__TOP__3(VCoreMS__Syms* __restrict vlSymsp) {
                                                  << 0xbU)));
     vlTOPp->CoreMS__DOT__IMM_EXT = ((0xfff00fffU & vlTOPp->CoreMS__DOT__IMM_EXT) 
                                     | (0xff000U & (
-                                                   ((((0U 
+                                                   ((((3U 
                                                        == 
                                                        (7U 
                                                         & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
@@ -1826,7 +1826,7 @@ void VCoreMS::_settle__TOP__3(VCoreMS__Syms* __restrict vlSymsp) {
                                                                          & (vlTOPp->CoreMS__DOT__FD_IR 
                                                                             >> 0x1fU))))
                                                      : 
-                                                    ((3U 
+                                                    ((0U 
                                                       == 
                                                       (7U 
                                                        & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
@@ -1847,7 +1847,7 @@ void VCoreMS::_settle__TOP__3(VCoreMS__Syms* __restrict vlSymsp) {
                                                    << 0xcU)));
     vlTOPp->CoreMS__DOT__IMM_EXT = ((0x800fffffU & vlTOPp->CoreMS__DOT__IMM_EXT) 
                                     | (0x7ff00000U 
-                                       & ((((((0U == 
+                                       & ((((((3U == 
                                                (7U 
                                                 & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
                                                    >> 0xfU))) 
@@ -1869,7 +1869,7 @@ void VCoreMS::_settle__TOP__3(VCoreMS__Syms* __restrict vlSymsp) {
                                                                   (1U 
                                                                    & (vlTOPp->CoreMS__DOT__FD_IR 
                                                                       >> 0x1fU))))
-                                            : ((3U 
+                                            : ((0U 
                                                 == 
                                                 (7U 
                                                  & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
@@ -1880,7 +1880,7 @@ void VCoreMS::_settle__TOP__3(VCoreMS__Syms* __restrict vlSymsp) {
                                           << 0x14U)));
     vlTOPp->CoreMS__DOT__IMM_EXT = ((0x7fffffffU & vlTOPp->CoreMS__DOT__IMM_EXT) 
                                     | (0x80000000U 
-                                       & (((((((0U 
+                                       & (((((((3U 
                                                 == 
                                                 (7U 
                                                  & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
@@ -1895,7 +1895,7 @@ void VCoreMS::_settle__TOP__3(VCoreMS__Syms* __restrict vlSymsp) {
                                                  (7U 
                                                   & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 
                                                      >> 0xfU)))) 
-                                             | (3U 
+                                             | (0U 
                                                 == 
                                                 (7U 
                                                  & (vlTOPp->CoreMS__DOT__ControlMS__DOT__CTRL_SIG 

@@ -48,7 +48,7 @@ void VCore::eval() {
             Verilated::debug(1);
             __Vchange = _change_request(vlSymsp);
             Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("Core.v", 40, "",
+            VL_FATAL_MT("Core.v", 41, "",
                 "Verilated model didn't converge\n"
                 "- See DIDNOTCONVERGE in the Verilator manual");
         } else {
@@ -73,7 +73,7 @@ void VCore::_eval_initial_loop(VCore__Syms* __restrict vlSymsp) {
             Verilated::debug(1);
             __Vchange = _change_request(vlSymsp);
             Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("Core.v", 40, "",
+            VL_FATAL_MT("Core.v", 41, "",
                 "Verilated model didn't DC converge\n"
                 "- See DIDNOTCONVERGE in the Verilator manual");
         } else {
@@ -295,147 +295,162 @@ VL_INLINE_OPT void VCore::_sequent__TOP__2(VCore__Syms* __restrict vlSymsp) {
         = (vlTOPp->Core__DOT__SRC1 < vlTOPp->Core__DOT__SRC2);
     vlTOPp->Core__DOT__Control__DOT__control_sig = 
         ((0x37U == (0x7fU & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-          ? 0xc5a3U : ((0x17U == (0x7fU & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                        ? 0xc063U : ((0x6fU == (0x7fU 
-                                                & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                      ? 0x12001U : 
-                                     ((0x67U == (0x3ffU 
-                                                 & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                       ? 0x1001U : 
-                                      ((0x63U == (0x7fU 
-                                                  & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                        ? 0x8800U : 
-                                       ((0x103U == 
-                                         (0x3ffU & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                         ? 0x37U : 
-                                        ((3U == (0x3ffU 
-                                                 & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                          ? 0x37U : 
-                                         ((0x83U == 
-                                           (0x3ffU 
-                                            & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                           ? 0x37U : 
-                                          ((0x203U 
-                                            == (0x3ffU 
-                                                & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                            ? 0x37U
-                                            : ((0x283U 
-                                                == 
-                                                (0x3ffU 
-                                                 & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                                ? 0x37U
-                                                : (
-                                                   (0x123U 
+          ? 0x5a3U : ((0x17U == (0x7fU & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
+                       ? 0x63U : ((0x6fU == (0x7fU 
+                                             & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
+                                   ? 0x12001U : ((0x67U 
+                                                  == 
+                                                  (0x3ffU 
+                                                   & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
+                                                  ? 0xd001U
+                                                  : 
+                                                 ((0x63U 
+                                                   == 
+                                                   (0x7fU 
+                                                    & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
+                                                   ? 0x8800U
+                                                   : 
+                                                  ((0x103U 
                                                     == 
                                                     (0x3ffU 
                                                      & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                                    ? 0x4028U
+                                                    ? 0xc037U
                                                     : 
-                                                   ((0x23U 
+                                                   ((3U 
                                                      == 
                                                      (0x3ffU 
                                                       & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                                     ? 0x4028U
+                                                     ? 0xc037U
                                                      : 
-                                                    ((0xa3U 
+                                                    ((0x83U 
                                                       == 
                                                       (0x3ffU 
                                                        & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                                      ? 0x4028U
+                                                      ? 0xc037U
                                                       : 
-                                                     ((0x13U 
+                                                     ((0x203U 
                                                        == 
                                                        (0x3ffU 
                                                         & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                                       ? 0x23U
+                                                       ? 0xc037U
                                                        : 
-                                                      ((0x113U 
+                                                      ((0x283U 
                                                         == 
                                                         (0x3ffU 
                                                          & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                                        ? 0x2a3U
+                                                        ? 0xc037U
                                                         : 
-                                                       ((0x193U 
+                                                       ((0x123U 
                                                          == 
                                                          (0x3ffU 
                                                           & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                                         ? 0x3a3U
+                                                         ? 0x4028U
                                                          : 
-                                                        ((0x213U 
+                                                        ((0x23U 
                                                           == 
                                                           (0x3ffU 
                                                            & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                                          ? 0x223U
+                                                          ? 0x4028U
                                                           : 
-                                                         ((0x313U 
+                                                         ((0xa3U 
                                                            == 
                                                            (0x3ffU 
                                                             & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                                           ? 0x1a3U
+                                                           ? 0x4028U
                                                            : 
-                                                          ((0x393U 
+                                                          ((0x13U 
                                                             == 
                                                             (0x3ffU 
                                                              & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                                            ? 0x123U
+                                                            ? 0xc023U
                                                             : 
-                                                           ((0x93U 
-                                                             == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                             ? 0x323U
+                                                           ((0x113U 
+                                                             == 
+                                                             (0x3ffU 
+                                                              & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
+                                                             ? 0xc2a3U
                                                              : 
-                                                            ((0x293U 
-                                                              == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                              ? 0x423U
+                                                            ((0x193U 
+                                                              == 
+                                                              (0x3ffU 
+                                                               & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
+                                                              ? 0xc3a3U
                                                               : 
-                                                             ((0x693U 
-                                                               == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                               ? 0x4a3U
+                                                             ((0x213U 
+                                                               == 
+                                                               (0x3ffU 
+                                                                & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
+                                                               ? 0xc223U
                                                                : 
-                                                              ((0x33U 
-                                                                == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                                ? 0x14003U
+                                                              ((0x313U 
+                                                                == 
+                                                                (0x3ffU 
+                                                                 & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
+                                                                ? 0xc1a3U
                                                                 : 
-                                                               ((0x433U 
-                                                                 == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                                 ? 0x14083U
+                                                               ((0x393U 
+                                                                 == 
+                                                                 (0x3ffU 
+                                                                  & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
+                                                                 ? 0xc123U
                                                                  : 
-                                                                ((0xb3U 
+                                                                ((0x93U 
                                                                   == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                                  ? 0x14303U
+                                                                  ? 0xc323U
                                                                   : 
-                                                                 ((0x133U 
+                                                                 ((0x293U 
                                                                    == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                                   ? 0x14283U
+                                                                   ? 0xc423U
                                                                    : 
-                                                                  ((0x1b3U 
+                                                                  ((0x693U 
                                                                     == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                                    ? 0x14383U
+                                                                    ? 0xc4a3U
                                                                     : 
-                                                                   ((0x233U 
+                                                                   ((0x33U 
                                                                      == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                                     ? 0x14203U
+                                                                     ? 0x14003U
                                                                      : 
-                                                                    ((0x2b3U 
+                                                                    ((0x433U 
                                                                       == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                                      ? 0x14403U
+                                                                      ? 0x14083U
                                                                       : 
-                                                                     ((0x6b3U 
+                                                                     ((0xb3U 
                                                                        == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                                       ? 0x14483U
+                                                                       ? 0x14303U
                                                                        : 
-                                                                      ((0x333U 
+                                                                      ((0x133U 
                                                                         == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                                        ? 0x14183U
+                                                                        ? 0x14283U
                                                                         : 
-                                                                       ((0x3b3U 
+                                                                       ((0x1b3U 
                                                                          == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                                         ? 0x14103U
-                                                                         : 0U))))))))))))))))))))))))))))))));
+                                                                         ? 0x14383U
+                                                                         : 
+                                                                        ((0x233U 
+                                                                          == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
+                                                                          ? 0x14203U
+                                                                          : 
+                                                                         ((0x2b3U 
+                                                                           == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
+                                                                           ? 0x14403U
+                                                                           : 
+                                                                          ((0x6b3U 
+                                                                            == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
+                                                                            ? 0x14483U
+                                                                            : 
+                                                                           ((0x333U 
+                                                                             == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
+                                                                             ? 0x14183U
+                                                                             : 
+                                                                            ((0x3b3U 
+                                                                              == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
+                                                                              ? 0x14103U
+                                                                              : 0U))))))))))))))))))))))))))))))));
     vlTOPp->Core__DOT__ALU_IN1 = ((0x40U & vlTOPp->Core__DOT__Control__DOT__control_sig)
                                    ? vlTOPp->Core__DOT__PC
                                    : vlTOPp->Core__DOT__SRC1);
     vlTOPp->Core__DOT__IMM_EXT = ((0xfffffffeU & vlTOPp->Core__DOT__IMM_EXT) 
-                                  | (1U & ((0U == (7U 
+                                  | (1U & ((3U == (7U 
                                                    & (vlTOPp->Core__DOT__Control__DOT__control_sig 
                                                       >> 0xeU)))
                                             ? (vlTOPp->Core__DOT__INSTRUCTION 
@@ -448,7 +463,7 @@ VL_INLINE_OPT void VCore::_sequent__TOP__2(VCore__Syms* __restrict vlSymsp) {
                                                & (vlTOPp->Core__DOT__INSTRUCTION 
                                                   >> 7U)))));
     vlTOPp->Core__DOT__IMM_EXT = ((0xffffffe1U & vlTOPp->Core__DOT__IMM_EXT) 
-                                  | (0x1eU & ((((0U 
+                                  | (0x1eU & ((((3U 
                                                  == 
                                                  (7U 
                                                   & (vlTOPp->Core__DOT__Control__DOT__control_sig 
@@ -477,7 +492,7 @@ VL_INLINE_OPT void VCore::_sequent__TOP__2(VCore__Syms* __restrict vlSymsp) {
                                                     : 0U)) 
                                               << 1U)));
     vlTOPp->Core__DOT__IMM_EXT = ((0xfffff81fU & vlTOPp->Core__DOT__IMM_EXT) 
-                                  | ((((((0U == (7U 
+                                  | ((((((3U == (7U 
                                                  & (vlTOPp->Core__DOT__Control__DOT__control_sig 
                                                     >> 0xeU))) 
                                          | (1U == (7U 
@@ -493,7 +508,7 @@ VL_INLINE_OPT void VCore::_sequent__TOP__2(VCore__Syms* __restrict vlSymsp) {
                                                    >> 0x19U))
                                        : 0U) << 5U));
     vlTOPp->Core__DOT__IMM_EXT = ((0xfffff7ffU & vlTOPp->Core__DOT__IMM_EXT) 
-                                  | (0x800U & ((((0U 
+                                  | (0x800U & ((((3U 
                                                   == 
                                                   (7U 
                                                    & (vlTOPp->Core__DOT__Control__DOT__control_sig 
@@ -516,7 +531,7 @@ VL_INLINE_OPT void VCore::_sequent__TOP__2(VCore__Syms* __restrict vlSymsp) {
                                                  (vlTOPp->Core__DOT__INSTRUCTION 
                                                   >> 7U)
                                                   : 
-                                                 ((3U 
+                                                 ((0U 
                                                    != 
                                                    (7U 
                                                     & (vlTOPp->Core__DOT__Control__DOT__control_sig 
@@ -531,7 +546,7 @@ VL_INLINE_OPT void VCore::_sequent__TOP__2(VCore__Syms* __restrict vlSymsp) {
                                                << 0xbU)));
     vlTOPp->Core__DOT__IMM_EXT = ((0xfff00fffU & vlTOPp->Core__DOT__IMM_EXT) 
                                   | (0xff000U & (((
-                                                   ((0U 
+                                                   ((3U 
                                                      == 
                                                      (7U 
                                                       & (vlTOPp->Core__DOT__Control__DOT__control_sig 
@@ -552,7 +567,7 @@ VL_INLINE_OPT void VCore::_sequent__TOP__2(VCore__Syms* __restrict vlSymsp) {
                                                                        & (vlTOPp->Core__DOT__INSTRUCTION 
                                                                           >> 0x1fU))))
                                                    : 
-                                                  ((3U 
+                                                  ((0U 
                                                     == 
                                                     (7U 
                                                      & (vlTOPp->Core__DOT__Control__DOT__control_sig 
@@ -573,7 +588,7 @@ VL_INLINE_OPT void VCore::_sequent__TOP__2(VCore__Syms* __restrict vlSymsp) {
                                                  << 0xcU)));
     vlTOPp->Core__DOT__IMM_EXT = ((0x800fffffU & vlTOPp->Core__DOT__IMM_EXT) 
                                   | (0x7ff00000U & 
-                                     ((((((0U == (7U 
+                                     ((((((3U == (7U 
                                                   & (vlTOPp->Core__DOT__Control__DOT__control_sig 
                                                      >> 0xeU))) 
                                           | (1U == 
@@ -590,7 +605,7 @@ VL_INLINE_OPT void VCore::_sequent__TOP__2(VCore__Syms* __restrict vlSymsp) {
                                                               (1U 
                                                                & (vlTOPp->Core__DOT__INSTRUCTION 
                                                                   >> 0x1fU))))
-                                        : ((3U == (7U 
+                                        : ((0U == (7U 
                                                    & (vlTOPp->Core__DOT__Control__DOT__control_sig 
                                                       >> 0xeU)))
                                             ? (vlTOPp->Core__DOT__INSTRUCTION 
@@ -599,7 +614,7 @@ VL_INLINE_OPT void VCore::_sequent__TOP__2(VCore__Syms* __restrict vlSymsp) {
                                       << 0x14U)));
     vlTOPp->Core__DOT__IMM_EXT = ((0x7fffffffU & vlTOPp->Core__DOT__IMM_EXT) 
                                   | (0x80000000U & 
-                                     (((((((0U == (7U 
+                                     (((((((3U == (7U 
                                                    & (vlTOPp->Core__DOT__Control__DOT__control_sig 
                                                       >> 0xeU))) 
                                            | (1U == 
@@ -610,7 +625,7 @@ VL_INLINE_OPT void VCore::_sequent__TOP__2(VCore__Syms* __restrict vlSymsp) {
                                              (7U & 
                                               (vlTOPp->Core__DOT__Control__DOT__control_sig 
                                                >> 0xeU)))) 
-                                         | (3U == (7U 
+                                         | (0U == (7U 
                                                    & (vlTOPp->Core__DOT__Control__DOT__control_sig 
                                                       >> 0xeU)))) 
                                         | (4U == (7U 
@@ -1049,147 +1064,162 @@ void VCore::_settle__TOP__3(VCore__Syms* __restrict vlSymsp) {
         = (vlTOPp->Core__DOT__SRC1 < vlTOPp->Core__DOT__SRC2);
     vlTOPp->Core__DOT__Control__DOT__control_sig = 
         ((0x37U == (0x7fU & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-          ? 0xc5a3U : ((0x17U == (0x7fU & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                        ? 0xc063U : ((0x6fU == (0x7fU 
-                                                & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                      ? 0x12001U : 
-                                     ((0x67U == (0x3ffU 
-                                                 & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                       ? 0x1001U : 
-                                      ((0x63U == (0x7fU 
-                                                  & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                        ? 0x8800U : 
-                                       ((0x103U == 
-                                         (0x3ffU & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                         ? 0x37U : 
-                                        ((3U == (0x3ffU 
-                                                 & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                          ? 0x37U : 
-                                         ((0x83U == 
-                                           (0x3ffU 
-                                            & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                           ? 0x37U : 
-                                          ((0x203U 
-                                            == (0x3ffU 
-                                                & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                            ? 0x37U
-                                            : ((0x283U 
-                                                == 
-                                                (0x3ffU 
-                                                 & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                                ? 0x37U
-                                                : (
-                                                   (0x123U 
+          ? 0x5a3U : ((0x17U == (0x7fU & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
+                       ? 0x63U : ((0x6fU == (0x7fU 
+                                             & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
+                                   ? 0x12001U : ((0x67U 
+                                                  == 
+                                                  (0x3ffU 
+                                                   & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
+                                                  ? 0xd001U
+                                                  : 
+                                                 ((0x63U 
+                                                   == 
+                                                   (0x7fU 
+                                                    & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
+                                                   ? 0x8800U
+                                                   : 
+                                                  ((0x103U 
                                                     == 
                                                     (0x3ffU 
                                                      & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                                    ? 0x4028U
+                                                    ? 0xc037U
                                                     : 
-                                                   ((0x23U 
+                                                   ((3U 
                                                      == 
                                                      (0x3ffU 
                                                       & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                                     ? 0x4028U
+                                                     ? 0xc037U
                                                      : 
-                                                    ((0xa3U 
+                                                    ((0x83U 
                                                       == 
                                                       (0x3ffU 
                                                        & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                                      ? 0x4028U
+                                                      ? 0xc037U
                                                       : 
-                                                     ((0x13U 
+                                                     ((0x203U 
                                                        == 
                                                        (0x3ffU 
                                                         & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                                       ? 0x23U
+                                                       ? 0xc037U
                                                        : 
-                                                      ((0x113U 
+                                                      ((0x283U 
                                                         == 
                                                         (0x3ffU 
                                                          & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                                        ? 0x2a3U
+                                                        ? 0xc037U
                                                         : 
-                                                       ((0x193U 
+                                                       ((0x123U 
                                                          == 
                                                          (0x3ffU 
                                                           & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                                         ? 0x3a3U
+                                                         ? 0x4028U
                                                          : 
-                                                        ((0x213U 
+                                                        ((0x23U 
                                                           == 
                                                           (0x3ffU 
                                                            & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                                          ? 0x223U
+                                                          ? 0x4028U
                                                           : 
-                                                         ((0x313U 
+                                                         ((0xa3U 
                                                            == 
                                                            (0x3ffU 
                                                             & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                                           ? 0x1a3U
+                                                           ? 0x4028U
                                                            : 
-                                                          ((0x393U 
+                                                          ((0x13U 
                                                             == 
                                                             (0x3ffU 
                                                              & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
-                                                            ? 0x123U
+                                                            ? 0xc023U
                                                             : 
-                                                           ((0x93U 
-                                                             == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                             ? 0x323U
+                                                           ((0x113U 
+                                                             == 
+                                                             (0x3ffU 
+                                                              & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
+                                                             ? 0xc2a3U
                                                              : 
-                                                            ((0x293U 
-                                                              == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                              ? 0x423U
+                                                            ((0x193U 
+                                                              == 
+                                                              (0x3ffU 
+                                                               & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
+                                                              ? 0xc3a3U
                                                               : 
-                                                             ((0x693U 
-                                                               == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                               ? 0x4a3U
+                                                             ((0x213U 
+                                                               == 
+                                                               (0x3ffU 
+                                                                & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
+                                                               ? 0xc223U
                                                                : 
-                                                              ((0x33U 
-                                                                == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                                ? 0x14003U
+                                                              ((0x313U 
+                                                                == 
+                                                                (0x3ffU 
+                                                                 & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
+                                                                ? 0xc1a3U
                                                                 : 
-                                                               ((0x433U 
-                                                                 == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                                 ? 0x14083U
+                                                               ((0x393U 
+                                                                 == 
+                                                                 (0x3ffU 
+                                                                  & (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR)))
+                                                                 ? 0xc123U
                                                                  : 
-                                                                ((0xb3U 
+                                                                ((0x93U 
                                                                   == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                                  ? 0x14303U
+                                                                  ? 0xc323U
                                                                   : 
-                                                                 ((0x133U 
+                                                                 ((0x293U 
                                                                    == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                                   ? 0x14283U
+                                                                   ? 0xc423U
                                                                    : 
-                                                                  ((0x1b3U 
+                                                                  ((0x693U 
                                                                     == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                                    ? 0x14383U
+                                                                    ? 0xc4a3U
                                                                     : 
-                                                                   ((0x233U 
+                                                                   ((0x33U 
                                                                      == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                                     ? 0x14203U
+                                                                     ? 0x14003U
                                                                      : 
-                                                                    ((0x2b3U 
+                                                                    ((0x433U 
                                                                       == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                                      ? 0x14403U
+                                                                      ? 0x14083U
                                                                       : 
-                                                                     ((0x6b3U 
+                                                                     ((0xb3U 
                                                                        == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                                       ? 0x14483U
+                                                                       ? 0x14303U
                                                                        : 
-                                                                      ((0x333U 
+                                                                      ((0x133U 
                                                                         == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                                        ? 0x14183U
+                                                                        ? 0x14283U
                                                                         : 
-                                                                       ((0x3b3U 
+                                                                       ((0x1b3U 
                                                                          == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
-                                                                         ? 0x14103U
-                                                                         : 0U))))))))))))))))))))))))))))))));
+                                                                         ? 0x14383U
+                                                                         : 
+                                                                        ((0x233U 
+                                                                          == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
+                                                                          ? 0x14203U
+                                                                          : 
+                                                                         ((0x2b3U 
+                                                                           == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
+                                                                           ? 0x14403U
+                                                                           : 
+                                                                          ((0x6b3U 
+                                                                            == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
+                                                                            ? 0x14483U
+                                                                            : 
+                                                                           ((0x333U 
+                                                                             == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
+                                                                             ? 0x14183U
+                                                                             : 
+                                                                            ((0x3b3U 
+                                                                              == (IData)(vlTOPp->Core__DOT__Control__DOT__INS_ARR))
+                                                                              ? 0x14103U
+                                                                              : 0U))))))))))))))))))))))))))))))));
     vlTOPp->Core__DOT__ALU_IN1 = ((0x40U & vlTOPp->Core__DOT__Control__DOT__control_sig)
                                    ? vlTOPp->Core__DOT__PC
                                    : vlTOPp->Core__DOT__SRC1);
     vlTOPp->Core__DOT__IMM_EXT = ((0xfffffffeU & vlTOPp->Core__DOT__IMM_EXT) 
-                                  | (1U & ((0U == (7U 
+                                  | (1U & ((3U == (7U 
                                                    & (vlTOPp->Core__DOT__Control__DOT__control_sig 
                                                       >> 0xeU)))
                                             ? (vlTOPp->Core__DOT__INSTRUCTION 
@@ -1202,7 +1232,7 @@ void VCore::_settle__TOP__3(VCore__Syms* __restrict vlSymsp) {
                                                & (vlTOPp->Core__DOT__INSTRUCTION 
                                                   >> 7U)))));
     vlTOPp->Core__DOT__IMM_EXT = ((0xffffffe1U & vlTOPp->Core__DOT__IMM_EXT) 
-                                  | (0x1eU & ((((0U 
+                                  | (0x1eU & ((((3U 
                                                  == 
                                                  (7U 
                                                   & (vlTOPp->Core__DOT__Control__DOT__control_sig 
@@ -1231,7 +1261,7 @@ void VCore::_settle__TOP__3(VCore__Syms* __restrict vlSymsp) {
                                                     : 0U)) 
                                               << 1U)));
     vlTOPp->Core__DOT__IMM_EXT = ((0xfffff81fU & vlTOPp->Core__DOT__IMM_EXT) 
-                                  | ((((((0U == (7U 
+                                  | ((((((3U == (7U 
                                                  & (vlTOPp->Core__DOT__Control__DOT__control_sig 
                                                     >> 0xeU))) 
                                          | (1U == (7U 
@@ -1247,7 +1277,7 @@ void VCore::_settle__TOP__3(VCore__Syms* __restrict vlSymsp) {
                                                    >> 0x19U))
                                        : 0U) << 5U));
     vlTOPp->Core__DOT__IMM_EXT = ((0xfffff7ffU & vlTOPp->Core__DOT__IMM_EXT) 
-                                  | (0x800U & ((((0U 
+                                  | (0x800U & ((((3U 
                                                   == 
                                                   (7U 
                                                    & (vlTOPp->Core__DOT__Control__DOT__control_sig 
@@ -1270,7 +1300,7 @@ void VCore::_settle__TOP__3(VCore__Syms* __restrict vlSymsp) {
                                                  (vlTOPp->Core__DOT__INSTRUCTION 
                                                   >> 7U)
                                                   : 
-                                                 ((3U 
+                                                 ((0U 
                                                    != 
                                                    (7U 
                                                     & (vlTOPp->Core__DOT__Control__DOT__control_sig 
@@ -1285,7 +1315,7 @@ void VCore::_settle__TOP__3(VCore__Syms* __restrict vlSymsp) {
                                                << 0xbU)));
     vlTOPp->Core__DOT__IMM_EXT = ((0xfff00fffU & vlTOPp->Core__DOT__IMM_EXT) 
                                   | (0xff000U & (((
-                                                   ((0U 
+                                                   ((3U 
                                                      == 
                                                      (7U 
                                                       & (vlTOPp->Core__DOT__Control__DOT__control_sig 
@@ -1306,7 +1336,7 @@ void VCore::_settle__TOP__3(VCore__Syms* __restrict vlSymsp) {
                                                                        & (vlTOPp->Core__DOT__INSTRUCTION 
                                                                           >> 0x1fU))))
                                                    : 
-                                                  ((3U 
+                                                  ((0U 
                                                     == 
                                                     (7U 
                                                      & (vlTOPp->Core__DOT__Control__DOT__control_sig 
@@ -1327,7 +1357,7 @@ void VCore::_settle__TOP__3(VCore__Syms* __restrict vlSymsp) {
                                                  << 0xcU)));
     vlTOPp->Core__DOT__IMM_EXT = ((0x800fffffU & vlTOPp->Core__DOT__IMM_EXT) 
                                   | (0x7ff00000U & 
-                                     ((((((0U == (7U 
+                                     ((((((3U == (7U 
                                                   & (vlTOPp->Core__DOT__Control__DOT__control_sig 
                                                      >> 0xeU))) 
                                           | (1U == 
@@ -1344,7 +1374,7 @@ void VCore::_settle__TOP__3(VCore__Syms* __restrict vlSymsp) {
                                                               (1U 
                                                                & (vlTOPp->Core__DOT__INSTRUCTION 
                                                                   >> 0x1fU))))
-                                        : ((3U == (7U 
+                                        : ((0U == (7U 
                                                    & (vlTOPp->Core__DOT__Control__DOT__control_sig 
                                                       >> 0xeU)))
                                             ? (vlTOPp->Core__DOT__INSTRUCTION 
@@ -1353,7 +1383,7 @@ void VCore::_settle__TOP__3(VCore__Syms* __restrict vlSymsp) {
                                       << 0x14U)));
     vlTOPp->Core__DOT__IMM_EXT = ((0x7fffffffU & vlTOPp->Core__DOT__IMM_EXT) 
                                   | (0x80000000U & 
-                                     (((((((0U == (7U 
+                                     (((((((3U == (7U 
                                                    & (vlTOPp->Core__DOT__Control__DOT__control_sig 
                                                       >> 0xeU))) 
                                            | (1U == 
@@ -1364,7 +1394,7 @@ void VCore::_settle__TOP__3(VCore__Syms* __restrict vlSymsp) {
                                              (7U & 
                                               (vlTOPp->Core__DOT__Control__DOT__control_sig 
                                                >> 0xeU)))) 
-                                         | (3U == (7U 
+                                         | (0U == (7U 
                                                    & (vlTOPp->Core__DOT__Control__DOT__control_sig 
                                                       >> 0xeU)))) 
                                         | (4U == (7U 

@@ -35,6 +35,7 @@ VL_MODULE(VCorePipe) {
     CData/*0:0*/ CorePipe__DOT__DE_JUMP;
     CData/*0:0*/ CorePipe__DOT__DE_JUMPR;
     CData/*0:0*/ CorePipe__DOT__MW_REGWRT;
+    CData/*2:0*/ CorePipe__DOT__DE_TYPE;
     CData/*0:0*/ CorePipe__DOT__DE_BRN;
     CData/*0:0*/ CorePipe__DOT__DE_ALUSRC1;
     CData/*0:0*/ CorePipe__DOT__DE_ALUSRC2;

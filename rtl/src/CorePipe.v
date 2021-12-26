@@ -185,7 +185,7 @@ StallUnit StallUnit(
     .EM_RD(EM_IR[11:7]),
     .MW_RD(MW_IR[11:7]),
     .STALL_PROCESSOR(STALL),
-    .TYPE(TYPE)  
+    .TYPE(DE_TYPE)  
 );
 
 always @(posedge CLK)
@@ -360,12 +360,13 @@ begin
         
         EM_PC_PLUSFOUR <= DE_PC_PLUSFOUR;
         EM_SRC2 <= DE_SRC2;
-        EM_IR <= DE_IR;
 
         EM_ALUOUT <= ALUOUT;
 
         if (STALL)
         begin
+            
+            EM_IR <= 0;
             EM_REGWRT <= 0;
             EM_MEMRD <= 0;
             EM_MEMWRT <= 0;
@@ -374,6 +375,8 @@ begin
         end
         else
         begin
+            
+            EM_IR <= DE_IR;
             EM_REGWRT <= DE_REGWRT;
             EM_MEMRD <= DE_MEMRD;
             EM_MEMWRT <= DE_MEMWRT;

@@ -30,7 +30,7 @@ module StallUnit(
 );
 `include "define.v"    
 
-assign STALL_PROCESSOR  = ((TYPE==R)|(TYPE==S)|(TYPE==B))? (( (((DE_SRC1==EM_RD)|(DE_SRC2==EM_RD))&&(EM_RD!= 5'd0)) | (((DE_SRC1==MW_RD)|(DE_SRC2==MW_RD))&&(MW_RD!= 5'd0)) ) ? 1'b1: 1'b0):
-                          (TYPE==I) ? (((((DE_SRC1==EM_RD)&&(EM_RD!= 5'd0))|((DE_SRC1==MW_RD)&&(MW_RD!= 5'd0)))) ? 1'b1:1'b0):
+assign STALL_PROCESSOR  = ((TYPE==R)||(TYPE==S)||(TYPE==B))? (( (((DE_SRC1==EM_RD)||(DE_SRC2==EM_RD))&&(EM_RD!= 5'd0)) || (((DE_SRC1==MW_RD)||(DE_SRC2==MW_RD))&&(MW_RD!= 5'd0)) ) ? 1'b1: 1'b0):
+                          (TYPE==I) ? (((((DE_SRC1==EM_RD)&&(EM_RD!= 5'd0))||((DE_SRC1==MW_RD)&&(MW_RD!= 5'd0)))) ? 1'b1:1'b0):
                           1'b0;
 endmodule

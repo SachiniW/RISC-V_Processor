@@ -65,7 +65,7 @@ int main(int argc, char **argv, char **env)
 
 			#ifdef DEBUG
 
-			if (CTRL_SIG[16] == '1'){
+			//if (CTRL_SIG[16] == '1'){
 
 				getchar();
 
@@ -147,7 +147,7 @@ int main(int argc, char **argv, char **env)
 
 				printf("Output location: %d \n",top->PRINT_VAL);
 				printf("Enable: %d \n",top->PRINT_EN);
-			}
+			//}
 
 			
 
