@@ -18,13 +18,14 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
+
+`define IGNORE_WARNINGS
+`ifdef IGNORE_WARNINGS
+    /* verilator lint_off UNUSED */
+`endif
+
 `define VERILATE
 `ifdef VERILATE
-    /* verilator lint_off DECLFILENAME */
-    /* verilator lint_off WIDTH */
-    /* verilator lint_off UNUSED */
-    /* verilator lint_off MODDUP */
-    /* verilator lint_off IMPLICIT */
 
     `include "ALU.v"
     `include "BranchLogic.v"
@@ -32,10 +33,10 @@
     `include "DataMemory.v"
     `include "ImmExtend.v"
     `include "InstMemory.v"
-    `include "DataMemory.v"
     `include "PCSelect.v"
-    `include "RegFile.v"
+    `include "RegFilePipe.v"
 `endif
+
 
 
 module CorePipe (
@@ -56,7 +57,6 @@ wire [31:0] JUMP_BRANCH_TARGET;
 wire [31:0] JUMPREG_TARGET;
 wire [31:0] PC_PLUSFOUR;
 wire [31:0] SRC1, SRC2, IMM_EXT;
-wire [2:0] FUNC3;
 wire [31:0] PC_sig;
 wire [31:0] REG_IN;
 wire [31:0] ALUOUT;
@@ -122,7 +122,7 @@ reg MW_REGWRT = 0;
 
 assign PC_PLUSFOUR = FD_PC + 32'd4;
 
-RegFile RegFile (
+RegFilePipe RegFilePipe (
     .CLK(CLK),
     .RESET(RESET),
     .WEN(MW_REGWRT),

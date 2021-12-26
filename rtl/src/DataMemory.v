@@ -45,10 +45,10 @@ module DataMemory(
     
     reg [31:0]  D_MEM   [0:25'h1ffffff]; 
 
-    integer i;
+    //integer i;
     wire [31:0]ADDR;
-    wire [1:0]BYTE;
-    wire HALFWORD;
+    wire [31:0]BYTE;
+    wire [31:0]HALFWORD;
 
     wire [31:0]LW;
     wire [15:0]LH;
@@ -78,8 +78,8 @@ module DataMemory(
     always @(posedge CLK) begin
         if (!RESET && MWrt) begin
             if      (FUNC3 == F3SW)  D_MEM[ADDR] <=  W_DATA;
-            else if (FUNC3 == F3SB)  D_MEM[ADDR] <= (W_DATA[7:0]  << BYTE*8)      | BYTE_WR ;
-            else if (FUNC3 == F3SH)  D_MEM[ADDR] <= (W_DATA[15:0] << HALFWORD*16) | HALF_WR ;
+            else if (FUNC3 == F3SB)  D_MEM[ADDR] <= ({24'd0,W_DATA[7:0]}  << BYTE*8)      | BYTE_WR ;
+            else if (FUNC3 == F3SH)  D_MEM[ADDR] <= ({16'd0,W_DATA[15:0]} << HALFWORD*16) | HALF_WR ;
         end
     end
 
@@ -89,31 +89,31 @@ module DataMemory(
 
     assign LW     = D_MEM[ADDR];
 
-    assign LH     = ((HALFWORD == 1'b0)  && MRd) ? $signed(LW[15:0])   :  
-                    ((HALFWORD == 1'b1)  && MRd) ? $signed(LW[31:16])  :  
-                    32'h0;
+    assign LH     = ((HALFWORD[0] == 1'b0)  && MRd) ? $signed(LW[15:0])   :  
+                    ((HALFWORD[0] == 1'b1)  && MRd) ? $signed(LW[31:16])  :  
+                    16'h0;
                     
-    assign LB     = ((BYTE == 2'd0)  && MRd) ? $signed(LW[7:0]) : 
-                    ((BYTE == 2'd1)  && MRd) ? $signed(LW[15:8])  :  
-                    ((BYTE == 2'd2)  && MRd) ? $signed(LW[23:16]) :  
-                    ((BYTE == 2'd3)  && MRd) ? $signed(LW[31:24]):  
-                    32'h0;
+    assign LB     = ((BYTE[1:0] == 2'd0)  && MRd) ? $signed(LW[7:0]) : 
+                    ((BYTE[1:0] == 2'd1)  && MRd) ? $signed(LW[15:8])  :  
+                    ((BYTE[1:0] == 2'd2)  && MRd) ? $signed(LW[23:16]) :  
+                    ((BYTE[1:0] == 2'd3)  && MRd) ? $signed(LW[31:24]):  
+                    8'h0;
 
-    assign LHU    = ((HALFWORD == 1'b0)  && MRd) ? LW[15:0]   :  
-                    ((HALFWORD == 1'b1)  && MRd) ? LW[31:16]  :  
+    assign LHU    = ((HALFWORD[0] == 1'b0)  && MRd) ? {16'd0,LW[15:0]}   :  
+                    ((HALFWORD[0] == 1'b1)  && MRd) ? {16'd0,LW[31:16]}  :  
                     32'h0;
                     
-    assign LBU    = ((BYTE == 2'd0)  && MRd) ? LW[7:0]   : 
-                    ((BYTE == 2'd1)  && MRd) ? LW[15:8]  :  
-                    ((BYTE == 2'd2)  && MRd) ? LW[23:16] :  
-                    ((BYTE == 2'd3)  && MRd) ? LW[31:24] :  
+    assign LBU    = ((BYTE[1:0] == 2'd0)  && MRd) ? {24'd0, LW[7:0]}   : 
+                    ((BYTE[1:0] == 2'd1)  && MRd) ? {24'd0, LW[15:8]}  :  
+                    ((BYTE[1:0] == 2'd2)  && MRd) ? {24'd0, LW[23:16]} :  
+                    ((BYTE[1:0] == 2'd3)  && MRd) ? {24'd0, LW[31:24]} :  
                     32'h0;
  
     assign R_DATA = ((FUNC3 == F3LW)  && MRd) ? LW  :  //LW
-                    ((FUNC3 == F3LB)  && MRd && ($signed(LB)>= 0)) ? LB :  //LB
-                    ((FUNC3 == F3LB)  && MRd && ($signed(LB) < 0)) ? 32'hFFFFFF00 + LB :  //LB
-                    ((FUNC3 == F3LH)  && MRd && ($signed(LH)>= 0)) ? LH  :  //LH
-                    ((FUNC3 == F3LH)  && MRd && ($signed(LH) < 0)) ? 32'hFFFF0000 + LH :  //LH
+                    ((FUNC3 == F3LB)  && MRd && ($signed(LB)>= 0)) ? {24'd0,LB} :  //LB
+                    ((FUNC3 == F3LB)  && MRd && ($signed(LB) < 0)) ? 32'hFFFFFF00 + {24'd0,LB} :  //LB
+                    ((FUNC3 == F3LH)  && MRd && ($signed(LH)>= 0)) ? {16'd0,LH}  :  //LH
+                    ((FUNC3 == F3LH)  && MRd && ($signed(LH) < 0)) ? 32'hFFFF0000 + {16'd0,LH} :  //LH
                     ((FUNC3 == F3LBU) && MRd) ? LBU :  //LBU
                     ((FUNC3 == F3LHU) && MRd) ? LHU :  //LHU
                     32'h0;

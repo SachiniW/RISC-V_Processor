@@ -21,8 +21,8 @@
 
 module StallUnit_tb;
     reg [31:0] DE_IR = ;
-    reg [31:0] EM_IR;
-    reg [31:0] MW_IR
+    reg [31:0] EM_IR = ;
+    reg [31:0] MW_IR = ;
 
     integer i;
 
@@ -36,9 +36,9 @@ module StallUnit_tb;
 );
 
     initial begin
-        in1 = 32'hfffff82f;
-        in2 = 32'hfffff82f;
-        alu_op = 4'd9;
+        //in1 = 32'hfffff82f;
+        //in2 = 32'hfffff82f;
+        //alu_op = 4'd9;
 
         #20;
 

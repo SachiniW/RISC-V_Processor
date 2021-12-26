@@ -38,9 +38,9 @@ module ALU(
                      (alu_op  == ALU_AND)? in1&in2: //AND
                      (alu_op  == ALU_OR)? in1|in2: //OR
                      (alu_op  == ALU_XOR)? in1^in2: //XOR
-                     ((alu_op == ALU_SLT)&($signed(in1) < $signed(in2)))? 31'd1: //SLT
+                     ((alu_op == ALU_SLT)&($signed(in1) < $signed(in2)))? 32'd1: //SLT
                      (alu_op  == ALU_SLL)? in1 << in2[4:0]: //SLL
-                     ((alu_op == ALU_SLTU)&(in1 < in2))? 31'd1: //SLTU
+                     ((alu_op == ALU_SLTU)&(in1 < in2))? 32'd1: //SLTU
                      (alu_op  == ALU_SRL)? in1 >> in2[4:0]: //SRL
                      (alu_op  == ALU_SRA)? sra_out: //SRA
                      //(alu_op == ALU_SRA) ? 

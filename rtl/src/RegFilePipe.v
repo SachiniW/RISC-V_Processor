@@ -5,7 +5,7 @@
 // 
 // Create Date: 10/30/2021 11:35:36 AM
 // Design Name: 
-// Module Name: RegFile
+// Module Name: RegFilePipe
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module RegFile #(
+module RegFilePipe #(
     parameter ADDR_WIDTH = 5, DATA_WIDTH = 32)
     (
     input                   CLK,
@@ -92,10 +92,10 @@ module RegFile #(
     end
 
     //READ PORTS
-    // assign SRC1_DOUT = (RS1_SEL ==  5'h0) ? 32'h0 : ((RS1_SEL == RD_SEL) ? WB_DATA : REG[RS1_SEL]);
-     //assign SRC2_DOUT = (RS2_SEL ==  5'h0) ? 32'h0 : ((RS2_SEL == RD_SEL) ? WB_DATA : REG[RS2_SEL]);
+    assign SRC1_DOUT = (RS1_SEL ==  5'h0) ? 32'h0 : (((RS1_SEL == RD_SEL)&&(WEN == 1'd1)) ? WB_DATA : REG[RS1_SEL]);
+    assign SRC2_DOUT = (RS2_SEL ==  5'h0) ? 32'h0 : (((RS2_SEL == RD_SEL)&&(WEN == 1'd1)) ? WB_DATA : REG[RS2_SEL]);
 
-    assign SRC1_DOUT = (RS1_SEL ==  5'h0) ? 32'h0 : REG[RS1_SEL];
-    assign SRC2_DOUT = (RS2_SEL ==  5'h0) ? 32'h0 : REG[RS2_SEL];
+    //assign SRC1_DOUT = (RS1_SEL ==  5'h0) ? 32'h0 : REG[RS1_SEL];
+    //assign SRC2_DOUT = (RS2_SEL ==  5'h0) ? 32'h0 : REG[RS2_SEL];
 
 endmodule
