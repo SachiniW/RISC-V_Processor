@@ -250,6 +250,7 @@ begin
             DE_MEMWRT <= DE_MEMWRT;
             DE_WRTSRC <= DE_WRTSRC;
             DE_M2R <= DE_M2R; 
+
         end
         else
         begin
