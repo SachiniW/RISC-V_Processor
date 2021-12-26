@@ -5,7 +5,7 @@
 // 
 // Create Date: 12/23/2021 19:06:30 AM
 // Design Name: 
-// Module Name: CorePipe.v
+// Module Name: CorePipeForwarding.v
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -39,7 +39,7 @@
 
 
 
-module CorePipe (
+module CorePipeForwarding (
     input CLK,
     input RESET,
     output  [31:0]PRINT_VAL,
@@ -63,7 +63,9 @@ wire [31:0] ALUOUT;
 wire [31:0] R_DATA; 
 wire [31:0] ALU_IN1;
 wire [31:0] ALU_IN2;
-wire        FLUSH, STALL;
+wire FLUSH, STALL;
+wire [31:0] EXE_SRC1, EXE_SRC2;
+wire [2:0] FWD_MUX1, FWD_MUX2;
 
 // Fetch stage
 
@@ -297,18 +299,19 @@ end
 assign FLUSH = DE_JUMP || DE_JUMPR || BRNEN;
 
 assign JUMP_BRANCH_TARGET = DE_PC + DE_IMM_EXT; //temp
-assign JUMPREG_TARGET = DE_SRC1 + DE_IMM_EXT; //temp
+assign JUMPREG_TARGET = EXE_SRC1 + DE_IMM_EXT; //temp
+
 
 BranchLogic BranchLogic(
-    .src1(DE_SRC1), 
-    .src2(DE_SRC2),  
+    .src1(EXE_SRC1), 
+    .src2(EXE_SRC2),  
     .func3(DE_IR[14:12]),
     .branch(DE_BRN),  
     .brn_en(BRNEN)
     );
 
-assign ALU_IN1 = (DE_ALUSRC1 == ALUSRC1_RS1)? DE_SRC1: DE_PC;      // MUX1
-assign ALU_IN2 = (DE_ALUSRC2 == ALUSRC2_RS2)? DE_SRC2: DE_IMM_EXT;  // MUX2
+assign ALU_IN1 = (DE_ALUSRC1 == ALUSRC1_RS1)? EXE_SRC1: DE_PC;      // MUX1
+assign ALU_IN2 = (DE_ALUSRC2 == ALUSRC2_RS2)? EXE_SRC2: DE_IMM_EXT;  // MUX2
 
 ALU ALU(
     .in1(ALU_IN1),
@@ -317,17 +320,37 @@ ALU ALU(
     .alu_out(ALUOUT)
     );
 
-StallUnit StallUnit(
-    .DE_SRC1(DE_IR[19:15]),
-    .DE_SRC2(DE_IR[24:20]),
+
+// StallUnit StallUnit(
+//     .DE_SRC1(DE_IR[19:15]),
+//     .DE_SRC2(DE_IR[24:20]),
+//     .EM_RD(EM_IR[11:7]),
+//     .MW_RD(MW_IR[11:7]),
+//     .EM_REGWRT(EM_REGWRT),
+//     .MW_REGWRT(MW_REGWRT),
+//     .STALL_PROCESSOR(STALL),
+//     .TYPE(DE_TYPE)  
+// );
+
+ForwardingUnit ForwardingUnit(
+    .DE_RS1(DE_IR[19:15]),
+    .DE_RS2(DE_IR[24:20]),
     .EM_RD(EM_IR[11:7]),
     .MW_RD(MW_IR[11:7]),
     .EM_REGWRT(EM_REGWRT),
+    .EM_M2R(EM_M2R),
+    .EM_WRTSRC(EM_WRTSRC),
     .MW_REGWRT(MW_REGWRT),
-    .STALL_PROCESSOR(STALL),
-    .TYPE(DE_TYPE)  
+    .MW_M2R(MW_M2R),
+    .MW_WRTSRC(MW_WRTSRC),
+    .FWD_MUX1(FWD_MUX1),
+    .FWD_MUX2(FWD_MUX2)  
 );
 
+//(FWD_MUX1 == ) ? DE_SRC1 :()
+assign EXE_SRC1 = (FWD_MUX1 ==3'd0) ? DE_SRC1 : ((FWD_MUX1 ==3'd3) ? EM_PC_PLUSFOUR :((FWD_MUX1 ==3'd1) ? EM_ALUOUT :((FWD_MUX1 ==3'd2) ? R_DATA :((FWD_MUX1 ==3'd4) ? REG_IN :DE_SRC1))));
+assign EXE_SRC2 = (FWD_MUX2 ==3'd0) ? DE_SRC2 : ((FWD_MUX2 ==3'd3) ? EM_PC_PLUSFOUR :((FWD_MUX2 ==3'd1) ? EM_ALUOUT :((FWD_MUX2 ==3'd2) ? R_DATA :((FWD_MUX2 ==3'd4) ? REG_IN :DE_SRC2))));
+assign STALL = 1'd0;
 
 // EM boundary
 
@@ -363,7 +386,7 @@ begin
     else begin
         
         EM_PC_PLUSFOUR <= DE_PC_PLUSFOUR;
-        EM_SRC2 <= DE_SRC2;
+        EM_SRC2 <= EXE_SRC2;
 
         EM_ALUOUT <= ALUOUT;
 
