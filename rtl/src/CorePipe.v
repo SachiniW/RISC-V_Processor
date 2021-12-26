@@ -184,6 +184,8 @@ StallUnit StallUnit(
     .DE_SRC2(DE_IR[24:20]),
     .EM_RD(EM_IR[11:7]),
     .MW_RD(MW_IR[11:7]),
+    .EM_REGWRT(EM_REGWRT),
+    .MW_REGWRT(MW_REGWRT),
     .STALL_PROCESSOR(STALL),
     .TYPE(DE_TYPE)  
 );
