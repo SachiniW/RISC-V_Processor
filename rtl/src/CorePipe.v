@@ -179,16 +179,17 @@ reg DE_MEMWRT = 0;
 reg DE_WRTSRC = 0;
 reg DE_M2R = 0;
 
-StallUnit StallUnit(
-    .DE_SRC1(DE_IR[19:15]),
-    .DE_SRC2(DE_IR[24:20]),
-    .EM_RD(EM_IR[11:7]),
-    .MW_RD(MW_IR[11:7]),
-    .EM_REGWRT(EM_REGWRT),
-    .MW_REGWRT(MW_REGWRT),
-    .STALL_PROCESSOR(STALL),
-    .TYPE(DE_TYPE)  
-);
+// StallUnit StallUnit(
+//     .DE_SRC1(DE_IR[19:15]),
+//     .DE_SRC2(DE_IR[24:20]),
+//     .EM_RD(EM_IR[11:7]),
+//     .MW_RD(MW_IR[11:7]),
+//     .EM_REGWRT(EM_REGWRT),
+//     .MW_REGWRT(MW_REGWRT),
+//     .STALL_PROCESSOR(STALL),
+//     .TYPE(DE_TYPE)  
+// );
+
 
 always @(posedge CLK)
 begin
@@ -309,6 +310,21 @@ assign FLUSH = DE_JUMP || DE_JUMPR || BRNEN;
 
 assign JUMP_BRANCH_TARGET = DE_PC + DE_IMM_EXT; //temp
 assign JUMPREG_TARGET = DE_SRC1 + DE_IMM_EXT; //temp
+
+ForwardingUnit ForwardingUnit(
+    .DE_RS1(DE_IR[19:15]),
+    .DE_RS2(DE_IR[24:20]),
+    .EM_RD(EM_IR[11:7]),
+    .MW_RD(MW_IR[11:7]),
+    .EM_REGWRT(EM_REGWRT),
+    .EM_M2R(EM_M2R),
+    .EM_WRTSRC(EM_WRTSRC),
+    .MW_REGWRT(MW_REGWRT),
+    .MW_M2R(MW_M2R),
+    .MW_WRTSRC(MW_WRTSRC),
+    .FD_MUX1(FD_MUX1),
+    .FD_MUX2(FD_MUX2)  
+);
 
 BranchLogic BranchLogic(
     .src1(DE_SRC1), 
