@@ -53,16 +53,19 @@ int main(int argc, char **argv, char **env)
 
 		if(clock == 1){
 			counter = counter + 1;
+
+			CTRL_SIG = bitset<19>(top->CoreMS__DOT__ControlMS__DOT__CTRL_SIG).to_string();
+			if (CTRL_SIG[17] == '1'){
+				printCounter ++;
+			}
+			
 			if(top->PRINT_EN){
 				printf("%d\t%d",counter,printCounter);
 				printf("\t%c\n",top->PRINT_VAL);
 			}
 			
 
-			CTRL_SIG = bitset<19>(top->CoreMS__DOT__ControlMS__DOT__CTRL_SIG).to_string();
-			if (CTRL_SIG[17] == '1'){
-				printCounter ++;
-			}
+
 
 
 			#ifdef DEBUG

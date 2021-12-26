@@ -79,12 +79,7 @@ int main(int argc, char **argv, char **env)
 
 		if(clock == 1){
 			counter = counter + 1;
-			if(top->PRINT_EN){
-				printf("%d\t%d",counter,printCounter);
-				printf("\t%c\n",top->PRINT_VAL);
-				//printf("%c",top->PRINT_VAL);
-			}
-			
+
 
 			CTRL_SIG = bitset<17>(top->CorePipeForwarding__DOT__Control__DOT__control_sig).to_string();
 
@@ -92,6 +87,14 @@ int main(int argc, char **argv, char **env)
 			if (REGWRT_SIG[0] == '1'){
 				printCounter ++;
 			}
+			
+			if(top->PRINT_EN){
+				printf("%d\t%d",counter,printCounter);
+				printf("\t%c\n",top->PRINT_VAL);
+				//printf("%c",top->PRINT_VAL);
+			}
+			
+
 
 
 			#ifdef DEBUG

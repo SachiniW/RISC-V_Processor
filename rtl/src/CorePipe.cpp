@@ -79,18 +79,20 @@ int main(int argc, char **argv, char **env)
 
 		if(clock == 1){
 			counter = counter + 1;
+
+			CTRL_SIG = bitset<17>(top->CorePipe__DOT__Control__DOT__control_sig).to_string();
+			REGWRT_SIG = bitset<1>(top->CorePipe__DOT__MW_REGWRT).to_string();
+			if (REGWRT_SIG[0] == '1'){
+				printCounter ++;
+			}
+			
 			if(top->PRINT_EN){
 				printf("%d\t%d",counter,printCounter);
 				printf("\t%c\n",top->PRINT_VAL);
 			}
 			
 
-			CTRL_SIG = bitset<17>(top->CorePipe__DOT__Control__DOT__control_sig).to_string();
 
-			REGWRT_SIG = bitset<1>(top->CorePipe__DOT__MW_REGWRT).to_string();
-			if (REGWRT_SIG[0] == '1'){
-				printCounter ++;
-			}
 
 
 			#ifdef DEBUG
