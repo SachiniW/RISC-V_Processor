@@ -22,3 +22,17 @@ Pipelined processor design to support the RISC-V 32I ISA
 | `ALU.v` | Arithmetic and logic unit of the core |
 | `BranchLogic.v` | Unit to decide the branching instruction operations |
 | `define.v` | Module which defines the used parameters |
+
+# Pipelined Processor Datapath.pdf
+&nbsp;
+![Pipeline](https://github.com/SachiniW/RISC-V_Processor/blob/main/Images/Pipeline_datapath.png).
+&nbsp;
+
+# Multi-cycle Processor Datapath.pdf
+&nbsp;
+![Multicycle](https://github.com/SachiniW/RISC-V_Processor/blob/main/Images/Multi_cycle_datapath.png).
+
+# Single-cycle Processor Datapath.pdf
+&nbsp;
+![Singlecycle](https://github.com/SachiniW/RISC-V_Processor/blob/main/Images/Single_cycle_datapath.png).
+&nbsp;
