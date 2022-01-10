@@ -1,5 +1,5 @@
 # RISC-V_Processor
-Pipelined processor design to support the RISC-V 32I ISA
+5 Stage pipelined processor design to support the RISC-V 32I ISA
 
 ## Followings are the **`Verilog HDL`** files used in the project.
 
