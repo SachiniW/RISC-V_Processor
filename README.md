@@ -5,7 +5,7 @@ This project aims to evaluate 4 basic microarchitectures for RV32I base ISA.
 3. 5-staged pipeline (no data forwarding)
 4. 5-staged pipeline (with data forwarding)
 
-### Single-cycle Core.pdf
+### Single-cycle Core
 &nbsp;
 ![Singlecycle](https://github.com/SachiniW/RISC-V_Processor/blob/main/Images/Single_cycle_datapath.png)
 &nbsp;
@@ -13,7 +13,7 @@ This project aims to evaluate 4 basic microarchitectures for RV32I base ISA.
 ### Multi-cycle Core
 &nbsp;
 ![Multicycle](https://github.com/SachiniW/RISC-V_Processor/blob/main/Images/Multi_cycle_datapath.png)
-### 5-staged pipeline Core
+### 5-stage pipelined Core
 &nbsp;
 ![Pipeline](https://github.com/SachiniW/RISC-V_Processor/blob/main/Images/Pipeline_datapath.png)
 &nbsp;
