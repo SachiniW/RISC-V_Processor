@@ -1,14 +1,25 @@
-
 #include "printer.h"
-int main()
-{		float y,z;
-		int x;
-		y=1.234;
-		z=1.432;
 
-		x= y*z*13000;
-
-		hprintf("hello_world  %d\n",x);
-
-		while (1);
+void main()
+{
+    int no_row,c=1,blk,i,j;
+    no_row =5;
+    for(i=0;i<no_row;i++)
+    {
+        for(blk=1;blk<=no_row-i;blk++)
+        hprintf("  ");
+        for(j=0;j<=i;j++)
+        {
+            if (j==0||i==0)
+                c=1;
+            else
+               c=c*(i-j+1)/j;
+            hprintf("% 4d   ",c);
+        }
+        hprintf("\n");
+    }
+    
+    while(1);
 }
+
+
