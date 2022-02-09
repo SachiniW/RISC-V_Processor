@@ -52,3 +52,5 @@ Mkfile.old
 dkms.conf
 .venv/
 rtl/src/obj_dir/
+PyRV32I/toolChain/
+rtl/src/-

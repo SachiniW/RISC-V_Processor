@@ -1,0 +1,2 @@
+/home/sanjula/Desktop/RISC-V_Processor/PyRV32I/toolChain/bin/../lib/gcc/riscv32-unknown-elf/10.2.0/../../../../riscv32-unknown-elf/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000010054
+hello_world.c
