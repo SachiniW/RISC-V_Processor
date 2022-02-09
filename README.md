@@ -7,15 +7,15 @@ This project aims to evaluate 4 basic microarchitectures for RV32I base ISA.
 
 ### Single-cycle Core.pdf
 &nbsp;
-![Singlecycle](https://github.com/SachiniW/RISC-V_Processor/blob/main/Images/Single_cycle_datapath.png).
+![Singlecycle](https://github.com/SachiniW/RISC-V_Processor/blob/main/Images/Single_cycle_datapath.png)
 &nbsp;
 
 ### Multi-cycle Core
 &nbsp;
-![Multicycle](https://github.com/SachiniW/RISC-V_Processor/blob/main/Images/Multi_cycle_datapath.png).
+![Multicycle](https://github.com/SachiniW/RISC-V_Processor/blob/main/Images/Multi_cycle_datapath.png)
 ### 5-staged pipeline Core
 &nbsp;
-![Pipeline](https://github.com/SachiniW/RISC-V_Processor/blob/main/Images/Pipeline_datapath.png).
+![Pipeline](https://github.com/SachiniW/RISC-V_Processor/blob/main/Images/Pipeline_datapath.png)
 &nbsp;
 
 ### Directory Hierarchy
