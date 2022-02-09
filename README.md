@@ -44,10 +44,12 @@ cd RISC-V Processor/rtl/src
         ```
         ./run.sh
         ```
+        ![11](https://github.com/SachiniW/RISC-V_Processor/blob/main/Images/11.png)
     2. Simulation using a selected design with the default C code in the memory.
         ```
         ./run.sh eval
         ```
+        ![12](https://github.com/SachiniW/RISC-V_Processor/blob/main/Images/12.png)
     3. Simulation using a selected design with a custom C code in the memory. 
        - To execute this command toolchain should be present in `PyRV32I/toolChain` folder. 
        - Download tool chain from https://github.com/stnolting/riscv-gcc-prebuilt/releases/download/rv32i-2.0.0/riscv32-unknown-elf.gcc-10.2.0.rv32i.ilp32.newlib.tar.gz
@@ -55,6 +57,7 @@ cd RISC-V Processor/rtl/src
         ```
         ./run.sh eval new
         ```
+        ![13](https://github.com/SachiniW/RISC-V_Processor/blob/main/Images/13.png)
 ### Synthesizing for FPGAs
 
 The project was initially intended to support synthesis on FPGAs. Hence, the current designs have been synthesized but have not been tested in hardware. 
