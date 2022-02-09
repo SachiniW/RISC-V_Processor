@@ -7,13 +7,25 @@ echo "-----------------------------------------------------"
 
 case "$2" in 
   new)
-  	echo "Enter the C code to be evaluated"
-  	nano ../../PyRV32I/hello_world.c
-  	echo "Compiling and loading the program ..."
-  	cd ../../PyRV32I
-  	python3 comp.py hello_world.c &>-;
-  	cp instruction_memory.mem ../rtl/src/ 
-  	cd ../rtl/src
+  	read -p "Do you need to edit the default C program? [Y/N] : " y
+	case "$y" in 
+	Y)
+		nano ../../PyRV32I/hello_world.c
+		echo "Compiling and loading the program ..."
+		cd ../../PyRV32I
+		python3 comp.py hello_world.c &>-;
+		cp instruction_memory.mem ../rtl/src/ 
+		cd ../rtl/src
+	;;
+	y)
+		nano ../../PyRV32I/hello_world.c
+		echo "Compiling and loading the program ..."
+		cd ../../PyRV32I
+		python3 comp.py hello_world.c &>-;
+		cp instruction_memory.mem ../rtl/src/ 
+		cd ../rtl/src
+	;;
+	esac
   ;;
 esac
 
