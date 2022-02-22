@@ -59,7 +59,8 @@ cd RISC-V Processor/rtl/src
         ```
         ![13](https://github.com/SachiniW/RISC-V_Processor/blob/main/Images/13.png)
 
-        - The program's output is as follows.
+     4. The program's output is as follows.
+ 
         ![444](https://github.com/SachiniW/RISC-V_Processor/blob/main/Images/444.png)
 ### Synthesizing for FPGAs
 
