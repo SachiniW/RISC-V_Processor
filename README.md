@@ -58,6 +58,9 @@ cd RISC-V Processor/rtl/src
         ./run.sh eval new
         ```
         ![13](https://github.com/SachiniW/RISC-V_Processor/blob/main/Images/13.png)
+
+        - The program's output is as follows.
+        ![444](https://github.com/SachiniW/RISC-V_Processor/blob/main/Images/444.png)
 ### Synthesizing for FPGAs
 
 The project was initially intended to support synthesis on FPGAs. Hence, the current designs have been synthesized but have not been tested in hardware. 
